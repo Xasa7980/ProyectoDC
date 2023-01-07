@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface iDamageable
+﻿public interface iDamageable
 {
     /// <summary>
     /// Salud actual de la entidad
