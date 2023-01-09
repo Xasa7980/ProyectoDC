@@ -27,7 +27,7 @@ public class PlayerHUB
     }
     void SettingHp(TextMeshProUGUI hpText/*, TextMeshProUGUI mpText, TextMeshProUGUI xpText*/)
     {
-        hpText.text = maxHp.ToString() + "/" + hp.ToString();
+        hpText.text = hp.ToString() + "/" + maxHp.ToString();
         //mpText.text = maxMp.ToString() + "/" + mp.ToString(); Si PONEMOS ENERGIA PARA USAR HABILIDADES
         //xpText.text = ((xp / maxXp) * 100).ToString() + "% / " + ((maxXp / maxXp) * 100).ToString() + "% Exp"; SI PONEMOS EXPERIENCIA PARA OBTENER MAS NIVEL
     }

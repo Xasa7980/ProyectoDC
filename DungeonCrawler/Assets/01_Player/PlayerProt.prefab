@@ -5579,6 +5579,8 @@ MonoBehaviour:
   speed: 5
   lookSpeed: 7
   moveJoystick: {fileID: 0}
+  evadeRange: 0.5
+  timeDodgeGetReady: 2
 --- !u!114 &8730329750514506961
 MonoBehaviour:
   m_ObjectHideFlags: 0

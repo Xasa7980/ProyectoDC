@@ -7,37 +7,37 @@ public class InteractableBomb : MonoBehaviour
 {
     #region References
     Interaction interaction;
-    PlayerStats pStats;
+    iDamageable pHealth;
     #endregion
 
+    [SerializeField] float radius;
+    [SerializeField] LayerMask targetMask;
     public float timeForActive;
+    [SerializeField] float timeToActive;
+    public Collider[] playerCheck;
     void Awake()
     {
         interaction = GetComponent<Interaction>();
     }
     void Update()
     {
-        StartCounter(0.5f);
+        StartCounter();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)
         {
             interaction.interactable = true;
-            pStats = other.GetComponent<PlayerStats>();
+            pHealth = other.GetComponent<iDamageable>();
         }
     }
-    void StartCounter(float timeToActive)
+    void StartCounter()
     {
         if (interaction.interactable)
         {
             timeForActive += Time.deltaTime;
 
-            if (timeForActive < timeToActive)
-            {
-                return;
-            }
-            else
+            if (timeForActive > timeToActive)
             {
                 Explode();
                 timeForActive = 0;
@@ -48,9 +48,24 @@ public class InteractableBomb : MonoBehaviour
     {
         if (interaction.GetInteraction())
         {
-            float power = pStats.CurrentHealth * 0.15f;
+            float power = pHealth.currentHeath * 0.15f;
             gameObject.SetActive(false);
-            pStats.ApplyDamage(power);
+            if (DetectPlayer())  pHealth.ApplyDamage(power);
         }
     }
+    bool DetectPlayer()
+    {
+        playerCheck = Physics.OverlapSphere(transform.position, radius, targetMask);
+        if (playerCheck.Length > 0)
+        {
+            return true;
+        }
+        else return false;
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
 }

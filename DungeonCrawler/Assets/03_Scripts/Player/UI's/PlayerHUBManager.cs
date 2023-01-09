@@ -11,11 +11,11 @@ public class PlayerHUBManager : MonoBehaviour
     [SerializeField] GameObject normalDmgText, critDmgText; //En caso de usar textos para mostrar el daño causado 
 
     PlayerHUB pHUB;
-    PlayerStats pStats;
+    Health pHealth;
     void Start()
     {
         pHUB = new PlayerHUB();
-        pStats = GetComponent<PlayerStats>();
+        pHealth = GetComponent<Health>();
     }
 
     void Update()
@@ -24,8 +24,8 @@ public class PlayerHUBManager : MonoBehaviour
     }
     void UpdatingPlayerStaticHUD()
     {
-        pHUB.SettingValuesToStaticHUD(pStats.CurrentHealth,pStats.MaxHealth,staticHpIm,staticHpText);
-        staticPlayerName.text = pStats.PlayerName;
+        pHUB.SettingValuesToStaticHUD(pHealth.currentHeath,pHealth.maxHealth,staticHpIm,staticHpText);
+        staticPlayerName.text = pHealth.playerName;
     }
     //void UpdatingPlayerScreenHUD() Funciona igual que UpdatingPlayerStaticHUD(); pero para el screen
     //{

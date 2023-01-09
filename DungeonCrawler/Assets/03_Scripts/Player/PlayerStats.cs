@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -15,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     string playerName;
     public string PlayerName { get { return playerName; } set { playerName = value; } }
 
-    int strength, defense;
+    float DmgReductionBonus;
     float castTime;
     #endregion
     private void Awake()
