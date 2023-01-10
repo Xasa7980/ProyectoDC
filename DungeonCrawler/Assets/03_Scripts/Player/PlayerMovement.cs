@@ -43,10 +43,12 @@ public class PlayerMovement : MonoBehaviour
         //Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal") + moveJoystick.Horizontal, 0, Input.GetAxisRaw("Vertical") + moveJoystick.Vertical) * speed * Time.deltaTime;
         controller.Move((velocity + Physics.gravity) * Time.deltaTime);
     }
+
     public void DoDodge()
     {
         if(dodgeIsRefreshed) canDodge = true;
     }
+
     void DodgeMove(Vector3 direction, Vector3 velocity)
     {
         if (direction != Vector3.zero)
