@@ -8704,7 +8704,7 @@ PrefabInstance:
     - target: {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243403729022705550, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
@@ -14684,7 +14684,7 @@ PrefabInstance:
     - target: {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243403729022705550, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
@@ -16356,7 +16356,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e79a0e3837f9c40ade1ac3105c553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
   timeForActive: 0
+  timeToActive: 0
+  playerCheck: []
 --- !u!135 &1763368411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17626,7 +17632,7 @@ PrefabInstance:
     - target: {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243403729022705550, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
@@ -20537,7 +20543,7 @@ PrefabInstance:
     - target: {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243403729022705550, guid: de0385589e3eea94c9899ba0f26af862,
         type: 3}
