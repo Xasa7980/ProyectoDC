@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6266b045fd28d6647b3866d47d0f9a7c, type: 3}
+  m_Name: enemy_Private Robot_01_Attack_A
+  m_EditorClassIdentifier: 
+  _displayName: 
+  _baseDamage: 0
+  _attackAnimation: {fileID: 7400054, guid: 914b09da235eea34ebdc4e71d057e815, type: 3}
+  projectile: {fileID: 319635519636798063, guid: 788e3a8e97b433c4c83bed164c02f8bc,
+    type: 3}
+  attackEffect: {fileID: 0}
