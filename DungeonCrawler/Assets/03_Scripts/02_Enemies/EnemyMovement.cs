@@ -7,9 +7,13 @@ public class EnemyMovement : MonoBehaviour
 {
     public float lookSpeed;
 
-    public NavMeshAgent agent { get; private set; }
+    NavMeshAgent agent;
     [SerializeField] bool _updatePosition = true;
     [SerializeField] bool _updateRotation = true;
+
+    public float remainingDistance => agent.remainingDistance;
+    public Vector3 desiredVelocity => agent.desiredVelocity;
+    public Vector3 nextPosition { get=>agent.nextPosition; set => agent.nextPosition = value;}
 
     public bool updateRotation => _updateRotation;
     public bool updatePosition => _updatePosition;

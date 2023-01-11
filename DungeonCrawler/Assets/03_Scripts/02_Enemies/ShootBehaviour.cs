@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class ShootBehaviour : EnemyBehaviour
 {
@@ -9,7 +10,45 @@ public class ShootBehaviour : EnemyBehaviour
     [SerializeField] float attackInterval = 2;
     float attackCounter;
 
-    Transform target;
+    [Header("Aim IK")]
+    [SerializeField] Rig aimRig;
+    [SerializeField] Transform aimTarget;
+    float aimWeight = 0;
+
+    float targetHeightOffset;
+    Transform _target;
+    Transform target
+    {
+        get => _target;
+        set
+        {
+            _target = value;
+            if (value)
+            {
+                Collider targetCollider = value.GetComponent<Collider>();
+
+                switch (targetCollider)
+                {
+                    case CapsuleCollider capsuleCollider:
+                        targetHeightOffset = capsuleCollider.height * 0.75f;
+                        break;
+
+                    case BoxCollider boxCollider:
+                        targetHeightOffset = boxCollider.size.y * 0.75f;
+                        break;
+
+                    case CharacterController characterController:
+                        targetHeightOffset = characterController.height * 0.75f;
+                        break;
+
+                    default:
+                        targetHeightOffset = 0;
+                        break;
+                }
+            }
+
+        }
+    }
 
     [Space(20)]
     [SerializeField] AttackType attack;
@@ -17,7 +56,6 @@ public class ShootBehaviour : EnemyBehaviour
 
     [Space(20)]
     [SerializeField] bool moveWhileShooting = false;
-    [SerializeField] float nearestRadius = 7;
     [SerializeField] float moveInterval = 9;
     float moveCounter;
 
@@ -25,6 +63,12 @@ public class ShootBehaviour : EnemyBehaviour
     {
         if (attackCounter > 0)
             attackCounter -= Time.deltaTime;
+
+        if (!target)
+        {
+            aimWeight = Mathf.Lerp(aimWeight, 0, Time.deltaTime * 20);
+            aimRig.weight = aimWeight;
+        }
     }
 
     public override void Init()
@@ -44,6 +88,7 @@ public class ShootBehaviour : EnemyBehaviour
         target = null;
         movement.overrideController = false;
         anim.SetBool("Aiming", false);
+        anim.SetTrigger("InterruptAttack");
     }
 
     public override void UpdateBehaviour()
@@ -51,10 +96,17 @@ public class ShootBehaviour : EnemyBehaviour
         if (!target)
         {
             target = sensor.GetNearestThreat();
+
+            
         }
         else
         {
             anim.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
+
+            aimWeight = Mathf.Lerp(aimWeight, 1, Time.deltaTime * 20);
+            aimRig.weight = aimWeight;
+
+            aimTarget.position = target.position + Vector3.up * targetHeightOffset;
 
             Vector3 targetDirection = (target.position - transform.position).normalized;
             targetDirection.y = 0;
@@ -69,7 +121,7 @@ public class ShootBehaviour : EnemyBehaviour
 
             if (moveWhileShooting)
             {
-                movement.agent.nextPosition = baseController.transform.position;
+                movement.nextPosition = baseController.transform.position;
 
                 if (moveCounter > 0) moveCounter -= Time.deltaTime;
 
@@ -77,16 +129,16 @@ public class ShootBehaviour : EnemyBehaviour
                 {
                     moveCounter = moveInterval;
 
-                    Vector3 newDir = MathOps.DirFromAngle(target.eulerAngles.y + Random.Range(-90, 90));
-                    Vector3 newPoint = newDir * Random.Range(nearestRadius, sensor.DetectionRadius);
+                    Vector3 newDir = MathOps.DirFromAngle(Random.Range(0, 360));
+                    Vector3 newPoint = transform.position + newDir * Random.Range(3, 6);
 
                     movement.SetDestination(newPoint);
                 }
 
-                if (movement.agent.remainingDistance > 0.5f)
+                if (movement.remainingDistance > 0.5f)
                 {
-                    float speedX = Vector3.Dot(baseController.transform.right, movement.agent.desiredVelocity.normalized) * 2;
-                    float speedY = Vector3.Dot(baseController.transform.forward, movement.agent.desiredVelocity.normalized) * 2;
+                    float speedX = Vector3.Dot(baseController.transform.right, movement.desiredVelocity.normalized) * 2;
+                    float speedY = Vector3.Dot(baseController.transform.forward, movement.desiredVelocity.normalized) * 2;
 
                     anim.SetFloat("Speed_X", speedX, 0.2f, Time.deltaTime);
                     anim.SetFloat("Speed_Y", speedY, 0.2f, Time.deltaTime);
@@ -98,13 +150,6 @@ public class ShootBehaviour : EnemyBehaviour
                 }
             }
         }
-    }
-
-    private void LateUpdate()
-    {
-        if (!active) return;
-
-        //Aplicar Inverse Kinematics para apuntar bien
     }
 
     public void Shoot()
