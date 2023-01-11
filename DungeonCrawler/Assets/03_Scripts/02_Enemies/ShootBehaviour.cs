@@ -5,7 +5,7 @@ using UnityEngine.Animations.Rigging;
 
 public class ShootBehaviour : EnemyBehaviour
 {
-    [SerializeField] RadialSensor sensor;
+    [SerializeField] Sensor sensor;
     [SerializeField] float aimSpeed = 9;
     [SerializeField] float attackInterval = 2;
     float attackCounter;

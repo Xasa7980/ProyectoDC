@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyBehaviour[] states;
 
+    [SerializeField] GameObject dieEffect;
+
     EnemyBehaviour _currentState;
     public EnemyBehaviour currentState
     {
@@ -43,5 +45,11 @@ public class EnemyController : MonoBehaviour
         }
 
         currentState.UpdateBehaviour();
+    }
+
+    public void Kill()
+    {
+        Instantiate(dieEffect, transform.position + Vector3.up, transform.rotation);
+        Destroy(this.gameObject);
     }
 }

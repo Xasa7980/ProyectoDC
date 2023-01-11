@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     [Header("Detection Settings")]
-    [SerializeField] RadialSensor sensor;
+    [SerializeField] Sensor sensor;
     [SerializeField] float reactionSpeed = 7;            //Velocidad de movimiento de la torreta para apuntar al objetivo
     [SerializeField] float inspectInterval = 5;
     Quaternion inspectRotation;

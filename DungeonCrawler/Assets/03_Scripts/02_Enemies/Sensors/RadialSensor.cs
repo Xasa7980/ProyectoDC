@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RadialSensor : MonoBehaviour
+public class RadialSensor : Sensor
 {
     [SerializeField] float detectionRadius = 15;
     [SerializeField, Range(0, 360)] float detectionAngle = 60;
@@ -9,7 +9,7 @@ public class RadialSensor : MonoBehaviour
 
     public float DetectionRadius => detectionRadius;
 
-    public bool ThreatsDetected()
+    public override bool ThreatsDetected()
     {
         Collider[] threats = Physics.OverlapSphere(transform.position, detectionRadius, detectionMask);
 
@@ -24,7 +24,7 @@ public class RadialSensor : MonoBehaviour
         return false;
     }
 
-    public Transform GetNearestThreat()
+    public override Transform GetNearestThreat()
     {
         Collider[] threats = Physics.OverlapSphere(transform.position, detectionRadius, detectionMask);
 
@@ -49,7 +49,7 @@ public class RadialSensor : MonoBehaviour
         return nearest;
     }
 
-    public bool InRange(Vector3 position)
+    public override bool InRange(Vector3 position)
     {
         float sqrDst = (position - transform.position).sqrMagnitude;
         return sqrDst <= Mathf.Pow(detectionRadius, 2);

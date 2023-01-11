@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ChaseBehaviour : EnemyBehaviour
 {
-    [SerializeField] RadialSensor sensor;
+    [SerializeField] Sensor sensor;
 
     Transform target;
 
