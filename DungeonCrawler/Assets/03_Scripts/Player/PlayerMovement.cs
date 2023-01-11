@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 5;
     [SerializeField] float lookSpeed = 7;
+    [SerializeField] Transform aimTarget;
+    [SerializeField] Rig aimRig;
+    RifleController currentWeapon;
 
     CharacterController controller;
     Animator anim;
 
-    bool aiming = false;
+    public static bool aiming { get; private set; }
     bool rolling = false;
 
     [SerializeField] FixedJoystick moveJoystick;
@@ -22,11 +26,13 @@ public class PlayerMovement : MonoBehaviour
     //bool canDodge;
     //bool dodgeIsRefreshed;
     //#endregion
-    private void Awake()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        currentWeapon = GetComponentInChildren<RifleController>();
     }
+
     private void Update()
     {
         Moving();
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetFloat("Speed_X", 0, 0.25f, Time.deltaTime);
             anim.SetFloat("Speed_Y", 0, 0.25f, Time.deltaTime);
+            aimRig.weight = Mathf.Lerp(aimRig.weight, 0, Time.deltaTime * 20);
 
             Vector3 rollFrontMove = CameraController.current.transform.forward * Input.GetAxis("Vertical") * 2;
             Vector3 rollSideMove = CameraController.current.transform.right * Input.GetAxis("Horizontal") * 2;
@@ -82,19 +89,25 @@ public class PlayerMovement : MonoBehaviour
             }
 
             anim.SetFloat("Speed", velocity.sqrMagnitude, 0.1f, Time.deltaTime);
+
+            aimRig.weight = Mathf.Lerp(aimRig.weight, 0, Time.deltaTime * 20);
         }
         else
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, transform.position);
+            Vector3 origin = new Vector3(transform.position.x, currentWeapon.transform.position.y, transform.position.z);
+            Plane groundPlane = new Plane(Vector3.up, origin);
             float rayDst;
+            aimRig.weight = Mathf.Lerp(aimRig.weight, 1, Time.deltaTime * 20);
+            currentWeapon.TryShoot();
 
             if (groundPlane.Raycast(ray, out rayDst))
             {
                 Vector3 aimPoint = ray.GetPoint(rayDst);
+                aimTarget.position = aimPoint;
                 Vector3 lookPoint = aimPoint;
-                lookPoint.y = 0;
                 Vector3 lookDirection = (lookPoint - transform.position).normalized;
+                lookDirection.y = 0;
                 Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
 

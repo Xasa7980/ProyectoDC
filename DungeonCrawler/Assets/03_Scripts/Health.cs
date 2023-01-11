@@ -38,6 +38,9 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] protected UnityEvent OnDieEvent = new UnityEvent();
     public System.Action OnDie = delegate { };
 
+    [SerializeField] protected UnityEvent OnDamageReceivedEvent = new UnityEvent();
+    public System.Action OnDamageReceived = delegate { };
+
     public virtual void ApplyDamage(float damage2apply)
     {
         if (shieldActived) currentHeath -= BlockDamage(damage2apply, reductionBonus);
@@ -45,6 +48,11 @@ public class Health : MonoBehaviour, iDamageable
 
         if (currentHeath <= 0)
             Die();
+        else
+        {
+            OnDamageReceived();
+            OnDamageReceivedEvent.Invoke();
+        }
 
         currentHeath = Mathf.Clamp(currentHeath, 0, _maxHealth);
         UpdateUI();
@@ -83,6 +91,7 @@ public class Health : MonoBehaviour, iDamageable
             }
         }
     }
+
     void ResetShield()
     {
         if (shieldNeedRefresh)
@@ -107,6 +116,7 @@ public class Health : MonoBehaviour, iDamageable
     {
         currentHeath = maxHealth;
     }
+
     protected virtual void Update()
     {
         ResetShield();
