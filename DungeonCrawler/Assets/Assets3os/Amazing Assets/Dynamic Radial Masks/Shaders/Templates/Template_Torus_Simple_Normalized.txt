@@ -1,0 +1,53 @@
+#ifndef DYNAMIC_RADIAL_MASKS_#SHAPE_BIG#_#ARRAY_LENGTH#_#TYPE_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#
+#define DYNAMIC_RADIAL_MASKS_#SHAPE_BIG#_#ARRAY_LENGTH#_#TYPE_BIG#_#BLEND_MODE_BIG#_ID#ID#_#SCOPE_BIG#
+
+
+#UNIFORM#float4 DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Position[#ARRAY_LENGTH#];	
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Radius[#ARRAY_LENGTH#];
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Intensity[#ARRAY_LENGTH#];
+#UNIFORM#float  DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_EdgeSize[#ARRAY_LENGTH#];
+
+
+#include "../../Core/Core.cginc"
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//                                Main Method                                 //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+float DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(float3 positionWS)
+{
+    float retValue = 1; 
+
+	int i = 0;
+#FOR_LOOP#	for(i = 0; i < #ARRAY_LENGTH#; i++)
+	{
+		float mask = ShaderExtensions_DynamicRadialMasks_#SHAPE_SMALL#_#TYPE_SMALL#(positionWS,
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Position[i].xyz, 
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Radius[i],         
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_Intensity[i],
+																		DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_EdgeSize[i]);
+		retValue *= 1 - saturate(mask);	
+	}
+
+    return 1 - retValue;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//                               Helper Methods                               //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+void DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_float(float3 positionWS, out float retValue)
+{
+    retValue = DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(positionWS); 		
+}
+
+void DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#_half(half3 positionWS, out half retValue)
+{
+    retValue = DynamicRadialMasks_#SHAPE_SMALL#_#ARRAY_LENGTH#_#TYPE_SMALL#_#BLEND_MODE_SMALL#_ID#ID#_#SCOPE_SMALL#(positionWS); 		
+}
+
+#endif
