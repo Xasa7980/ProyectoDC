@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform aimTarget;
     [SerializeField] Rig aimRig;
     RifleController currentWeapon;
+    float shootDelayCounter = 0.15f;
 
     CharacterController controller;
     Animator anim;
@@ -41,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     void Moving()
     {
         aiming = Input.GetMouseButton(0);
+
+        if (Input.GetMouseButtonDown(0))
+            shootDelayCounter = 0.15f;
+
         anim.SetBool("Aiming", aiming);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -99,7 +104,10 @@ public class PlayerMovement : MonoBehaviour
             Plane groundPlane = new Plane(Vector3.up, origin);
             float rayDst;
             aimRig.weight = Mathf.Lerp(aimRig.weight, 1, Time.deltaTime * 20);
-            currentWeapon.TryShoot();
+            if (shootDelayCounter <= 0)
+                currentWeapon.TryShoot();
+            else
+                shootDelayCounter -= Time.deltaTime;
 
             if (groundPlane.Raycast(ray, out rayDst))
             {

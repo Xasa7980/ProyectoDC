@@ -8,6 +8,8 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] string _playerName;
     public string playerName { get; set; }
 
+    [SerializeField] Component[] removeComponentsOnDead;
+
     #region Defense&Shield
     bool shieldActived = false;
     bool shieldNeedRefresh;
@@ -63,6 +65,11 @@ public class Health : MonoBehaviour, iDamageable
         //Die
         OnDieEvent.Invoke();
         OnDie();
+
+        foreach (Component component in removeComponentsOnDead)
+        {
+            Destroy(component);
+        }
     }
 
     public virtual void Recover(float healthToRecover)

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3caadff4e9ed1459842cc3ef370c34, type: 3}
+  m_Name: Arquetype_Medical Room
+  m_EditorClassIdentifier: 
+  entries: []
+  floorTiles:
+  - {fileID: 698930224039630184, guid: 457c6b4d1628d3642a3be373f6e16bac, type: 3}
+  wallTiles:
+  - {fileID: 6016464009396415403, guid: 44c63d2addb9f044c9f890f35df5f2ec, type: 3}
+  cornerTiles:
+  - {fileID: 4029144878144256492, guid: e5bec6e84c1aaff4ab9ec205c1517175, type: 3}
+  hallTiles: []
+  doorTiles:
+  - {fileID: 6016464009396415403, guid: 2b1f77a390bcad14195ca9fd66b88796, type: 3}
+  turrets: []

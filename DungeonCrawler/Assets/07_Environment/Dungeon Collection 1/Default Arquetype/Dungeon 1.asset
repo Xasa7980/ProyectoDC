@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3caadff4e9ed1459842cc3ef370c34, type: 3}
+  m_Name: Dungeon 1
+  m_EditorClassIdentifier: 
+  entries:
+  - {fileID: 1161216634554426411, guid: 562d34e623b53f94893d6c8963b19f1b, type: 3}
+  floorTiles:
+  - {fileID: 698930224039630184, guid: 3a4bcafd83fc1824abbe1bfa5b3bf309, type: 3}
+  wallTiles:
+  - {fileID: 6016464009396415403, guid: e67304365b6db1046b003694ed113a89, type: 3}
+  cornerTiles:
+  - {fileID: 4029144878144256492, guid: 53b8fe717e8544d41a07c3dc32911eac, type: 3}
+  hallTiles:
+  - {fileID: -8968083413074486382, guid: ac05f7b1e301dbd4da72204601c786a2, type: 3}
+  doorTiles:
+  - {fileID: 6016464009396415403, guid: bd9dc2927d87c2d4e87b0242aeabe220, type: 3}
+  turrets:
+  - {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862, type: 3}

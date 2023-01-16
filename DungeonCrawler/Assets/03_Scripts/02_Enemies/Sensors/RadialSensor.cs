@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class RadialSensor : Sensor
 {
-    [SerializeField] float detectionRadius = 15;
     [SerializeField, Range(0, 360)] float detectionAngle = 60;
-    [SerializeField] LayerMask detectionMask;
 
     public float DetectionRadius => detectionRadius;
 
@@ -18,7 +16,10 @@ public class RadialSensor : Sensor
             Vector3 threatDir = (threat.transform.position - transform.position).normalized;
             float angle = Vector3.Angle(threatDir, transform.forward);
             if (angle <= detectionAngle / 2)
-                return true;
+            {
+                if (DirectLineToTarget(threat.transform.position))
+                    return true;
+            }
         }
 
         return false;
@@ -38,7 +39,7 @@ public class RadialSensor : Sensor
             if (angle <= detectionAngle / 2)
             {
                 float sqrDst = (threat.transform.position - transform.position).sqrMagnitude;
-                if(sqrDst < minDst)
+                if(sqrDst < minDst && DirectLineToTarget(threat.transform.position))
                 {
                     minDst = sqrDst;
                     nearest = threat.transform;

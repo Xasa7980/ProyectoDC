@@ -6,6 +6,7 @@ public class RifleController : MonoBehaviour
 {
     [SerializeField] Transform shootPoint;
     [SerializeField] float damage = 7;
+    [SerializeField, Range(0, 1)] float accuracy = 0.5f;
 
 
     [Header("Manual Setup")]
@@ -27,7 +28,11 @@ public class RifleController : MonoBehaviour
     //Este se usa para los enemigos para poder configurar un proyectil directamente desde el Shoot Behaviour
     public void Shoot(Projectile projectile)
     {
-        Projectile bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootPoint.rotation);
+        Vector3 point = shootPoint.position + shootPoint.forward * 15 + Random.onUnitSphere * (1 - accuracy) * 10;
+        Vector3 direction = (point - shootPoint.position).normalized;
+        Quaternion shootRotation = Quaternion.LookRotation(direction);
+
+        Projectile bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootRotation);
         bullet.damage += damage;
     }
 
@@ -40,7 +45,11 @@ public class RifleController : MonoBehaviour
     {
         if (currentfireCount <= 0)
         {
-            Projectile bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootPoint.rotation);
+            Vector3 point = shootPoint.position + shootPoint.forward * 30 + Random.onUnitSphere * (1 - accuracy);
+            Vector3 direction = (point - shootPoint.position).normalized;
+            Quaternion shootRotation = Quaternion.LookRotation(direction);
+
+            Projectile bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootRotation);
             bullet.damage += damage;
             currentfireCount = fireRate;
         }

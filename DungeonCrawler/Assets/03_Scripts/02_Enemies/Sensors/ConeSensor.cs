@@ -6,7 +6,6 @@ using UnityEngine;
 public class ConeSensor : Sensor
 {
     [SerializeField] Light sightField;
-    [SerializeField] LayerMask detectionMask;
 
     public override Transform GetNearestThreat()
     {
@@ -27,7 +26,7 @@ public class ConeSensor : Sensor
         {
             Vector3 dir = (target.transform.position - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, dir);
-            if (angle <= minAngle)
+            if (angle <= minAngle && DirectLineToTarget(target.transform.position))
             {
                 nearest = target.transform;
                 minAngle = angle;
@@ -60,7 +59,7 @@ public class ConeSensor : Sensor
         foreach(Collider target in possibleTargets)
         {
             Vector3 dir = (target.transform.position - transform.position).normalized;
-            if(Vector3.Angle(transform.forward,dir) <= sightField.spotAngle / 2)
+            if(Vector3.Angle(transform.forward,dir) <= sightField.spotAngle / 2 && DirectLineToTarget(target.transform.position))
             {
                 return true;
             }
