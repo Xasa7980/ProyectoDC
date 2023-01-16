@@ -24,7 +24,31 @@ public class Room
 
     public TilePresetManager[,] tileMap;
 
-    public List<RoomConnection> connections { get; private set; }
+    public RoomConnection[] connections { get; private set; }
+    public bool isolated
+    {
+        get
+        {
+            foreach(RoomConnection connection in connections)
+            {
+                if (connection != null) return false;
+            }
+
+            return true;
+        }
+    }
+    public bool fullConnected
+    {
+        get
+        {
+            foreach(RoomConnection connection in connections)
+            {
+                if(connection==null) return false;
+            }
+
+            return true;
+        }
+    }
 
     public Room(Vector2 center, int width, int length)
     {
@@ -33,7 +57,7 @@ public class Room
 
         this.center = center;
 
-        this.connections = new List<RoomConnection>();
+        this.connections = new RoomConnection[4];
 
         this.tileMap = new TilePresetManager[width, length];
     }
@@ -49,7 +73,7 @@ public class Room
 
         this.center = center;
 
-        this.connections = new List<RoomConnection>();
+        this.connections = new RoomConnection[4];
 
         this.tileMap = new TilePresetManager[width, length];
     }
@@ -156,21 +180,24 @@ public class Room
         }
     }
 
-    public void Connect(Room room, bool skipDrawing = false)
+    public void Connect(Room room, RoomDirections direction, bool skipDrawing = false)
     {
-        connections.Add(new RoomConnection(this, room, skipDrawing));
+        connections[(int)direction] = new RoomConnection(this, room, skipDrawing);
+        room.connections[(int)direction.Opposite()] = new RoomConnection(room, this, true);
     }
 
-    public void Connect(Vector2 startPoint, Vector2 endPoint, Room room)
+    public void Connect(Vector2 startPoint, Vector2 endPoint, Room room, RoomDirections direction)
     {
-        connections.Add(new RoomConnection(startPoint, this, endPoint, room));
-        room.Connect(endPoint, startPoint, this);
+        connections[(int)direction] = new RoomConnection(startPoint, this, endPoint, room);
+        room.connections[(int)direction.Opposite()] = new RoomConnection(endPoint, room, startPoint, this);
     }
 
     public bool Connected(Room room)
     {
         foreach(RoomConnection c in connections)
         {
+            if (c == null) continue;
+
             if (c.endRoom == room || c.startRoom == room)
                 return true;
         }

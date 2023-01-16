@@ -264,6 +264,8 @@ public class DungeonLibrary : ScriptableObject
 
         foreach(RoomConnection rc in room.connections)
         {
+            if (rc == null) continue;
+
             Vector3 center = new Vector3(rc.startRoom.center.x, 0, rc.startRoom.center.y);
             Vector3 dirV3 = new Vector3(rc.direction.x, 0, rc.direction.y);
 
@@ -338,7 +340,7 @@ public class DungeonLibrary : ScriptableObject
         List<TilePresetManager> emptyTiles = new List<TilePresetManager>();
         foreach(TilePresetManager tile in room.tileMap)
         {
-            if(tile.empty)
+            if(tile.empty && tile.alowdPropsInstancing)
                 emptyTiles.Add(tile);
         }
 

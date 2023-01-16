@@ -16,6 +16,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] Transform gun;                      //Seccion de armas de la torreta
 
     [Header("Shooting")]
+    [SerializeField, Range(0, 1)] float accuracy = 0.5f;
     [SerializeField] Projectile projectile;              //Proyectil que disparara
     [SerializeField] Transform[] shootingPoints;         //Puntos desde los cuales se dispararan los proyectiles
 
@@ -114,7 +115,11 @@ public class TurretController : MonoBehaviour
                 {
                     if (i == currentCannon && shootingCounter <= 0)
                     {
-                        Instantiate(projectile, shootingPoints[i].position, shootingPoints[i].rotation);
+                        Vector3 point = shootingPoints[i].position + shootingPoints[i].forward * 30 + Random.onUnitSphere * (1 - accuracy) * 3;
+                        Vector3 direction = (point - shootingPoints[i].position).normalized;
+                        Quaternion shootRotation = Quaternion.LookRotation(direction);
+
+                        Instantiate(projectile, shootingPoints[i].position, shootRotation);
                         shootingCounter = shootInterval;
 
                         if (currentCannon >= shootingPoints.Length - 1)

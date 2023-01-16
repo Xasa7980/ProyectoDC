@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829b8e4fb11ca764988d73401d786e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alowdPropsInstancing: 0
   floorTilesVariants:
   - {fileID: 1617287605012452, guid: 3deace0cd22ccd54b809b039e70ff8f6, type: 3}
   - {fileID: 1459748652104686, guid: 3ecb939ff436ba84295af759ce0365a6, type: 3}

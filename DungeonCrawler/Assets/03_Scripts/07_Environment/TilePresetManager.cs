@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TilePresetManager : MonoBehaviour
 {
+    public bool alowdPropsInstancing = true;
     [SerializeField] GameObject[] floorTilesVariants;
 
     [SerializeField] Vector3 tileSize = Vector3.one;
@@ -35,6 +36,8 @@ public class TilePresetManager : MonoBehaviour
 
     public void Populate(float spawnProbability)
     {
+        if (!alowdPropsInstancing) return;
+
         if (floorCellSize > 0 && Random.value <= spawnProbability)
         {
             int cellX = Mathf.FloorToInt(tileSize.x / floorCellSize);

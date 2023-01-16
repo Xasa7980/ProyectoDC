@@ -123,6 +123,8 @@ public class GridRoomGenerator : MonoBehaviour
 
             foreach(RoomConnection rc in r.connections)
             {
+                if (rc == null) continue;
+
                 if (rc.skipDrawing) continue;
 
                 defaultLibrary.DrawConnection(rc, this.transform);
@@ -136,41 +138,18 @@ public class GridRoomGenerator : MonoBehaviour
 
     void CreateConnections_Random()
     {
-        foreach(Room room in floor)
+        foreach (Room room in floor)
         {
-            if (Random.value <= connectionProbability)
+            for (RoomDirections direction = RoomDirections.N; direction <= RoomDirections.W; direction++)
             {
-                if (room.xCoord - 1 >= 0)
+                if (Random.value <= connectionProbability)
                 {
-                    room.Connect(floor[room.xCoord - 1, room.yCoord]);
-                    floor[room.xCoord - 1, room.yCoord].Connect(room);
-                }
-            }
+                    Vector2Int nextPos = new Vector2Int(room.xCoord, room.yCoord) + direction.AsCoord();
 
-            if (Random.value <= connectionProbability)
-            {
-                if (room.xCoord + 1 < floorWidth)
-                {
-                    room.Connect(floor[room.xCoord + 1, room.yCoord]);
-                    floor[room.xCoord + 1, room.yCoord].Connect(room);
-                }
-            }
-
-            if (Random.value <= connectionProbability)
-            {
-                if (room.yCoord - 1 >= 0)
-                {
-                    room.Connect(floor[room.xCoord, room.yCoord - 1]);
-                    floor[room.xCoord, room.yCoord - 1].Connect(room);
-                }
-            }
-
-            if (Random.value <= connectionProbability)
-            {
-                if (room.yCoord + 1 < floorLength)
-                {
-                    room.Connect(floor[room.xCoord, room.yCoord + 1]);
-                    floor[room.xCoord, room.yCoord + 1].Connect(room);
+                    if (nextPos.x >= 0 && nextPos.x < floorWidth && nextPos.y >= 0 && nextPos.y < floorHeight)
+                    {
+                        room.Connect(floor[nextPos.x, nextPos.y], direction);
+                    }
                 }
             }
         }
@@ -182,21 +161,14 @@ public class GridRoomGenerator : MonoBehaviour
 
         int currentDifficulty = 1;
 
-        Vector2Int[] possibleDirections = new Vector2Int[]
-        {
-            new Vector2Int(0, 1),
-            new Vector2Int(0, -1),
-            new Vector2Int(1, 0),
-            new Vector2Int(-1, 0)
-        };
-
         while (currentRoom != endRoom)
         {
-            List<Room> validRooms = new List<Room>();
+            Room[] validRooms = new Room[4];
+            List<RoomDirections> validDirections = new List<RoomDirections>();
 
-            for (int i = 0; i < 4; i++)
+            for (RoomDirections direction = RoomDirections.N;direction<= RoomDirections.W;direction++)
             {
-                Vector2Int dir = possibleDirections[i];
+                Vector2Int dir = direction.AsCoord();
 
                 int xNext = currentRoom.xCoord + dir.x;
                 int yNext = currentRoom.yCoord + dir.y;
@@ -206,19 +178,20 @@ public class GridRoomGenerator : MonoBehaviour
 
                 Room nextRoom = floor[xNext, yNext];
 
-                if (nextRoom.connections.Count == 4) continue;
+                if (nextRoom.fullConnected) continue;
 
-                validRooms.Add(nextRoom);
+                validRooms[(int)direction] = nextRoom;
+                validDirections.Add(direction);
             }
 
-            if (validRooms.Count == 0) break;
+            if (validDirections.Count == 0) break;
 
-            Room selectedRoom = validRooms[Random.Range(0, validRooms.Count)];
+            RoomDirections selectedDirection = validDirections[Random.Range(0, validDirections.Count)];
+            Room selectedRoom = validRooms[(int)selectedDirection];
 
             if (!currentRoom.Connected(selectedRoom))
             {
-                currentRoom.Connect(selectedRoom);
-                selectedRoom.Connect(currentRoom, true);
+                currentRoom.Connect(selectedRoom, selectedDirection);
             }
 
             currentRoom.difficulty = currentDifficulty;
@@ -277,12 +250,14 @@ public class GridRoomGenerator : MonoBehaviour
 
     void ClearIsolatedRooms()
     {
-        for(int x =0; x < floorWidth; x++)
+        for (int x = 0; x < floorWidth; x++)
         {
-            for(int y =0; y < floorLength; y++)
+            for (int y = 0; y < floorLength; y++)
             {
-                if (floor[x, y].connections.Count == 0)
+                if (floor[x, y].isolated)
+                {
                     floor[x, y] = null;
+                }
             }
         }
     }

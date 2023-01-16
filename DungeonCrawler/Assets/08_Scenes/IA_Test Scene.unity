@@ -7945,7 +7945,7 @@ MonoBehaviour:
     maxCount: 2
     spawnProbability: 0
   randomSeed: 1
-  seed: 1222
+  seed: -5347
   floorWidth: 5
   floorLength: 12
   roomSpacing: 0
