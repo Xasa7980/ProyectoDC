@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretController : MonoBehaviour
+public class TurretController : Enemy
 {
     [Header("Detection Settings")]
     [SerializeField] Sensor sensor;
@@ -59,6 +59,11 @@ public class TurretController : MonoBehaviour
             }
                 
         }
+    }
+
+    private void Start()
+    {
+        inspectInterval = Random.Range(inspectInterval * 0.5f, inspectInterval);
     }
 
     void Update()

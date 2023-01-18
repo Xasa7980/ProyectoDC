@@ -83,7 +83,7 @@ public class Room
         int xInt = Mathf.FloorToInt(x - center.x + width / 2f);
         int yInt = Mathf.FloorToInt(y - center.y + length / 2f);
 
-        if(tileMap[xInt, yInt] != null)
+        if (tileMap[xInt, yInt] != null)
         {
             GameObject.DestroyImmediate(tileMap[xInt, yInt].gameObject);
         }

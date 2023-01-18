@@ -18,7 +18,9 @@ public class RadialSensor : Sensor
             if (angle <= detectionAngle / 2)
             {
                 if (DirectLineToTarget(threat.transform.position))
+                {
                     return true;
+                }
             }
         }
 
@@ -45,6 +47,11 @@ public class RadialSensor : Sensor
                     nearest = threat.transform;
                 }
             }
+        }
+
+        if (nearest)
+        {
+            OnThreatDetected.Invoke();
         }
 
         return nearest;

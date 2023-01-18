@@ -25,4 +25,4 @@ MonoBehaviour:
   doorTiles:
   - {fileID: 6016464009396415403, guid: bd9dc2927d87c2d4e87b0242aeabe220, type: 3}
   turrets:
-  - {fileID: 4243403729022705548, guid: de0385589e3eea94c9899ba0f26af862, type: 3}
+  - {fileID: 4243403729022705549, guid: de0385589e3eea94c9899ba0f26af862, type: 3}

@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class GridDungeonGeneratorEditorWindow : EditorWindow
 {
-    [SerializeField] GridRoomGenerator generator;
+    [SerializeField] DungeonGenerator generator;
     [SerializeField] SerializedObject serializedObject;
 
     Vector2 scroll;
@@ -13,7 +13,7 @@ public class GridDungeonGeneratorEditorWindow : EditorWindow
     bool roomSettingsFoldout = true;
     bool enemiesFoldout = true;
 
-    public static void OpenWindow(GridRoomGenerator generator)
+    public static void OpenWindow(DungeonGenerator generator)
     {
         GridDungeonGeneratorEditorWindow window = (GridDungeonGeneratorEditorWindow)EditorWindow.GetWindow(typeof(GridDungeonGeneratorEditorWindow), false, "Dungeon Editor");
 
@@ -27,7 +27,7 @@ public class GridDungeonGeneratorEditorWindow : EditorWindow
     private void OnGUI()
     {
         if (generator == null)
-            generator = FindObjectOfType<GridRoomGenerator>();
+            generator = FindObjectOfType<DungeonGenerator>();
 
         if (generator == null)
             return;
@@ -63,7 +63,7 @@ public class GridDungeonGeneratorEditorWindow : EditorWindow
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("roomSpacing"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("roomConnectionMethod"));
-            if (generator.roomConnectionMethod == GridRoomGenerator.RoomConnectionMethod.Random)
+            if (generator.roomConnectionMethod == DungeonGenerator.RoomConnectionMethod.Random)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("connectionProbability"));
             }
@@ -138,13 +138,13 @@ public class GridDungeonGeneratorEditorWindow : EditorWindow
 
         if (GUILayout.Button("Populate Dungeon", GUILayout.Width(150), GUILayout.Height(25)))
         {
-            generator.Populate();
+            generator.SpawnProps();
         }
 
-        if (GUILayout.Button("Place Enemies", GUILayout.Width(150), GUILayout.Height(25)))
-        {
-            generator.PlaceEnemies();
-        }
+        //if (GUILayout.Button("Place Enemies", GUILayout.Width(150), GUILayout.Height(25)))
+        //{
+        //    generator.SpawnEnemies();
+        //}
         GUILayout.EndHorizontal();
 
         EditorGUILayout.EndScrollView();

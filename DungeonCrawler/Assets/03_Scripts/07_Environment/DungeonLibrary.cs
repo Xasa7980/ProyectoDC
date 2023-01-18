@@ -12,7 +12,7 @@ public class DungeonLibrary : ScriptableObject
     [SerializeField] TilePresetManager[] cornerTiles;
     [SerializeField] TilePresetManager[] hallTiles;
     [SerializeField] TilePresetManager[] doorTiles;
-    [SerializeField] GameObject[] turrets;
+    [SerializeField] Enemy[] turrets;
 
     public void PlaceEntry(Room entryRoom, Transform dungeonContainer)
     {
@@ -31,6 +31,7 @@ public class DungeonLibrary : ScriptableObject
                 Quaternion doorRotation = tile.transform.rotation;
                 TilePresetManager door = Instantiate(doorTiles[Random.Range(0, doorTiles.Length)], doorPosition, doorRotation);
                 door.transform.parent = tile.transform.parent;
+                tile.GetComponentInParent<RoomController>().AddDoor(door.GetComponent<Door>(), RoomDirections.S, true);
                 door.Init();
 
                 DestroyImmediate(tile.gameObject);
@@ -38,141 +39,8 @@ public class DungeonLibrary : ScriptableObject
         }
     }
 
-    public void DrawRoom(Room room, RoomNode[,] grid, Transform dungeonContainer, bool placeAssets = true)
+    public RoomController DrawRoom(Room room, Transform dungeonContainer)
     {
-        room.arquetype = this;
-
-        Vector3 bottomLeftCorner = new Vector3(room.center.x - (room.width - 1) / 2f, 0, room.center.y - (room.length - 1) / 2f);
-        Transform roomContainer = null;
-
-        if (placeAssets)
-        {
-            roomContainer = new GameObject("Room " + room.center.x + "; " + room.center.y).transform;
-            roomContainer.parent = dungeonContainer;
-            roomContainer.position = room.center * 5f;
-        }
-
-        int xCoord;
-        int yCoord;
-
-        //DrawCorners
-        //Bottom Left Corner
-        if (placeAssets)
-        {
-            TilePresetManager bottomLeftCornerTile = Instantiate(cornerTiles[Random.Range(0, cornerTiles.Length)], bottomLeftCorner * 5, Quaternion.identity);
-            bottomLeftCornerTile.transform.parent = roomContainer;
-        }
-        xCoord = Mathf.FloorToInt(bottomLeftCorner.x);
-        yCoord = Mathf.FloorToInt(bottomLeftCorner.z);
-        grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Corner);
-
-        //Top Left Corner
-        Vector3 tlp = (bottomLeftCorner + new Vector3(0, 0, room.length - 1));
-        if (placeAssets)
-        {
-            TilePresetManager topLeftCorner = Instantiate(cornerTiles[Random.Range(0, cornerTiles.Length)], tlp * 5, Quaternion.Euler(Vector3.up * 90));
-            topLeftCorner.transform.parent = roomContainer;
-        }
-        xCoord = Mathf.FloorToInt(tlp.x);
-        yCoord = Mathf.FloorToInt(tlp.z);
-        grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Corner);
-
-        //Top Right Corner
-        Vector3 trp = (bottomLeftCorner + new Vector3(room.width-1, 0, room.length - 1));
-        if (placeAssets)
-        {
-            TilePresetManager topRigtCorner = Instantiate(cornerTiles[Random.Range(0, cornerTiles.Length)], trp * 5, Quaternion.Euler(Vector3.up * 180));
-            topRigtCorner.transform.parent = roomContainer;
-        }
-        xCoord = Mathf.FloorToInt(trp.x);
-        yCoord = Mathf.FloorToInt(trp.z);
-        grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Corner);
-
-        //Bottom Right Corner
-        Vector3 brp = (bottomLeftCorner + new Vector3(room.width - 1, 0, 0));
-        if (placeAssets)
-        {
-            TilePresetManager bottomRigtCorner = Instantiate(cornerTiles[Random.Range(0, cornerTiles.Length)], brp * 5, Quaternion.Euler(Vector3.up * 270));
-            bottomRigtCorner.transform.parent = roomContainer;
-        }
-        xCoord = Mathf.FloorToInt(brp.x);
-        yCoord = Mathf.FloorToInt(brp.z);
-        grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Corner);
-
-        //Draw Walls
-        //Horizontal Walls
-        for (int x = 1; x < room.width - 1; x++)
-        {
-            Vector3 point1 = new Vector3(bottomLeftCorner.x + x, 0, bottomLeftCorner.z);
-            //Instantiate prefab
-            if (placeAssets)
-            {
-                TilePresetManager bottomWall = Instantiate(wallTiles[Random.Range(0, wallTiles.Length)], point1 * 5, Quaternion.identity);
-                bottomWall.transform.parent = roomContainer;
-            }
-            xCoord = Mathf.FloorToInt(point1.x);
-            yCoord = Mathf.FloorToInt(point1.z);
-            grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Wall);
-
-            Vector3 point2 = new Vector3(bottomLeftCorner.x + x, 0, bottomLeftCorner.z + room.length - 1);
-            //Instantiate prefab
-            if (placeAssets)
-            {
-                TilePresetManager topWall = Instantiate(wallTiles[Random.Range(0, wallTiles.Length)], point2 * 5, Quaternion.Euler(Vector3.up * 180));
-                topWall.transform.parent = roomContainer;
-            }
-            xCoord = Mathf.FloorToInt(point2.x);
-            yCoord = Mathf.FloorToInt(point2.z);
-            grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Wall);
-        }
-
-        //Vertical Walls
-        for (int y = 1; y < room.length - 1; y++)
-        {
-            Vector3 point1 = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.z + y);
-            //Instantiate prefab
-            if (placeAssets)
-            {
-                TilePresetManager leftWall = Instantiate(wallTiles[Random.Range(0, wallTiles.Length)], point1 * 5, Quaternion.Euler(Vector3.up * 90));
-                leftWall.transform.parent = roomContainer;
-            }
-            xCoord = Mathf.FloorToInt(point1.x);
-            yCoord = Mathf.FloorToInt(point1.z);
-            grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Wall);
-
-            Vector3 point2 = new Vector3(bottomLeftCorner.x + room.width - 1, 0, bottomLeftCorner.z + y);
-            //Instantiate prefab
-            if (placeAssets)
-            {
-                TilePresetManager righttWall = Instantiate(wallTiles[Random.Range(0, wallTiles.Length)], point2 * 5, Quaternion.Euler(Vector3.up * 270));
-                righttWall.transform.parent = roomContainer;
-            }
-            xCoord = Mathf.FloorToInt(point2.x);
-            yCoord = Mathf.FloorToInt(point2.z);
-            grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Wall);
-        }
-
-        for (int x = 1; x < room.width - 1; x++)
-        {
-            for (int y = 1; y < room.length - 1; y++)
-            {
-                Vector3 position = (bottomLeftCorner + new Vector3(x, 0, y));
-                if (placeAssets)
-                {
-                    TilePresetManager floorTile = Instantiate(floorTiles[Random.Range(0, floorTiles.Length)], position * 5, Quaternion.identity);
-                    floorTile.transform.parent = roomContainer;
-                }
-                xCoord = Mathf.FloorToInt(position.x);
-                yCoord = Mathf.FloorToInt(position.z);
-                grid[xCoord, yCoord] = new RoomNode(xCoord, yCoord, room, ElementType.Tile);
-            }
-        }
-    }
-
-    public void DrawRoom(Room room, Transform dungeonContainer)
-    {
-        room.arquetype = this;
-
         Vector3 bottomLeftCorner = new Vector3(room.center.x - (room.width - 1) / 2f, 0, room.center.y - (room.length - 1) / 2f);
         Transform roomContainer = new GameObject("Room " + room.center.x + "; " + room.center.y).transform;
         roomContainer.parent = dungeonContainer;
@@ -262,15 +130,28 @@ public class DungeonLibrary : ScriptableObject
             }
         }
 
-        foreach(RoomConnection rc in room.connections)
-        {
-            if (rc == null) continue;
+        RoomController controller = roomContainer.gameObject.AddComponent<RoomController>();
 
-            Vector3 center = new Vector3(rc.startRoom.center.x, 0, rc.startRoom.center.y);
-            Vector3 dirV3 = new Vector3(rc.direction.x, 0, rc.direction.y);
+        DrawDoors(room, controller);
+
+        roomContainer.transform.position += Vector3.up * room.height * 2.5f;
+
+        return controller;
+    }
+
+    void DrawDoors(Room room, RoomController container)
+    {
+        for(RoomDirections direction=RoomDirections.N;direction<=RoomDirections.W;direction++)
+        {
+            RoomConnection connection = room.connections[(int)direction];
+
+            if (connection == null) continue;
+
+            Vector3 center = new Vector3(connection.startRoom.center.x, 0, connection.startRoom.center.y);
+            Vector3 dirV3 = new Vector3(connection.direction.x, 0, connection.direction.y);
 
             Ray ray = new Ray((center + Vector3.up * 0.5f) * 5, dirV3);
-            if(Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 TilePresetManager tile = hit.collider.GetComponentInParent<TilePresetManager>();
                 if (tile)
@@ -279,14 +160,14 @@ public class DungeonLibrary : ScriptableObject
                     Quaternion rotation = tile.transform.rotation;
                     DestroyImmediate(tile.gameObject);
                     TilePresetManager door = Instantiate(doorTiles[Random.Range(0, doorTiles.Length)], position, rotation);
-                    door.transform.parent = roomContainer;
+                    door.transform.parent = container.transform;
                     room.SetTile(door, position.x / 5, position.z / 5);
                     door.Init();
+
+                    container.AddDoor(door.GetComponent<Door>(), direction);
                 }
             }
         }
-
-        roomContainer.transform.position += Vector3.up * room.height * 2.5f;
     }
 
     public void DrawConnection(RoomConnection connection, Transform dungeonContainer)
@@ -335,7 +216,7 @@ public class DungeonLibrary : ScriptableObject
         }
     }
 
-    public void PlaceTurrets(Room room, float turretProbability, int maxDificulty)
+    public List<Enemy> PlaceTurrets(Room room, float turretProbability, int maxDificulty)
     {
         List<TilePresetManager> emptyTiles = new List<TilePresetManager>();
         foreach(TilePresetManager tile in room.tileMap)
@@ -344,6 +225,7 @@ public class DungeonLibrary : ScriptableObject
                 emptyTiles.Add(tile);
         }
 
+        List<Enemy> turrets = new List<Enemy>();
         float normalizedDifficulty = (float)room.difficulty / maxDificulty;
 
         foreach(TilePresetManager tile in emptyTiles)
@@ -359,9 +241,12 @@ public class DungeonLibrary : ScriptableObject
             {
                 Vector3 position = tile.transform.position;
                 Quaternion rotation = Quaternion.Euler(Vector3.up * Random.Range(0, 4) * 90);
-                GameObject turret = Instantiate(turrets[Random.Range(0, turrets.Length)], position, rotation);
+                Enemy turret = Instantiate(this.turrets[Random.Range(0, this.turrets.Length)], position, rotation);
                 turret.transform.parent = tile.transform.parent;
+                turrets.Add(turret);
             }
         }
+
+        return turrets;
     }
 }

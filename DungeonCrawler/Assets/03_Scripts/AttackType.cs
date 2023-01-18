@@ -9,7 +9,6 @@ public class AttackType : ScriptableObject
     [SerializeField] int _baseDamage;
     [SerializeField] AnimationClip _attackAnimation;
     [SerializeField] Projectile projectile;
-
     public string displayName => _displayName;
     public int baseDamage => _baseDamage;
 

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GridRoomGenerator))]
+[CustomEditor(typeof(DungeonGenerator))]
 public class GridDungeonGeneratorEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        GridRoomGenerator generator = (GridRoomGenerator)target;
+        DungeonGenerator generator = (DungeonGenerator)target;
 
 
         if (GUILayout.Button("Open Editor", GUILayout.Height(30)))

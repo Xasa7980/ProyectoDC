@@ -33,6 +33,11 @@ public class ConeSensor : Sensor
             }
         }
 
+        if (nearest)
+        {
+            OnThreatDetected.Invoke();
+        }
+
         return nearest;
     }
 

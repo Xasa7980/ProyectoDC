@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Sensor : MonoBehaviour
 {
@@ -25,4 +26,6 @@ public abstract class Sensor : MonoBehaviour
 
         return true;
     }
+
+    [SerializeField] protected UnityEvent OnThreatDetected = new UnityEvent();
 }

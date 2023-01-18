@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] LayerMask impactMask;
     [SerializeField] float speed = 30;
     [SerializeField] float lifeTime = 4;
     [SerializeField] GameObject hitEffect;
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime))
+        if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, impactMask))
         {
             if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
             {
