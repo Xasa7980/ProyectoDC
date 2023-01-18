@@ -112,9 +112,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Vector3 frontAim = Camera.current.transform.forward * moveJoystick.Direction.y;
             //Vector3 sideAim = Camera.current.transform.right * moveJoystick.Direction.x;
-            Vector3 aimStickDirection = new Vector3(attackJoystick.Direction.y + transform.position.x,currentWeapon.transform.position.y, -attackJoystick.Direction.x + transform.position.z);
+            Vector3 stickFront = attackJoystick.Vertical * CameraController.current.transform.forward;
+            Vector3 stickSide = attackJoystick.Horizontal * CameraController.current.transform.right;
+            Vector3 aimStickDirection = stickFront + stickSide;
 
-            Vector3 aimPoint = aimStickDirection;
+            Vector3 aimPoint = transform.position + aimStickDirection * 30 + Vector3.up * (currentWeapon.transform.position.y - transform.position.y);
             aimTarget.position = aimPoint;
             Vector3 lookPoint = aimPoint;
             Vector3 lookDirection = (lookPoint - transform.position).normalized;
