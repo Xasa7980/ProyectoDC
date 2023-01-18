@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     bool rolling = false;
 
     [SerializeField] FixedJoystick moveJoystick;
+    [SerializeField] FixedJoystick attackJoystick;
+
     [SerializeField] float dodgeSpeed = 5;
     //#region DodgeParameters
     //[SerializeField, Range(0,1.5f)] float evadeRange = 0.5f;
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Moving()
     {
-        aiming = Input.GetMouseButton(0);
+        aiming = attackJoystick.Direction.sqrMagnitude >= 0.1;
 
         if (Input.GetMouseButtonDown(0))
             shootDelayCounter = 0.15f;
@@ -101,30 +103,30 @@ public class PlayerMovement : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 origin = new Vector3(transform.position.x, currentWeapon.transform.position.y, transform.position.z);
-            Plane groundPlane = new Plane(Vector3.up, origin);
-            float rayDst;
             aimRig.weight = Mathf.Lerp(aimRig.weight, 1, Time.deltaTime * 20);
+
             if (shootDelayCounter <= 0)
                 currentWeapon.TryShoot();
             else
                 shootDelayCounter -= Time.deltaTime;
 
-            if (groundPlane.Raycast(ray, out rayDst))
-            {
-                Vector3 aimPoint = ray.GetPoint(rayDst);
-                aimTarget.position = aimPoint;
-                Vector3 lookPoint = aimPoint;
-                Vector3 lookDirection = (lookPoint - transform.position).normalized;
-                lookDirection.y = 0;
-                Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
+            //Vector3 frontAim = Camera.current.transform.forward * moveJoystick.Direction.y;
+            //Vector3 sideAim = Camera.current.transform.right * moveJoystick.Direction.x;
+            Vector3 aimStickDirection = new Vector3(attackJoystick.Direction.y + transform.position.x,currentWeapon.transform.position.y, -attackJoystick.Direction.x + transform.position.z);
 
-                float speedX = Vector3.Dot(transform.right, direction) * 2;
-                float speedY = Vector3.Dot(transform.forward, direction) * 2;
+            Vector3 aimPoint = aimStickDirection;
+            aimTarget.position = aimPoint;
+            Vector3 lookPoint = aimPoint;
+            Vector3 lookDirection = (lookPoint - transform.position).normalized;
+            lookDirection.y = 0;
+            Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
 
-                anim.SetFloat("Speed_X", speedX, 0.2f, Time.deltaTime);
-                anim.SetFloat("Speed_Y", speedY, 0.2f, Time.deltaTime);
-            }
+            float speedX = Vector3.Dot(transform.right, direction) * 2;
+            float speedY = Vector3.Dot(transform.forward, direction) * 2;
+
+            anim.SetFloat("Speed_X", speedX, 0.2f, Time.deltaTime);
+            anim.SetFloat("Speed_Y", speedY, 0.2f, Time.deltaTime);
         }
 
         //Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal") + moveJoystick.Horizontal, 0, Input.GetAxisRaw("Vertical") + moveJoystick.Vertical) * speed * Time.deltaTime;

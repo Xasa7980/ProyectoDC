@@ -5442,7 +5442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9378279a5b5504196337a511315bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 3947942536310149401, guid: f074c0c079f116241a1e86ff7c539844,
+  gameManager: {fileID: 5576506099545185389, guid: 2342d75cceb958e4d84c98ea76bce01c,
     type: 3}
 --- !u!4 &551347848
 Transform:
