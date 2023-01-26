@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float followSpeed = 5;
 
+    public static Vector3 offset { get; set; }
+
     Camera gameCamera;
 
     private void Awake()
@@ -23,6 +25,6 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, followSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, target.position + offset, followSpeed * Time.deltaTime);
     }
 }

@@ -98,11 +98,13 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("Speed", velocity.sqrMagnitude, 0.1f, Time.deltaTime);
 
             aimRig.weight = Mathf.Lerp(aimRig.weight, 0, Time.deltaTime * 20);
+
+            CameraController.offset = Vector3.zero;
         }
         else
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 origin = new Vector3(transform.position.x, currentWeapon.transform.position.y, transform.position.z);
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Vector3 origin = new Vector3(transform.position.x, currentWeapon.transform.position.y, transform.position.z);
             aimRig.weight = Mathf.Lerp(aimRig.weight, 1, Time.deltaTime * 20);
 
             if (shootDelayCounter <= 0)
@@ -115,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
             Vector3 stickFront = attackJoystick.Vertical * CameraController.current.transform.forward;
             Vector3 stickSide = attackJoystick.Horizontal * CameraController.current.transform.right;
             Vector3 aimStickDirection = stickFront + stickSide;
+
+            CameraController.offset = aimStickDirection * 2.5f;
 
             Vector3 aimPoint = transform.position + aimStickDirection * 30 + Vector3.up * (currentWeapon.transform.position.y - transform.position.y);
             aimTarget.position = aimPoint;
