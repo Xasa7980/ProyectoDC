@@ -3,7 +3,7 @@
     /// <summary>
     /// Salud actual de la entidad
     /// </summary>
-    float currentHeath { get; }
+    float currentHealth { get; }
 
     /// <summary>
     /// Salud maxima de la entidad
@@ -13,7 +13,7 @@
     /// <summary>
     /// Valor entre 0 y 1 que representa el porciento de salud de la entidad
     /// </summary>
-    float percent { get; }
+    float healthPercent { get; }
 
     /// <summary>
     /// Applica cierta cantidad de daño a la salud de la entidad

@@ -108,13 +108,11 @@ public abstract class UserInterface : MonoBehaviour
         if (MouseData.interfaceMouseIsOver == null)
         {
             slotsOnInterface[obj].RemoveItem();
-            Debug.Log("1");
             return;
         }
         if (MouseData.slotHoveredOver)
         {
             InventorySlot mouseHoverSlotData = MouseData.interfaceMouseIsOver.slotsOnInterface[MouseData.slotHoveredOver];
-            Debug.Log("2");
             inventory.SwapItems(slotsOnInterface[obj], mouseHoverSlotData);
         }
     }

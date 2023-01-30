@@ -24,7 +24,7 @@ public class PlayerHUBManager : MonoBehaviour
     }
     void UpdatingPlayerStaticHUD()
     {
-        pHUB.SettingValuesToStaticHUD(pHealth.currentHeath,pHealth.maxHealth,staticHpIm,staticHpText);
+        pHUB.SettingValuesToStaticHUD(pHealth.currentHealth,pHealth.maxHealth,staticHpIm,staticHpText);
         staticPlayerName.text = pHealth.playerName;
     }
     //void UpdatingPlayerScreenHUD() Funciona igual que UpdatingPlayerStaticHUD(); pero para el screen

@@ -160,7 +160,7 @@ public class InventorySlot
     }
     public void RemoveItem()
     {
-        item = new Item();
+        item = new ();
         amount = 0;
     }
     public void AddAmount(int value)
@@ -171,14 +171,12 @@ public class InventorySlot
     {
         if (AllowedItems.Length <= 0 || _itemObject == null || _itemObject.data.Id < 0)
         {
-            Debug.Log("hola");
             return true;
         }
         for (int i = 0; i < AllowedItems.Length; i++)
         {
             if (_itemObject.type == AllowedItems[i])
             {
-                Debug.Log("hola2");
                 return true;
             }
         }

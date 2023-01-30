@@ -12,10 +12,10 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] Component[] removeComponentsOnDead;
 
     [SerializeField] bool hasUI;
-    [SerializeField] Image healthBar;
+    [SerializeField] Image healthBar, energyBar;
     [SerializeField] float smoothness = 1;
     [SerializeField] FillMethod fillMethod;
-
+    
     enum FillMethod
     {
         Filled,
@@ -23,30 +23,37 @@ public class Health : MonoBehaviour, iDamageable
     }
 
     #region Defense&Shield
-    bool shieldActived = false;
-    bool shieldNeedRefresh;
-
-    [SerializeField] float _shieldTime;
-    float timeToResetShield;
-    [SerializeField] float _timeShieldIsReady;
+    [SerializeField] GameObject shieldPrefab;
+    [SerializeField] GameObject[] playerWithShield;
+    [SerializeField] GameObject[] playerWithoutShield;
+    bool shieldIsActived;
     [SerializeField] float _defense = 5;
     [SerializeField] float _reductionBonus = 0.05f;
-    public float defense { get; set; }
-
-    public float reductionBonus { get; set; }
-
-    public float timeShieldIsReady { get; set; }
-    public float shieldTime { get; set; }
     #endregion
     #region HealthParameters
     [SerializeField] float _maxHealth = 100;
 
-    public float currentHeath { get; private set; }
+    public float currentHealth { get; private set; }
 
     public float maxHealth => _maxHealth;
 
-    public float percent => currentHeath / maxHealth;
-    float currentPercent;
+    public float healthPercent => currentHealth / maxHealth;
+    float currentHealthPercent;
+
+    #endregion
+
+    #region EnergyParameters
+    [SerializeField] float _maxEnergy = 6;
+    bool canStartEnergyRecovering;
+    [SerializeField] float timeToEnergyRecovering;
+    [SerializeField] float energyRecoveringStarts = 6;
+
+    public float currentEnergy { get; private set; }
+
+    public float maxEnergy => _maxEnergy;
+
+    public float energyPercent => currentHealth / maxHealth;
+    float currentEnergyPercent;
 
     #endregion
 
@@ -58,10 +65,14 @@ public class Health : MonoBehaviour, iDamageable
 
     public virtual void ApplyDamage(float damage2apply)
     {
-        if (shieldActived) currentHeath -= BlockDamage(damage2apply, reductionBonus);
-        else currentHeath -= damage2apply;
+        if (currentEnergy > 0) BlockDamage();
+        else
+        {
+            currentHealth -= damage2apply;
+            timeToEnergyRecovering = 0;
+        }
 
-        if (currentHeath <= 0)
+        if (currentHealth <= 0)
             Die();
         else
         {
@@ -69,7 +80,8 @@ public class Health : MonoBehaviour, iDamageable
             OnDamageReceivedEvent.Invoke();
         }
 
-        currentHeath = Mathf.Clamp(currentHeath, 0, _maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, _maxHealth);
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, _maxEnergy);
     }
 
     public virtual void Die()
@@ -86,8 +98,8 @@ public class Health : MonoBehaviour, iDamageable
 
     public virtual void Recover(float healthToRecover)
     {
-        currentHeath += healthToRecover;
-        currentHeath = Mathf.Clamp(currentHeath, 0, _maxHealth);
+        currentHealth += healthToRecover;
+        currentHealth = Mathf.Clamp(currentHealth, 0, _maxHealth);
     }
 
     protected virtual void UpdateUI()
@@ -97,56 +109,84 @@ public class Health : MonoBehaviour, iDamageable
         {
             case FillMethod.Slider:
                 Vector3 targetPos = Vector3.right * -2400;
-                healthBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentPercent);
+                healthBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentHealthPercent);
+                energyBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentEnergyPercent);
                 break;
         }
     }
-
-    public virtual void DoShield()
+    void ActiveShield()
     {
-        if(!shieldNeedRefresh)
+        if (currentEnergy >= maxEnergy)
         {
-            shieldActived = true;
-            shieldTime += Time.deltaTime;
-            if (shieldTime > 3)
+            shieldIsActived = true;
+            canStartEnergyRecovering = false;
+            timeToEnergyRecovering = 0;
+
+            if (playerWithShield.Length > 0)
             {
-                shieldNeedRefresh = true;
-                shieldTime = 0;
-                shieldActived = false;
+                for (int i = 0; i < playerWithShield.Length; i++)
+                {
+                    playerWithShield[i].SetActive(true);
+                    playerWithoutShield[i].SetActive(false);
+                }
             }
+        }
+        else if (currentEnergy <= 0)
+        {
+            shieldIsActived = false;
+            canStartEnergyRecovering = true;
+
+            if (playerWithShield.Length > 0)
+                for (int i = 0; i < playerWithShield.Length; i++)
+                {
+                    playerWithShield[i].SetActive(false);
+                    playerWithoutShield[i].SetActive(true);
+                }
         }
     }
 
-    void ResetShield()
+    void EnergyWaste()
     {
-        if (shieldNeedRefresh)
+        if (shieldIsActived & !canStartEnergyRecovering)
         {
-            timeToResetShield += Time.deltaTime;
-            if (timeToResetShield > timeShieldIsReady)
-            {
-                timeToResetShield = 0;
-                shieldNeedRefresh = false;
-            }
-
+            currentEnergy -= Time.deltaTime /** energyWasteTicks*/;
         }
     }
-    float BlockDamage(float dmg, float redBonus)
+    void RecoverEnergy()
     {
-        float dmgReducted = dmg - (dmg * redBonus);
-        return dmgReducted - defense;
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, _maxEnergy);
+        if (!shieldIsActived & canStartEnergyRecovering)
+        {
+            timeToEnergyRecovering += Time.deltaTime;
+            if (timeToEnergyRecovering > energyRecoveringStarts)
+            {
+                currentEnergy += Time.deltaTime /** energyRecoveringTicks*/;
+            }
+        }
+    }
+    void BlockDamage()
+    {
+        currentEnergy--;
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        currentHeath = maxHealth;
-        currentPercent = percent;
+        currentHealth = maxHealth;
+        currentHealthPercent = healthPercent;
+
+        currentEnergy = maxEnergy;
+        currentEnergyPercent = energyPercent;
+
     }
 
     protected virtual void Update()
     {
-        ResetShield();
-        currentPercent = Mathf.Lerp(currentPercent, percent, smoothness * Time.deltaTime);
+        RecoverEnergy();
+        EnergyWaste();
+        ActiveShield();
+        currentHealthPercent = Mathf.Lerp(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
+        currentEnergyPercent = Mathf.Lerp(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime);
         UpdateUI();
     }
 }

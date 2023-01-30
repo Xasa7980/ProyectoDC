@@ -47,7 +47,7 @@ public class InteractableBomb : MonoBehaviour
     {
         if (interaction.GetInteraction())
         {
-            float power = pHealth.currentHeath * 0.15f;
+            float power = pHealth.currentHealth * 0.15f;
             gameObject.SetActive(false);
             if (DetectPlayer())  pHealth.ApplyDamage(power);
         }
