@@ -5877,6 +5877,7 @@ MonoBehaviour:
   aimTarget: {fileID: 0}
   aimRig: {fileID: 4557911555716786763}
   moveJoystick: {fileID: 0}
+  attackJoystick: {fileID: 0}
   dodgeSpeed: 5
 --- !u!114 &8730329750514506961
 MonoBehaviour:
@@ -5885,7 +5886,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8730329750514506969}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d81b9d15698264346aa383869c30df3b, type: 3}
   m_Name: 
@@ -5911,12 +5912,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerName: easa
+  removeComponentsOnDead: []
   _shieldTime: 3
   _timeShieldIsReady: 2
   _defense: 5
   _reductionBonus: 0.05
   _maxHealth: 100
   OnDieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamageReceivedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3158873409601827871

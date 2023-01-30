@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour, iDamageable
 {
@@ -9,6 +10,17 @@ public class Health : MonoBehaviour, iDamageable
     public string playerName { get; set; }
 
     [SerializeField] Component[] removeComponentsOnDead;
+
+    [SerializeField] bool hasUI;
+    [SerializeField] Image healthBar;
+    [SerializeField] float smoothness = 1;
+    [SerializeField] FillMethod fillMethod;
+
+    enum FillMethod
+    {
+        Filled,
+        Slider
+    }
 
     #region Defense&Shield
     bool shieldActived = false;
@@ -34,6 +46,7 @@ public class Health : MonoBehaviour, iDamageable
     public float maxHealth => _maxHealth;
 
     public float percent => currentHeath / maxHealth;
+    float currentPercent;
 
     #endregion
 
@@ -57,7 +70,6 @@ public class Health : MonoBehaviour, iDamageable
         }
 
         currentHeath = Mathf.Clamp(currentHeath, 0, _maxHealth);
-        UpdateUI();
     }
 
     public virtual void Die()
@@ -76,12 +88,18 @@ public class Health : MonoBehaviour, iDamageable
     {
         currentHeath += healthToRecover;
         currentHeath = Mathf.Clamp(currentHeath, 0, _maxHealth);
-        UpdateUI();
     }
 
     protected virtual void UpdateUI()
     {
         //En el caso de que se decida crear barras de salud para los enemigos
+        switch (fillMethod)
+        {
+            case FillMethod.Slider:
+                Vector3 targetPos = Vector3.right * -2400;
+                healthBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentPercent);
+                break;
+        }
     }
 
     public virtual void DoShield()
@@ -122,10 +140,13 @@ public class Health : MonoBehaviour, iDamageable
     protected virtual void Start()
     {
         currentHeath = maxHealth;
+        currentPercent = percent;
     }
 
     protected virtual void Update()
     {
         ResetShield();
+        currentPercent = Mathf.Lerp(currentPercent, percent, smoothness * Time.deltaTime);
+        UpdateUI();
     }
 }

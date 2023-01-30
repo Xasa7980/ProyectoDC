@@ -13,6 +13,7 @@ public class DungeonController : MonoBehaviour
 
     public event System.Action<RoomController> onRoomCleared = delegate { };
     public UnityEvent onRoomClearedUnityEvent = new UnityEvent();
+    public event System.Action onPlayerDetected = delegate { };
 
     private void Start()
     {
@@ -62,6 +63,11 @@ public class DungeonController : MonoBehaviour
 
             room.AddEnemies(generator.defaultLibrary.PlaceTurrets(room.room, generator.turretsSpawnProbability, generator.maxDificulty));
         }
+    }
+
+    public void CloseRoom()
+    {
+        onPlayerDetected();
     }
 
     public void OnRoomCleared(RoomController room)

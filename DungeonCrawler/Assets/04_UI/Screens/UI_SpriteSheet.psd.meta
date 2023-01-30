@@ -242,7 +242,7 @@ TextureImporter:
         width: 111
         height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,6 +250,27 @@ TextureImporter:
       bones: []
       spriteID: 36a3f50d18c57904eb5b5844e259d51a
       internalID: 784552990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1269
+        width: 325
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37dbb161e634eb74c97c4c3998a8f1f0
+      internalID: 868243372
       vertices: []
       indices: 
       edges: []
@@ -271,8 +292,9 @@ TextureImporter:
       UI_SpriteSheet_1: 548558646
       UI_SpriteSheet_0: 568359736
       UI_SpriteSheet_2: 510128921
+      UI_SpriteSheet_6: 868243372
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 

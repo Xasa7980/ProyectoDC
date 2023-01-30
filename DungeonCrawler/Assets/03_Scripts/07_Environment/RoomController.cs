@@ -97,6 +97,8 @@ public class RoomController : MonoBehaviour
     {
         if (!playerInside) return;
 
+        controller.CloseRoom();
+
         foreach (Door door in doors)
         {
             if(door == null) continue;
