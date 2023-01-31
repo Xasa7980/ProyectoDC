@@ -62,6 +62,7 @@ public class DungeonController : MonoBehaviour
             if (room == null) continue;
 
             room.AddEnemies(generator.defaultLibrary.PlaceTurrets(room.room, generator.turretsSpawnProbability, generator.maxDificulty));
+            room.AddEnemies(generator.defaultLibrary.PlaceRobots(room, generator.bruteRobotsProbability, generator.maxDificulty));
         }
     }
 

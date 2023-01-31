@@ -254,6 +254,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_HealthBar_6
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 367
+        width: 1416
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fb0c73709534d34da42f593bd26aaec
+      internalID: -287529358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -267,6 +288,7 @@ TextureImporter:
     nameFileIdTable:
       UI_HealthBar_4: 422311173
       UI_HealthBar_5: -1355668526
+      UI_HealthBar_6: -287529358
       UI_HealthBar_3: -282913031
       UI_HealthBar_1: -909379525
       UI_HealthBar_0: -214116335

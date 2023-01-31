@@ -9,6 +9,9 @@ public class RoomController : MonoBehaviour
 
     public Room room { get; private set; }
 
+    List<Vector3> _freePoints = new List<Vector3>();
+    public List<Vector3> freeSpots => _freePoints;
+
     NavMeshSurface navSurface;
 
     Door[] doors = new Door[4];
@@ -43,6 +46,8 @@ public class RoomController : MonoBehaviour
         controller = GetComponentInParent<DungeonController>();
     }
 
+    public void AddFreePoints(List<Vector3> points) => freeSpots.AddRange(points);
+
     public void AddEnemies(List<Enemy> enemies)
     {
         enemies.ForEach(e => e.SetRoom(this));
@@ -62,6 +67,11 @@ public class RoomController : MonoBehaviour
         if (enemyCount == 0)
         {
             CLearRoom();
+        }
+        else if (enemyCount <= 5)
+        {
+            Dungeon_UI_Manager.current.targetPointer.Enable(enemies);
+            Dungeon_UI_Manager.current.targetPointer.RemoveTarget(enemy);
         }
     }
 
@@ -91,6 +101,8 @@ public class RoomController : MonoBehaviour
         {
             alarm.TurnOff();
         }
+
+        Dungeon_UI_Manager.current.targetPointer.Disable();
     }
 
     public void CloseRoom()

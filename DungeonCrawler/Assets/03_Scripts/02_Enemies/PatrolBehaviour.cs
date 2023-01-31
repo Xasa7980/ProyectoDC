@@ -1,30 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PatrolBehaviour : EnemyBehaviour
 {
     public enum LoopingMethod { Cycle, Reverse, OneTime }
 
-    [SerializeField] Transform[] wayPoints;
+    public int patrollLength = 7;
+    Vector3[] wayPoints;
     [SerializeField] LoopingMethod loopingMethod = LoopingMethod.Cycle;
     int currentWayPoint = 0;
     int direction = 1;
     [SerializeField] float guardTime = 3f;
     float guardCounter;
 
-    private void Start()
+    protected override void Start()
     {
-        foreach(Transform t in wayPoints)
+        base.Start();
+        InitWayPoints();
+    }
+
+    public void InitWayPoints()
+    {
+        List<Vector3> aviablePoints = new List<Vector3>(baseController.room.freeSpots);
+        wayPoints = new Vector3[patrollLength];
+
+        for(int i = 0; i < patrollLength; i++)
         {
-            t.parent = null;
+            int index = Random.Range(0, aviablePoints.Count);
+            Vector3 wayPoint = aviablePoints[index];
+            aviablePoints.RemoveAt(index);
+            wayPoints[i] = wayPoint;
         }
     }
 
     public override void Init()
     {
         base.Init();
-        movement.SetDestination(wayPoints[currentWayPoint].position);
+        movement.SetDestination(wayPoints[currentWayPoint]);
     }
 
     public override void UpdateBehaviour()
@@ -52,25 +66,25 @@ public class PatrolBehaviour : EnemyBehaviour
         return true;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        for (int i = 0; i < wayPoints.Length; i++)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(wayPoints[i].position, 0.3f);
-            if (i > 0)
-            {
-                Gizmos.DrawLine(wayPoints[i - 1].position, wayPoints[i].position);
-            }
-        }
+    //private void OnDrawGizmosSelected()
+    //{
+        //for (int i = 0; i < wayPoints.Length; i++)
+        //{
+        //    Gizmos.color = Color.cyan;
+        //    Gizmos.DrawSphere(wayPoints[i], 0.3f);
+        //    if (i > 0)
+        //    {
+        //        Gizmos.DrawLine(wayPoints[i - 1], wayPoints[i]);
+        //    }
+        //}
 
-        if (loopingMethod == LoopingMethod.Cycle)
-            Gizmos.DrawLine(wayPoints[wayPoints.Length - 1].position, wayPoints[0].position);
-    }
+        //if (loopingMethod == LoopingMethod.Cycle)
+        //    Gizmos.DrawLine(wayPoints[wayPoints.Length - 1], wayPoints[0]);
+    //}
 
     void SetNextWayPoint()
     {
-        movement.SetDestination(wayPoints[currentWayPoint].position);
+        movement.SetDestination(wayPoints[currentWayPoint]);
         currentWayPoint += direction;
 
         switch (loopingMethod)

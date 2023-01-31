@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5579526749092571784}
   - component: {fileID: 334703719126949238}
   - component: {fileID: 8461167213572070164}
+  - component: {fileID: 7449106777504393764}
   m_Layer: 0
   m_Name: Gauss_Turret_A
   m_TagString: Untagged
@@ -126,6 +127,10 @@ MonoBehaviour:
   removeComponentsOnDead:
   - {fileID: 4243403729022705549}
   - {fileID: 8461167213572070164}
+  hasUI: 0
+  healthBar: {fileID: 0}
+  smoothness: 1
+  fillMethod: 0
   _shieldTime: 0
   _timeShieldIsReady: 0
   _defense: 5
@@ -185,6 +190,35 @@ MonoBehaviour:
   OnDamageReceivedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7449106777504393764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243403729022705548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad69886c57b1e149a56a38515e02c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventType: 0
+    raycasEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4243403729022705549}
+          m_TargetAssemblyTypeName: TurretController, Assembly-CSharp
+          m_MethodName: FaceAttackDirection
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4243403729763570391
 GameObject:
   m_ObjectHideFlags: 0

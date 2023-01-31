@@ -24,26 +24,16 @@ public class Room
 
     public TilePresetManager[,] tileMap;
 
+    public int connectionCount { get; private set; }
     public RoomConnection[] connections { get; private set; }
-    public bool isolated
-    {
-        get
-        {
-            foreach(RoomConnection connection in connections)
-            {
-                if (connection != null) return false;
-            }
-
-            return true;
-        }
-    }
+    public bool isolated => connectionCount == 0;
     public bool fullConnected
     {
         get
         {
-            foreach(RoomConnection connection in connections)
+            foreach (RoomConnection connection in connections)
             {
-                if(connection==null) return false;
+                if (connection == null) return false;
             }
 
             return true;
@@ -183,13 +173,17 @@ public class Room
     public void Connect(Room room, RoomDirections direction, bool skipDrawing = false)
     {
         connections[(int)direction] = new RoomConnection(this, room, skipDrawing);
+        connectionCount++;
         room.connections[(int)direction.Opposite()] = new RoomConnection(room, this, true);
+        room.connectionCount++;
     }
 
     public void Connect(Vector2 startPoint, Vector2 endPoint, Room room, RoomDirections direction)
     {
         connections[(int)direction] = new RoomConnection(startPoint, this, endPoint, room);
+        connectionCount++;
         room.connections[(int)direction.Opposite()] = new RoomConnection(endPoint, room, startPoint, this);
+        room.connectionCount++;
     }
 
     public bool Connected(Room room)

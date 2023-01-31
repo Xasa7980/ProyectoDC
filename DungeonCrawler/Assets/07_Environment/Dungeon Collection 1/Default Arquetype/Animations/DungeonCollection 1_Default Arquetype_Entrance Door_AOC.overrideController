@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DungeonCollection 1_Default Arquetype_Entrance Door_AOC
+  m_Controller: {fileID: 9100000, guid: 253de2ad9c3729a49801d68454ff4de0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 7d898051e5e93574bbe76ed4704f7d57, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8674acf777c47c1459e1439112fe35ee, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a44b0d74fbdf5034ab03300958ad1941, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d2a02c20e3d79584fb62763df5ba3c75, type: 2}

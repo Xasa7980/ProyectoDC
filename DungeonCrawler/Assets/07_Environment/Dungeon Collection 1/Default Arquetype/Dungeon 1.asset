@@ -26,3 +26,6 @@ MonoBehaviour:
   - {fileID: 6016464009396415403, guid: bd9dc2927d87c2d4e87b0242aeabe220, type: 3}
   turrets:
   - {fileID: 4243403729022705549, guid: de0385589e3eea94c9899ba0f26af862, type: 3}
+  robots:
+  - {fileID: 8749291993203362865, guid: 60422abeece93f54eb3c33d58921bfaa, type: 3}
+  - {fileID: 5019441925768590463, guid: 2439113b366bb994f89e4cbe1428d955, type: 3}

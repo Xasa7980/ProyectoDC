@@ -12,12 +12,16 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     public abstract bool Validate();
 
-    public virtual void Init()
+    protected virtual void Start()
     {
         baseController = GetComponentInParent<EnemyController>();
         movement = GetComponentInParent<EnemyMovement>();
         anim = baseController.GetComponent<Animator>();
         active = true;
+    }
+
+    public virtual void Init()
+    {
     }
 
     public abstract void UpdateBehaviour();

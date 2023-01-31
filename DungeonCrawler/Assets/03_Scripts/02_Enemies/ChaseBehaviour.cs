@@ -21,7 +21,7 @@ public class ChaseBehaviour : EnemyBehaviour
 
     public override bool Validate()
     {
-        return sensor.ThreatsDetected();
+        return sensor.ThreatsDetected() || target;
     }
 
     public override void UpdateBehaviour()
@@ -40,6 +40,6 @@ public class ChaseBehaviour : EnemyBehaviour
     public override void Release()
     {
         base.Release();
-        target = null;
+        //target = null;
     }
 }

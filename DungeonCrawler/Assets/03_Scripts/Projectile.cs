@@ -23,6 +23,11 @@ public class Projectile : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, impactMask))
         {
+            if(hit.collider.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
+            {
+                reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Shoot, ray);
+            }
+
             if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
             {
                 damageable.ApplyDamage(damage);

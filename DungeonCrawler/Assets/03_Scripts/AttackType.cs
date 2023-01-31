@@ -26,7 +26,7 @@ public class AttackType : ScriptableObject
 
     public void Perform(iDamageable target)
     {
-
+        target.ApplyDamage(baseDamage);
     }
 
     public void Perform(RifleController rifle)

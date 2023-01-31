@@ -13,6 +13,7 @@ public class DungeonLibrary : ScriptableObject
     [SerializeField] TilePresetManager[] hallTiles;
     [SerializeField] TilePresetManager[] doorTiles;
     [SerializeField] Enemy[] turrets;
+    [SerializeField] Enemy[] robots;
 
     public void PlaceEntry(Room entryRoom, Transform dungeonContainer)
     {
@@ -216,7 +217,7 @@ public class DungeonLibrary : ScriptableObject
         }
     }
 
-    public List<Enemy> PlaceTurrets(Room room, float turretProbability, int maxDificulty)
+    public List<Enemy> PlaceTurrets(Room room, float probability, int maxDificulty)
     {
         List<TilePresetManager> emptyTiles = new List<TilePresetManager>();
         foreach(TilePresetManager tile in room.tileMap)
@@ -237,7 +238,7 @@ public class DungeonLibrary : ScriptableObject
             }
 
             float value = Random.value;
-            if (value <= normalizedDifficulty && value <= turretProbability)
+            if (value <= normalizedDifficulty && value <= probability)
             {
                 Vector3 position = tile.transform.position;
                 Quaternion rotation = Quaternion.Euler(Vector3.up * Random.Range(0, 4) * 90);
@@ -248,5 +249,26 @@ public class DungeonLibrary : ScriptableObject
         }
 
         return turrets;
+    }
+
+    public List<Enemy> PlaceRobots(RoomController room, float probability, int maxDificulty)
+    {
+        List<Enemy> robots = new List<Enemy>();
+
+        float normalizedDifficulty = (float)room.room.difficulty / maxDificulty;
+        int robotAmount = Mathf.RoundToInt(probability * normalizedDifficulty * room.freeSpots.Count);
+        for(int i = 0; i < robotAmount; i++)
+        {
+            int index = Random.Range(0, room.freeSpots.Count);
+            Vector3 position = room.freeSpots[index];
+            room.freeSpots.RemoveAt(index);
+
+            Enemy enemy = this.robots[Random.Range(0, this.robots.Length)];
+            Enemy enemyInstance = Instantiate(enemy, position, Quaternion.Euler(Vector3.up * Random.Range(0, 360)));
+            robots.Add(enemyInstance);
+            //Do somenthing with the instance
+        }
+
+        return robots;
     }
 }

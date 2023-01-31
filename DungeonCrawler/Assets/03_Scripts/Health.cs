@@ -108,9 +108,13 @@ public class Health : MonoBehaviour, iDamageable
         switch (fillMethod)
         {
             case FillMethod.Slider:
-                Vector3 targetPos = Vector3.right * -2400;
-                healthBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentHealthPercent);
-                energyBar.transform.localPosition = Vector3.Lerp(targetPos, Vector3.zero, currentEnergyPercent);
+                healthBar.transform.localPosition = Vector3.Lerp(Vector3.left * 2400, Vector3.zero, currentHealthPercent);
+                energyBar.transform.localPosition = Vector3.Lerp(Vector3.left * 1400, Vector3.zero, currentEnergyPercent);
+                break;
+
+            case FillMethod.Filled:
+                healthBar.fillAmount = currentHealthPercent;
+                energyBar.fillAmount = currentEnergyPercent;
                 break;
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    RoomController room;
+    public RoomController room { get; private set; }
 
     public void SetRoom(RoomController room)
     {

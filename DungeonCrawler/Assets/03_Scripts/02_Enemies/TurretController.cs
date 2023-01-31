@@ -137,6 +137,14 @@ public class TurretController : Enemy
         }
     }
 
+    public void FaceAttackDirection(Ray ray)
+    {
+        inspectCounter = inspectInterval * 2;
+        Vector3 dir = ray.direction;
+        dir.y = 0;
+        inspectRotation = Quaternion.LookRotation(-dir);
+    }
+
     void OnDrawGizmosSelected()
     {
 

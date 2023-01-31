@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MeleeBrutalAttack_01
   m_EditorClassIdentifier: 
   _displayName: 
-  _baseDamage: 0
+  _baseDamage: 6
   _attackAnimation: {fileID: 7400000, guid: 63c447cc6fb0954459f35c43b5966da2, type: 3}
+  projectile: {fileID: 0}
   attackEffect: {fileID: 0}

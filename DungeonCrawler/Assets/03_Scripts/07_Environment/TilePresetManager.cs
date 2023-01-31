@@ -13,6 +13,9 @@ public class TilePresetManager : MonoBehaviour
     [SerializeField] GameObject[] props;
     [SerializeField] PlaceHolder[] holders;
 
+    List<Vector3> _freeSpots = new List<Vector3>();
+    public List<Vector3> freeSpots => _freeSpots;
+
     public bool empty { get; private set; }
 
     [System.Serializable]
@@ -48,12 +51,17 @@ public class TilePresetManager : MonoBehaviour
             {
                 for (int y = 0; y < cellY; y++)
                 {
+                    Vector3 position = bottomLeftCorner + new Vector3(x * floorCellSize + floorCellSize / 2, 0, y * floorCellSize + floorCellSize / 2);
+
                     if (Random.value <= spawnProbability)
                     {
-                        Vector3 position = bottomLeftCorner + new Vector3(x * floorCellSize + floorCellSize/2, 0, y * floorCellSize + floorCellSize / 2);
                         GameObject prop = Instantiate(props[Random.Range(0, props.Length)], position, Quaternion.Euler(Vector3.up * Random.Range(0, 3) * 90));
                         prop.transform.parent = this.transform;
                         empty = false;
+                    }
+                    else
+                    {
+                        _freeSpots.Add(position);
                     }
                 }
             }

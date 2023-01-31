@@ -237,6 +237,10 @@ public class DungeonGenerator : MonoBehaviour
         foreach(TilePresetManager tile in tiles)
         {
             tile.Populate(spawnProbability);
+
+            RoomController controller = tile.GetComponentInParent<RoomController>();
+            if (controller)
+                controller.AddFreePoints(tile.freeSpots);
         }
     }
 

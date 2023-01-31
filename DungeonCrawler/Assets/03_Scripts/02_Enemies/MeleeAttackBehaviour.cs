@@ -52,6 +52,10 @@ public class MeleeAttackBehaviour : EnemyBehaviour
 
     public void PerformAttack()
     {
-
+        if (sensor.ThreatsDetected())
+        {
+            if (sensor.GetNearestThreat().TryGetComponent<iDamageable>(out iDamageable target))
+                attack.Perform(target);
+        }
     }
 }

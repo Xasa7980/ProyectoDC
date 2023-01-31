@@ -46,10 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b17b0d1deeeb4a4b8fa32f8161de4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightField: {fileID: 1894838449}
+  detectionRadius: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4096
   detectionMask:
     serializedVersion: 2
     m_Bits: 256
+  OnThreatDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  sightField: {fileID: 1894838449}
 --- !u!108 &1894838449
 Light:
   m_ObjectHideFlags: 0
