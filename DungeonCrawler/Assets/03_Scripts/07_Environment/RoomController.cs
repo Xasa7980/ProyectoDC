@@ -7,6 +7,8 @@ public class RoomController : MonoBehaviour
 {
     DungeonController controller;
 
+    public bool cleared { get; private set; }
+
     public Room room { get; private set; }
 
     List<Vector3> _freePoints = new List<Vector3>();
@@ -129,6 +131,7 @@ public class RoomController : MonoBehaviour
     {
         OpenRoom();
         controller.OnRoomCleared(this);
+        cleared = true;
     }
     #endregion
 
@@ -137,6 +140,8 @@ public class RoomController : MonoBehaviour
         if (other.GetComponent<PlayerMovement>())
         {
             playerInside = true;
+            if (enemyCount == 0 && !cleared)
+                CLearRoom();
         }
     }
 

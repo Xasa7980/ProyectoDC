@@ -19,7 +19,8 @@ public class Health : MonoBehaviour, iDamageable
     enum FillMethod
     {
         Filled,
-        Slider
+        Slider,
+        None
     }
 
     #region Defense&Shield
@@ -31,6 +32,7 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] float _reductionBonus = 0.05f;
     #endregion
     #region HealthParameters
+    [Header("Health Parameters")]
     [SerializeField] float _maxHealth = 100;
 
     public float currentHealth { get; private set; }
@@ -43,42 +45,52 @@ public class Health : MonoBehaviour, iDamageable
     #endregion
 
     #region EnergyParameters
+    [Header("Energy Parameters")]
     [SerializeField] float _maxEnergy = 6;
-    bool canStartEnergyRecovering;
-    [SerializeField] float timeToEnergyRecovering;
-    [SerializeField] float energyRecoveringStarts = 6;
+    float currentEnergy;
 
-    public float currentEnergy { get; private set; }
+    public float energyPercent => currentEnergy / maxEnergy;
+    float currentEnergyPercent;
 
     public float maxEnergy => _maxEnergy;
 
-    public float energyPercent => currentHealth / maxHealth;
-    float currentEnergyPercent;
-
+    [SerializeField] float countdownToRefillEnergy = 4;
+    float energyRefillCount;
+    [SerializeField] float energyRefillSpeed = 1;
     #endregion
 
     [SerializeField] protected UnityEvent OnDieEvent = new UnityEvent();
     public System.Action OnDie = delegate { };
 
     [SerializeField] protected UnityEvent OnDamageReceivedEvent = new UnityEvent();
-    public System.Action OnDamageReceived = delegate { };
+    public event System.Action OnDamageReceived = delegate { };
+
+    [SerializeField] protected UnityEvent OnDamageBlockedEvent = new UnityEvent();
+    public event System.Action OnDamageBlocked = delegate { };
 
     public virtual void ApplyDamage(float damage2apply)
     {
-        if (currentEnergy > 0) BlockDamage();
+        if (currentEnergy > 0)
+        {
+            currentEnergy -= 1;
+
+            OnDamageBlocked();
+            OnDamageBlockedEvent.Invoke();
+        }
         else
         {
             currentHealth -= damage2apply;
-            timeToEnergyRecovering = 0;
+
+            if (currentHealth <= 0)
+                Die();
+            else
+            {
+                OnDamageReceived();
+                OnDamageReceivedEvent.Invoke();
+            }
         }
 
-        if (currentHealth <= 0)
-            Die();
-        else
-        {
-            OnDamageReceived();
-            OnDamageReceivedEvent.Invoke();
-        }
+        energyRefillCount = countdownToRefillEnergy;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, _maxHealth);
         currentEnergy = Mathf.Clamp(currentEnergy, 0, _maxEnergy);
@@ -118,60 +130,6 @@ public class Health : MonoBehaviour, iDamageable
                 break;
         }
     }
-    void ActiveShield()
-    {
-        if (currentEnergy >= maxEnergy)
-        {
-            shieldIsActived = true;
-            canStartEnergyRecovering = false;
-            timeToEnergyRecovering = 0;
-
-            if (playerWithShield.Length > 0)
-            {
-                for (int i = 0; i < playerWithShield.Length; i++)
-                {
-                    playerWithShield[i].SetActive(true);
-                    playerWithoutShield[i].SetActive(false);
-                }
-            }
-        }
-        else if (currentEnergy <= 0)
-        {
-            shieldIsActived = false;
-            canStartEnergyRecovering = true;
-
-            if (playerWithShield.Length > 0)
-                for (int i = 0; i < playerWithShield.Length; i++)
-                {
-                    playerWithShield[i].SetActive(false);
-                    playerWithoutShield[i].SetActive(true);
-                }
-        }
-    }
-
-    void EnergyWaste()
-    {
-        if (shieldIsActived & !canStartEnergyRecovering)
-        {
-            currentEnergy -= Time.deltaTime /** energyWasteTicks*/;
-        }
-    }
-    void RecoverEnergy()
-    {
-        currentEnergy = Mathf.Clamp(currentEnergy, 0, _maxEnergy);
-        if (!shieldIsActived & canStartEnergyRecovering)
-        {
-            timeToEnergyRecovering += Time.deltaTime;
-            if (timeToEnergyRecovering > energyRecoveringStarts)
-            {
-                currentEnergy += Time.deltaTime /** energyRecoveringTicks*/;
-            }
-        }
-    }
-    void BlockDamage()
-    {
-        currentEnergy--;
-    }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -181,16 +139,19 @@ public class Health : MonoBehaviour, iDamageable
 
         currentEnergy = maxEnergy;
         currentEnergyPercent = energyPercent;
-
     }
 
     protected virtual void Update()
     {
-        RecoverEnergy();
-        EnergyWaste();
-        ActiveShield();
-        currentHealthPercent = Mathf.Lerp(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
-        currentEnergyPercent = Mathf.Lerp(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime);
+        if (energyRefillCount > 0)
+            energyRefillCount -= Time.deltaTime;
+        else if (currentEnergy < maxEnergy)
+            currentEnergy = Mathf.MoveTowards(currentEnergy, maxEnergy, energyRefillSpeed * Time.deltaTime);
+
+        currentHealthPercent = Mathf.MoveTowards(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
+        currentEnergyPercent = Mathf.MoveTowards(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime);
+        //currentHealthPercent = Mathf.Lerp(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
+        //currentEnergyPercent = Mathf.Lerp(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime * 2);
         UpdateUI();
     }
 }

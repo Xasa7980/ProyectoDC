@@ -129,13 +129,16 @@ MonoBehaviour:
   - {fileID: 8461167213572070164}
   hasUI: 0
   healthBar: {fileID: 0}
+  energyBar: {fileID: 0}
   smoothness: 1
-  fillMethod: 0
-  _shieldTime: 0
-  _timeShieldIsReady: 0
-  _defense: 5
+  fillMethod: 2
+  shieldPrefab: {fileID: 0}
+  playerWithShield: []
+  playerWithoutShield: []
+  _defense: 0
   _reductionBonus: 0.05
   _maxHealth: 100
+  _maxEnergy: 0
   OnDieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -188,6 +191,9 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   OnDamageReceivedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamageBlockedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7449106777504393764

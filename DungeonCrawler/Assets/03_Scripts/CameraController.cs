@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     public static Vector3 offset { get; set; }
 
-    Camera gameCamera;
+    public static Camera gameCamera { get; private set; }
 
     private void Awake()
     {

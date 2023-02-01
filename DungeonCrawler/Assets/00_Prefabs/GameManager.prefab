@@ -6821,12 +6821,13 @@ MonoBehaviour:
   _reductionBonus: 0.05
   _maxHealth: 100
   _maxEnergy: 6
-  timeToEnergyRecovering: 0
-  energyRecoveringStarts: 6
   OnDieEvent:
     m_PersistentCalls:
       m_Calls: []
   OnDamageReceivedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamageBlockedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5576506098590811834

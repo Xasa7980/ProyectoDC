@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f62647f12f7c44986941b5c94efd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 1.5
+  detectionRadius: 2.28
   obstacleMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -297,7 +297,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  detectionAngle: 90
+  detectionAngle: 128
 --- !u!1 &6155025251374885480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,13 +1199,18 @@ MonoBehaviour:
   removeComponentsOnDead: []
   hasUI: 0
   healthBar: {fileID: 0}
+  energyBar: {fileID: 0}
   smoothness: 1
-  fillMethod: 0
-  _shieldTime: 0
-  _timeShieldIsReady: 0
+  fillMethod: 2
+  shieldPrefab: {fileID: 0}
+  playerWithShield: []
+  playerWithoutShield: []
   _defense: 5
   _reductionBonus: 0.05
-  _maxHealth: 50
+  _maxHealth: 150
+  _maxEnergy: 6
+  countdownToRefillEnergy: 4
+  energyRefillSpeed: 1
   OnDieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1234,6 +1239,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   OnDamageReceivedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamageBlockedEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2645082943251779504
