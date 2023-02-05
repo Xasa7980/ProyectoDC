@@ -17,13 +17,15 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        var item = other.GetComponent<GroundItem>();
-        switch (item.item.type)
+        if (other.TryGetComponent<GroundItem>(out GroundItem item))
         {
-            case ItemType.Miscellaneous: if(inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
-            case ItemType.Drone: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
-            case ItemType.Food: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
-            case ItemType.Upgrade: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
+            switch (item.item.type)
+            {
+                case ItemType.Miscellaneous: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
+                case ItemType.Drone: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
+                case ItemType.Food: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
+                case ItemType.Upgrade: if (inventory.AddItem(new Item(item.item), 1)) Destroy(other.gameObject); break;
+            }
         }
     }
     private void OnEnable()

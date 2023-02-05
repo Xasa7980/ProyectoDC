@@ -4,62 +4,69 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    float strenght;
-    float timeToResetMelee, timeToResetRanged;
-    float timeToMeleeReady, timeToRangedReady;
+    #region LogicParameters
+    [SerializeField] LayerMask impactMask;
+    [SerializeField] Transform hitLocation;
+    [SerializeField] float radius;
+    [SerializeField] float strenght;
+    float timeToGetReady;
+    float timeToBeReady;
     bool castMeleeAtk = true;
-    bool castRangedAtk = true;
-
-
+    #endregion
+    Animator anim;
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
     private void Update()
     {
         ResetMeleeAttack();
-        ResetRangedAttack();
     }
-    public void DoAttack()
+    public void DoMeleeAttack()
     {
-        // if(castMeleeAtk) // ENEMY.HEALTH -= Attack(strenght,//enemy def, //enemy dmg reduction)
-        Debug.Log("hi");
-    }
-    public void DoRangeAttack()
-    {
-        //if(castRangedAtk) // ENEMY.HEALTH -= RangeAttack(strenght,//enemy def, //enemy dmg reduction)
-        Debug.Log("hi2");
+        if (castMeleeAtk)
+        {
+            anim.SetTrigger("Attack");
+            Collider[] colls = Physics.OverlapSphere(hitLocation.position, radius, impactMask);
+            if(colls.Length > 0)
+            {
+                foreach(Collider coll in colls)
+                {
+                    //if (coll.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
+                    //{
+                    //    reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Hit, ray);
+                    //}
 
+                    if (coll.TryGetComponent<iDamageable>(out iDamageable damageable))
+                    {
+                        damageable.ApplyDamage(Damage(strenght));
+                        castMeleeAtk = false;
+                    }
+                }
+               
+            }
+        }
     }
-    float Attack(float str, float enemyDefense, float redBonus)
+    float Damage(float str/*, float enemyDefense, float redBonus*/)
     {
-        float dmgReducted = strenght - (strenght * redBonus);
+        float dmgReducted = strenght /*- (strenght * redBonus)*/;
         castMeleeAtk = false;
-        return dmgReducted - enemyDefense;
-    }
-    float RangeAttack(float str, float enemyRangeDefense, float redBonus)
-    {
-        float dmgReducted = strenght - (strenght * redBonus);
-        castRangedAtk = false;
-        return dmgReducted - enemyRangeDefense;
+        return dmgReducted /*- enemyDefense*/;
     }
     void ResetMeleeAttack()
     {
         if (!castMeleeAtk)
         {
-            timeToResetMelee += Time.deltaTime;
-            if (timeToResetMelee > timeToMeleeReady)
+            timeToGetReady += Time.deltaTime;
+            if (timeToGetReady > timeToBeReady)
             {
                 castMeleeAtk = true;
             }
         }
     }
-    void ResetRangedAttack()
+    private void OnDrawGizmos()
     {
-        if (!castRangedAtk)
-        {
-            timeToResetMelee += Time.deltaTime;
-            if (timeToResetMelee > timeToMeleeReady)
-            {
-                castRangedAtk = true;
-            }
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(hitLocation.position, radius);
     }
-
 }

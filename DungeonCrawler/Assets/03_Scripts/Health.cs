@@ -10,6 +10,7 @@ public class Health : MonoBehaviour, iDamageable
     public string playerName { get; set; }
 
     [SerializeField] Component[] removeComponentsOnDead;
+    Animator anim;
 
     [SerializeField] bool hasUI;
     [SerializeField] Image healthBar, energyBar;
@@ -76,9 +77,20 @@ public class Health : MonoBehaviour, iDamageable
 
             OnDamageBlocked();
             OnDamageBlockedEvent.Invoke();
+            for (int i = 0; i < playerWithShield.Length; i++)
+            {
+                playerWithShield[i].SetActive(true);
+                playerWithoutShield[i].SetActive(false); ;
+            }
         }
         else
         {
+            for (int i = 0; i < playerWithShield.Length; i++)
+            {
+                playerWithoutShield[i].SetActive(true);
+                playerWithShield[i].SetActive(false);
+            }
+
             currentHealth -= damage2apply;
 
             if (currentHealth <= 0)
@@ -101,7 +113,6 @@ public class Health : MonoBehaviour, iDamageable
         //Die
         OnDieEvent.Invoke();
         OnDie();
-
         foreach (Component component in removeComponentsOnDead)
         {
             Destroy(component);
@@ -134,6 +145,8 @@ public class Health : MonoBehaviour, iDamageable
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        anim = GetComponent<Animator>();
+
         currentHealth = maxHealth;
         currentHealthPercent = healthPercent;
 

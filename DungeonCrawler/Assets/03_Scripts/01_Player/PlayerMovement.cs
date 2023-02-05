@@ -29,13 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] FixedJoystick attackJoystick;
 
     [SerializeField] float dodgeSpeed = 5;
-    //#region DodgeParameters
-    //[SerializeField, Range(0,1.5f)] float evadeRange = 0.5f;
-    //float timeToResetDodge;
-    //[SerializeField] float timeDodgeGetReady = 2;
-    //bool canDodge;
-    //bool dodgeIsRefreshed;
-    //#endregion
+    bool canDodge;
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -56,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Moving();
-        //ResetDodge();
     }
     void Moving()
     {
@@ -67,9 +60,10 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("Aiming", aiming);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) | canDodge)
         {
             anim.SetTrigger("Roll");
+            canDodge = false;
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
@@ -186,16 +180,8 @@ public class PlayerMovement : MonoBehaviour
     //    dodgeIsRefreshed = false;
     //}
 
-    //void ResetDodge()
-    //{
-    //    if (!dodgeIsRefreshed)
-    //    {
-    //        timeToResetDodge += Time.deltaTime;
-    //        if(timeToResetDodge > timeDodgeGetReady)
-    //        {
-    //            dodgeIsRefreshed = true;
-    //            timeToResetDodge = 0;
-    //        }
-    //    }
-    //}
+    public void ResetDodge()
+    {
+        canDodge = true;
+    }
 }
