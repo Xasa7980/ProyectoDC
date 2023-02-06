@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 4912c0a9554445446b9028e6f6182d51
+guid: fe9ff1dd2d6e0e84b9489c27b209192c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GasVerde
+    second: {fileID: 2100000, guid: cbe69ad50245e644ebd306669fda15f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
