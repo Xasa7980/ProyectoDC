@@ -7,12 +7,14 @@ public class ItemInfoPanel : ItemDisplayInfo
 {
     public GameObject itemInfoDisplay;
 
-    [SerializeField] TextMeshProUGUI itemName, itemDescription;
-    [SerializeField] Image itemDisplay;
-    public static ItemInfoPanel instance;
-    private void Awake()
+    public TextMeshProUGUI itemName, itemDescription;
+    public Image itemDisplay;
+
+    public ItemInfoPanel(TextMeshProUGUI _itemName, TextMeshProUGUI _itemDescription, Image _itemDisplay) 
     {
-        instance = this;
+        itemName = _itemName;
+        itemDescription = _itemDescription;
+        itemDisplay = _itemDisplay;
     }
     public override void SetItemDescriptionToText(ItemObject itemObject)
     {

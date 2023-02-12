@@ -2560,7 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5347,7 +5347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5482,7 +5482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6982,10 +6982,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42352047fe3588499dfcc3db08f60dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillObjectSlot1: {fileID: 0}
-  skillObjectSlot2: {fileID: 0}
-  hitLocation: {fileID: 0}
-  timeToReady: 3
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 512
+  skillObjectSlot1: {fileID: 11400000, guid: 6301a6bd34efdf042a2413159924bcf3, type: 2}
+  skillObjectSlot2: {fileID: 11400000, guid: 6301a6bd34efdf042a2413159924bcf3, type: 2}
+  hitLocation: {fileID: 5576506098590811835}
+  counterToRefresh1: 0
+  counterToRefresh2: 0
 --- !u!1 &5576506098636732916
 GameObject:
   m_ObjectHideFlags: 0
@@ -9127,7 +9131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -10844,10 +10848,30 @@ PrefabInstance:
       propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5726654150216755137, guid: b0a6af209283489488cc152ec1b9b7ed,
+        type: 3}
+      propertyPath: VelocityModule.radial.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726654150216755137, guid: b0a6af209283489488cc152ec1b9b7ed,
+        type: 3}
+      propertyPath: VelocityModule.orbitalZ.scalar
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726654150216755137, guid: b0a6af209283489488cc152ec1b9b7ed,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_Name
       value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
@@ -10862,7 +10886,7 @@ PrefabInstance:
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}

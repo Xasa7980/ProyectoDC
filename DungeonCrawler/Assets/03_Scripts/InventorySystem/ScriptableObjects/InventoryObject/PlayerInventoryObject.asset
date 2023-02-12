@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e67d67b56ca02b74c96050e88cf56174, type: 3}
-  m_Name: InventarioPrincipal
+  m_Name: PlayerInventoryObject
   m_EditorClassIdentifier: 
   savePath: itemSaved.save
   database: {fileID: 11400000, guid: 28d185b5016f90e46b1f0556d3a23980, type: 2}
@@ -19,9 +19,9 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: -1
+        Id: 0
         buffs: []
-      amount: 0
+      amount: 1
     - AllowedItems: 
       item:
         Name: 

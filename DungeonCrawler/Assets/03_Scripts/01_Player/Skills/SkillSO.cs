@@ -2,71 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Skill", menuName = "Create Skill")]
-public class SkillSO : ScriptableObject
+public enum ActivationMethod
 {
-    public LayerMask impactMask;
+    RefreshingTime,
+    RefreshingHits,
+    InstantRefreshing
+}
+public enum HitMethod
+{
+    Raycast,
+    OverlapSphere,
+    ParticleCollision
+}
+public abstract class SkillSO : ScriptableObject
+{
+    public ActivationMethod activationMethod;
+    public HitMethod hitMethod;
     public GameObject prefab;
     public GameObject hitEffect;
+
     public float damage;
     public float speed;
-    public bool hasResetTime;
-
-    public bool resetSkill;
+    public bool resetSkill = true; //Si tiene tiempo de refreso y se ha refrescado
+    public float hitRadius;
     public float skillDuration;
-    public float skillResetTime;
-    void TakeDamage(GameObject gameObject, Transform transform)
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, impactMask))
-        {
-            if (hit.collider.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
-            {
-                reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Shoot, ray);
-            }
+    public float timeNeededRefresh;
+    public float hitsImpacted;
+    public float hitsNeededToRefresh;
 
-            if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
-            {
-                damageable.ApplyDamage(damage);
-            }
-            Instantiate(hitEffect, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-
-            Destroy(gameObject);
-        }
-
-        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-    }
-    public void ActivateSkill(bool activation, GameObject gameObject, Transform transform)
-    {
-        if (!hasResetTime)
-        {
-            if (!activation) return;
-
-            hitEffect.SetActive(true);
-            prefab.SetActive(true);
-            TakeDamage(gameObject, transform);
-        }
-        else
-        {
-            if (resetSkill)
-            {
-                if (!activation) return;
-
-                hitEffect.SetActive(true);
-                prefab.SetActive(true);
-                TakeDamage(gameObject, transform);
-                resetSkill = false;
-            }
-        }
-    }
-    public void ResetSkill(float timeGetReady,float timeToReady)
-    {
-        if (!hasResetTime) return;
-        timeGetReady += Time.deltaTime;
-        if(timeGetReady > timeToReady)
-        {
-            resetSkill = true;
-            timeGetReady = 0;
-        }
-    }
+    public abstract void InvokeMethod(Vector3 pos, GameObject obj);
+    public abstract void TakeDamage(GameObject gameObject, Transform transform, LayerMask hitMask);
+    public abstract void ActivateSkill(ActivationMethod activation, GameObject gameObject, Transform transform, LayerMask hitMask, bool reset);
 }

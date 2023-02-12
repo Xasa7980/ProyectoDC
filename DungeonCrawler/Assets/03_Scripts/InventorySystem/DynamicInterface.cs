@@ -10,14 +10,18 @@ using System.Linq;
 public class DynamicInterface : UserInterface
 {
     public GameObject inventoryPrefab;
+    public GameObject objSelected;
+    [SerializeField] InventoryObject otherInventory;
+    [SerializeField] int X_START;
+    [SerializeField] int Y_START;
+    [SerializeField] int X_SPACE_BETWEEN_ITEM;
+    [SerializeField] int Y_SPACE_BETWEEN_ITEMS;
 
-    public int X_START;
-    public int Y_START;
-    public int X_SPACE_BETWEEN_ITEM;
-    public int Y_SPACE_BETWEEN_ITEMS;
+    [SerializeField] int NUMBER_OF_COLUMN;
 
-    public int NUMBER_OF_COLUMN;
-
+    [SerializeField] GameObject itemInfoPanel;
+    [SerializeField] TextMeshProUGUI itemName, itemDescription;
+    [SerializeField] Image itemDisplay;
     bool itemInfoActived = false;
     public override void CreateSlots()
     {
@@ -41,22 +45,40 @@ public class DynamicInterface : UserInterface
     public void OnClick(GameObject obj)
     {
         itemInfoActived = !itemInfoActived;
+        ItemInfoPanel info = new ItemInfoPanel(itemName, itemDescription,itemDisplay);
+        Debug.Log(objSelected);
+        objSelected = obj;
+        Debug.Log(objSelected);
+        if (itemInfoActived)
+        {
+            if (slotsOnInterface[obj].item.Id > -1)
+            {
+                foreach (var item in slotsOnInterface)
+                {
+                    if (item.Value.item.Id == slotsOnInterface[obj].item.Id)
+                    {
+                        itemInfoPanel.SetActive(true);
+                        info.SetItemDescriptionToText(item.Value.Items);
+                    }
+                }
+            }
+        }
+        else itemInfoPanel.SetActive(false);
+    }
+    public void PurchaseItem()
+    {
+        Debug.Log(objSelected);
 
-        //if (!itemInfoActived)
-        //{
-        //    if (slotsOnInterface[obj].item.Id > -1)
-        //    {
-        //        foreach (var item in slotsOnInterface)
-        //        {
-        //            if (item.Value.item.Id == slotsOnInterface[obj].item.Id)
-        //            {
-        //                ItemInfoPanel.instance.itemInfoDisplay.SetActive(true);
-        //                ItemInfoPanel.instance.SetItemDescriptionToText(item.Value.Items);
-        //            }
-        //        }
-        //    }
-        //}
-        //else ItemInfoPanel.instance.itemInfoDisplay.SetActive(false);
+        if (slotsOnInterface[objSelected].item.Id > -1)
+        {
+            foreach (var item in slotsOnInterface)
+            {
+                if (item.Value.item.Id == slotsOnInterface[objSelected].item.Id)
+                {
+                    otherInventory.AddItem(item.Value.Items.data, 0 + item.Value.amount);
+                }
+            }
+        }
     }
     public Vector3 GetPosition(int i)
     {
