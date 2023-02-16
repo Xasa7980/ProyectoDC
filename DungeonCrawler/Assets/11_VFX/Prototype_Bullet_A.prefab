@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactMask:
     serializedVersion: 2
-    m_Bits: 16183
+    m_Bits: 13056
   speed: 60
   lifeTime: 2
   hitEffect: {fileID: 525032922794330274, guid: 44a3f64f19301464e83f145f7be1b506,

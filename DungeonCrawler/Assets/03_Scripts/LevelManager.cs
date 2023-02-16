@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(gameManager, roomEntry.playerSpawnPoint.position, Quaternion.identity);
         player = FindObjectOfType<PlayerMovement>();
         gameCamera = FindObjectOfType<CameraController>();
+        player.GetComponent<Health>().OnDie += ()=> FindObjectOfType<Dungeon_UI_Manager>().GetComponent<Animator>().SetTrigger("Die");
     }
 
     public void RespawnPlayer()

@@ -32,4 +32,14 @@ public class AnimtationEvents : MonoBehaviour
             return false;
         }
     }
+
+    public void FootR()
+    {
+
+    }
+
+    public void FootL()
+    {
+
+    }
 }

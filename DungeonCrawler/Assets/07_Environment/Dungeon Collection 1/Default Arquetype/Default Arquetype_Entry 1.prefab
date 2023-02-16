@@ -116,8 +116,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 3, z: 4.89}
-  m_Center: {x: 0, y: 1, z: -0.86}
+  m_Size: {x: 5.12, y: 1, z: 4.89}
+  m_Center: {x: 0, y: 0.5, z: -0.86}
 --- !u!114 &2154994382571728596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,6 +2936,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2962588230190409177}
     m_Modifications:
+    - target: {fileID: 1131071754574210, guid: ab94f4534e23ba141a10b1ca23fa05ce, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1131071754574210, guid: ab94f4534e23ba141a10b1ca23fa05ce, type: 3}
       propertyPath: m_IsActive
       value: 1

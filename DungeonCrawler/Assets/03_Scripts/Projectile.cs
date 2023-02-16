@@ -23,20 +23,28 @@ public class Projectile : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, impactMask))
         {
-            if(hit.collider.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
+            if (!hit.collider.isTrigger)
             {
-                reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Shoot, ray);
-            }
+                if (hit.collider.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
+                {
+                    reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Shoot, ray);
+                }
 
-            if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
-            {
-                damageable.ApplyDamage(damage);
-            }
-            Instantiate(hitEffect, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
+                {
+                    damageable.ApplyDamage(damage);
+                }
+                Instantiate(hitEffect, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
 
-            Destroy(this.gameObject);
+                Destroy(this.gameObject);
+            }
         }
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+    }
+
+    public bool Validate(Vector3 position)
+    {
+        return !Physics.CheckSphere(position, 0.2f, impactMask);
     }
 }

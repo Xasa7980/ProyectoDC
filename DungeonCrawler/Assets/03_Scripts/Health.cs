@@ -16,6 +16,8 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] Image healthBar, energyBar;
     [SerializeField] float smoothness = 1;
     [SerializeField] FillMethod fillMethod;
+
+    public bool isDeath { get; private set; }
     
     enum FillMethod
     {
@@ -110,12 +112,16 @@ public class Health : MonoBehaviour, iDamageable
 
     public virtual void Die()
     {
-        //Die
-        OnDieEvent.Invoke();
-        OnDie();
-        foreach (Component component in removeComponentsOnDead)
+        if (!isDeath)
         {
-            Destroy(component);
+            //Die
+            OnDieEvent.Invoke();
+            OnDie();
+            foreach (Component component in removeComponentsOnDead)
+            {
+                Destroy(component);
+            }
+            isDeath = true;
         }
     }
 

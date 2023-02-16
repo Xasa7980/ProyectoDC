@@ -28,6 +28,8 @@ public class RifleController : MonoBehaviour
     //Este se usa para los enemigos para poder configurar un proyectil directamente desde el Shoot Behaviour
     public void Shoot(Projectile projectile)
     {
+        if (!projectile.Validate(shootPoint.position)) return;
+
         Vector3 point = shootPoint.position + shootPoint.forward * 30 + Random.onUnitSphere * (1 - accuracy) * 3;
         Vector3 direction = (point - shootPoint.position).normalized;
         Quaternion shootRotation = Quaternion.LookRotation(direction);
@@ -43,6 +45,8 @@ public class RifleController : MonoBehaviour
     //disparo y cadencia de fuego
     public void TryShoot()
     {
+        if (!projectile.Validate(shootPoint.position)) return;
+
         if (currentfireCount <= 0)
         {
             Vector3 point = shootPoint.position + shootPoint.forward * 30 + Random.onUnitSphere * (1 - accuracy) * 3;

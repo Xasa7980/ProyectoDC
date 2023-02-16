@@ -217,7 +217,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 8365679824123618212}
-  _leftHandIKTarget: {fileID: 587289970166732435}
+  shootEffect: {fileID: 7866057785187922858, guid: 96f9093127793784696eb95a7866a505,
+    type: 3}
+  damage: 7
+  accuracy: 0.5
+  bulletsPerMinute: 100
+  projectile: {fileID: 0}
 --- !u!1 &1559918221196860
 GameObject:
   m_ObjectHideFlags: 0
