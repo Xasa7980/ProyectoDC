@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class ItemDisplayInfo : MonoBehaviour
+public abstract class ItemDisplayInfo
 {
-    public virtual void SetItemDescriptionToText(ItemObject itemObject)
-    {
-      
-    }
+    public abstract void SetItemDescriptionToText(ItemObject itemObject);
 
 }
