@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: a414b6b5cae71f6488958d12a300d1f2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 400
+        width: 125
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 126727313efd6eb4bb781148915034dc
+      internalID: -686693648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_3
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 400
+        width: 136
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da16ad1ff4aa334db1b260a358a24e7
+      internalID: 1707710037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_5
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 406
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05936d216dbe8db4985df533b22acbbc
+      internalID: -1434053776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_9
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 243
+        width: 128
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e8ebcc3e2f01b6478684184eade2bab
+      internalID: 1148460208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 255
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a0023ceb9048743bcb436ce85e02c8
+      internalID: -1424305500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_11
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 235
+        width: 38
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e6a610f1e9e7444a1f935fa22d255c
+      internalID: -1598247051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_12
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 255
+        width: 20
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 226cb60cf91cb0944b363574faa1f0ba
+      internalID: -954995714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_13
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 226
+        width: 130
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e128bee8591c6094ba4915df361f433a
+      internalID: 1934021199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 241
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d22d8627b370c4bb0f4fd83a81f97d
+      internalID: -1212302146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_16
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 241
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2299f3d8c9d076c44acfbed3a8a3aa45
+      internalID: 1545131592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_17
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 218
+        width: 33
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9302ce8a0433634c82bc8f3335c4e89
+      internalID: 547193004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_19
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 30
+        width: 92
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a04dfa3759bdf9448445a195f5a01b0
+      internalID: -469663306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_20
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 30
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc739ae0a8a6df3488844109dd979eb9
+      internalID: 1577799582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_24
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 25
+        width: 126
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8a28e014f5b2f4aae2091ad59c25b5
+      internalID: -237781706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 89c387a5881e27048be1d0d6620c8412
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_8: -1202533489
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_19: -469663306
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_22: 1373684718
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_24: -237781706
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_3: 1707710037
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_13: 1934021199
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_26: -1734125727
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_25: 1221343617
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_5: -1434053776
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_18: -521998069
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_1: -686693648
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_11: -1598247051
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_2: -2129069936
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_10: -1424305500
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_4: 384940412
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_7: -169967043
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_0: 419176103
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_12: -954995714
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_6: 313623781
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_14: -1520640411
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_9: 1148460208
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_17: 547193004
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_16: 1545131592
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_20: 1577799582
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_21: 1538626070
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_15: -1212302146
+      kisspng-symbol-computer-icons-science-fiction-clip-art-sci-fi-5ade1656a53bb0.6160505615245041506768_23: -1819760254
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

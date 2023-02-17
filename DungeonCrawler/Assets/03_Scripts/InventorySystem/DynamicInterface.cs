@@ -23,6 +23,8 @@ public class DynamicInterface : UserInterface
     [SerializeField] TextMeshProUGUI itemName, itemDescription;
     [SerializeField] Image itemDisplay;
     bool itemInfoActived = false;
+
+    [SerializeField] bool hasInfoPanel = false;
     public override void CreateSlots()
     {
         slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
@@ -44,6 +46,7 @@ public class DynamicInterface : UserInterface
     }
     public void OnClick(GameObject obj)
     {
+        
         itemInfoActived = !itemInfoActived;
         ItemInfoPanel info = new ItemInfoPanel(itemName, itemDescription,itemDisplay);
         Debug.Log(objSelected);
@@ -67,15 +70,15 @@ public class DynamicInterface : UserInterface
     }
     public void PurchaseItem()
     {
-        Debug.Log(objSelected);
-
         if (slotsOnInterface[objSelected].item.Id > -1)
         {
             foreach (var item in slotsOnInterface)
             {
                 if (item.Value.item.Id == slotsOnInterface[objSelected].item.Id)
                 {
-                    otherInventory.AddItem(item.Value.Items.data, 0 + item.Value.amount);
+                    slotsOnInterface[objSelected] = null;
+                    otherInventory.AddItem(item.Value.item, item.Value.amount);
+                    item.Value.RemoveItem();
                 }
             }
         }
