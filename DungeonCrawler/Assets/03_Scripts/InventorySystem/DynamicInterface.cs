@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using System.Linq;
 
 public class DynamicInterface : UserInterface
 {
@@ -24,7 +22,7 @@ public class DynamicInterface : UserInterface
     [SerializeField] Image itemDisplay;
     bool itemInfoActived = false;
 
-    [SerializeField] bool hasInfoPanel = false;
+    [SerializeField] bool hasTransition;
     public override void CreateSlots()
     {
         slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
@@ -33,11 +31,14 @@ public class DynamicInterface : UserInterface
             var obj = Instantiate(inventoryPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
 
-            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
-            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit();});
-            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
-            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj);});
-            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(); });
+            if (hasTransition)
+            {
+                AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
+                AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(); });
+                AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
+                AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
+                AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(); });
+            }
             AddEvent(obj, EventTriggerType.PointerClick, delegate { OnClick(obj); });
 
 
@@ -47,11 +48,9 @@ public class DynamicInterface : UserInterface
     public void OnClick(GameObject obj)
     {
         
-        itemInfoActived = !itemInfoActived;
+        itemInfoActived = true;
         ItemInfoPanel info = new ItemInfoPanel(itemName, itemDescription,itemDisplay);
-        Debug.Log(objSelected);
         objSelected = obj;
-        Debug.Log(objSelected);
         if (itemInfoActived)
         {
             if (slotsOnInterface[obj].item.Id > -1)
@@ -66,7 +65,6 @@ public class DynamicInterface : UserInterface
                 }
             }
         }
-        else itemInfoPanel.SetActive(false);
     }
     public void PurchaseItem()
     {
@@ -76,9 +74,9 @@ public class DynamicInterface : UserInterface
             {
                 if (item.Value.item.Id == slotsOnInterface[objSelected].item.Id)
                 {
-                    slotsOnInterface[objSelected] = null;
                     otherInventory.AddItem(item.Value.item, item.Value.amount);
-                    item.Value.RemoveItem();
+                    slotsOnInterface[objSelected].RemoveItem();
+                    return;
                 }
             }
         }
