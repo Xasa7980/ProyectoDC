@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e67d67b56ca02b74c96050e88cf56174, type: 3}
-  m_Name: PlayerInventoryObject
+  m_Name: SkinsInventory
   m_EditorClassIdentifier: 
-  savePath: itemSaved.save
-  database: {fileID: 11400000, guid: 28d185b5016f90e46b1f0556d3a23980, type: 2}
+  savePath: SkinsSave.save
+  database: {fileID: 11400000, guid: 865490bddfa33f645ab6f9bed6bcb2b1, type: 2}
   Container:
     Items:
     - AllowedItems: 
@@ -43,9 +43,27 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
@@ -73,9 +91,21 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
@@ -97,15 +127,21 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
@@ -127,15 +163,21 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
+    - AllowedItems: 
+      item:
+        Name: 
+        Id: -1
+        buffs: []
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
@@ -157,72 +199,30 @@ MonoBehaviour:
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
+      amount: 0
     - AllowedItems: 
       item:
         Name: 
-        Id: 1
+        Id: -1
         buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
-    - AllowedItems: 
-      item:
-        Name: 
-        Id: 1
-        buffs: []
-      amount: 1
+      amount: 0
