@@ -109,7 +109,25 @@ public class Health : MonoBehaviour, iDamageable
         currentHealth = Mathf.Clamp(currentHealth, 0, _maxHealth);
         currentEnergy = Mathf.Clamp(currentEnergy, 0, _maxEnergy);
     }
-
+    void ActiveShield()
+    {
+        if (currentEnergy > maxEnergy - 1)
+        {
+            for (int i = 0; i < playerWithShield.Length; i++)
+            {
+                playerWithShield[i].SetActive(true);
+                playerWithoutShield[i].SetActive(false); ;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < playerWithShield.Length; i++)
+            {
+                playerWithoutShield[i].SetActive(true);
+                playerWithShield[i].SetActive(false);
+            }
+        }
+    }
     public virtual void Die()
     {
         if (!isDeath)
@@ -162,6 +180,7 @@ public class Health : MonoBehaviour, iDamageable
 
     protected virtual void Update()
     {
+        ActiveShield();
         if (energyRefillCount > 0)
             energyRefillCount -= Time.deltaTime;
         else if (currentEnergy < maxEnergy)
