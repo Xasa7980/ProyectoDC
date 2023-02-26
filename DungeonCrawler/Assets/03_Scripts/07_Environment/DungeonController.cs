@@ -61,8 +61,18 @@ public class DungeonController : MonoBehaviour
         {
             if (room == null) continue;
 
-            room.AddEnemies(generator.defaultLibrary.PlaceTurrets(room.room, generator.turretsSpawnProbability, generator.maxDificulty));
+            room.AddEnemies(generator.defaultLibrary.PlaceTurrets(room, generator.turretsSpawnProbability, generator.maxDificulty));
             room.AddEnemies(generator.defaultLibrary.PlaceRobots(room, generator.bruteRobotsProbability, generator.maxDificulty));
+
+            room.data.SetDefaultEnemies(room);
+        }
+    }
+
+    public void ResetDungeon()
+    {
+        foreach(RoomController room in rooms)
+        {
+            room.ResetRoom();
         }
     }
 

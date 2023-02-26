@@ -58,11 +58,13 @@ public class TargetPointer : MonoBehaviour
 
     private void Update()
     {
+        if (CameraController.current.gameCamera == null) return;
+
         foreach(Enemy target in targetsMap.Keys)
         {
-            Vector3 cameraDir = (target.transform.position - CameraController.gameCamera.transform.position).normalized;
-            float angle = Vector3.Angle(cameraDir, CameraController.gameCamera.transform.forward);
-            if (angle < CameraController.gameCamera.fieldOfView / 2)
+            Vector3 cameraDir = (target.transform.position - CameraController.current.gameCamera.transform.position).normalized;
+            float angle = Vector3.Angle(cameraDir, CameraController.current.gameCamera.transform.forward);
+            if (angle < CameraController.current.gameCamera.fieldOfView / 2)
             {
                 targetsMap[target].SetActive(false);
                 continue;

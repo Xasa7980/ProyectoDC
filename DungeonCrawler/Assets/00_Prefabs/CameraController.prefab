@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   followSpeed: 5
+  _gameCamera: {fileID: 9210651195144164315}
 --- !u!1 &608520208317567019
 GameObject:
   m_ObjectHideFlags: 0

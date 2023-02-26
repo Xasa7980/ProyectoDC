@@ -8,9 +8,9 @@ public class PatrolBehaviour : EnemyBehaviour
     public enum LoopingMethod { Cycle, Reverse, OneTime }
 
     public int patrollLength = 7;
-    Vector3[] wayPoints;
+    public Vector3[] wayPoints { get; private set; }
     [SerializeField] LoopingMethod loopingMethod = LoopingMethod.Cycle;
-    int currentWayPoint = 0;
+    public int currentWayPoint = 0;
     int direction = 1;
     [SerializeField] float guardTime = 3f;
     float guardCounter;
@@ -18,12 +18,15 @@ public class PatrolBehaviour : EnemyBehaviour
     protected override void Start()
     {
         base.Start();
-        InitWayPoints();
     }
 
     public void InitWayPoints()
     {
+        baseController = GetComponentInParent<EnemyController>();
         List<Vector3> aviablePoints = new List<Vector3>(baseController.room.freeSpots);
+
+        if (aviablePoints.Count < patrollLength) return;
+
         wayPoints = new Vector3[patrollLength];
 
         for(int i = 0; i < patrollLength; i++)
@@ -35,14 +38,23 @@ public class PatrolBehaviour : EnemyBehaviour
         }
     }
 
+    public void SetWayPoints(Vector3[] waypoints)
+    {
+        baseController = GetComponentInParent<EnemyController>();
+        this.wayPoints = waypoints;
+    }
+
     public override void Init()
     {
+        if (wayPoints == null) return;
+
         base.Init();
         movement.SetDestination(wayPoints[currentWayPoint]);
     }
 
     public override void UpdateBehaviour()
     {
+        if (wayPoints == null) return;
 
         if (movement.remainingDistance <= 0.5f)
         {

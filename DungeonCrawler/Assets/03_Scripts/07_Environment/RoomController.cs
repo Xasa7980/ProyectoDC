@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
 
-public class RoomController : MonoBehaviour
+public class RoomController : MonoBehaviour, ISaveLoad
 {
     DungeonController controller;
 
@@ -20,10 +20,14 @@ public class RoomController : MonoBehaviour
 
     AlarmLight_VFX[] alarms;
 
-    List<Enemy> enemies = new List<Enemy>();
+    public List<Enemy> enemies { get; private set; }
     public int enemyCount => enemies.Count;
 
     public bool playerInside { get; private set; }
+
+    #region Save & Load variables
+    public RoomData data;
+    #endregion
 
     #region Construction functions
     public void ConfigureRoom(Room room)
@@ -36,6 +40,7 @@ public class RoomController : MonoBehaviour
         this.navSurface.useGeometry = UnityEngine.AI.NavMeshCollectGeometry.PhysicsColliders;
         this.navSurface.minRegionArea = 6;
         this.navSurface.BuildNavMesh();
+        this.enemies = new List<Enemy>();
 
         alarms = GetComponentsInChildren<AlarmLight_VFX>();
 
@@ -46,20 +51,17 @@ public class RoomController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Containers");
 
         controller = GetComponentInParent<DungeonController>();
+
+        data = new RoomData(this);
     }
 
     public void AddFreePoints(List<Vector3> points) => freeSpots.AddRange(points);
 
     public void AddEnemies(List<Enemy> enemies)
     {
-        enemies.ForEach(e => e.SetRoom(this));
+        enemies.ForEach(e => e.Init(this));
+
         this.enemies.AddRange(enemies);
-
-    }
-
-    public void AddEnemy(Enemy enemy)
-    {
-        enemies.Add(enemy);
     }
 
     public void RemoveEnemy(Enemy enemy)
@@ -133,6 +135,25 @@ public class RoomController : MonoBehaviour
         controller.OnRoomCleared(this);
         cleared = true;
     }
+
+    public void ResetRoom()
+    {
+        foreach(Enemy e in enemies)
+        {
+            Destroy(e.gameObject);
+        }
+
+        enemies.Clear();
+        data.LoadDefaultEnemies(this);
+        OpenRoom();
+        cleared = false;
+    }
+
+    public void LoadEnemies(List<Enemy> enemies)
+    {
+        this.enemies.Clear();
+        this.enemies.AddRange(enemies);
+    }
     #endregion
 
     private void OnTriggerEnter(Collider other)
@@ -151,5 +172,15 @@ public class RoomController : MonoBehaviour
         {
             playerInside = false;
         }
+    }
+
+    public void Save()
+    {
+        data.Save(this);
+    }
+
+    public void Load()
+    {
+
     }
 }

@@ -6280,7 +6280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8730329750514506969}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 7.3748543e-13, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6407,8 +6407,8 @@ MonoBehaviour:
   _playerName: easa
   removeComponentsOnDead:
   - {fileID: 8730329750514506963}
-  - {fileID: 8730329750514506961}
   - {fileID: 8730329750514506962}
+  - {fileID: 8730329750514506961}
   hasUI: 0
   healthBar: {fileID: 0}
   energyBar: {fileID: 0}
@@ -6541,10 +6541,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42352047fe3588499dfcc3db08f60dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillObjectSlot1: {fileID: 0}
-  skillObjectSlot2: {fileID: 0}
-  hitLocation: {fileID: 0}
-  timeToReady: 3
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 512
+  skillObjectSlot1: {fileID: 11400000, guid: 6301a6bd34efdf042a2413159924bcf3, type: 2}
+  skillObjectSlot2: {fileID: 11400000, guid: 6301a6bd34efdf042a2413159924bcf3, type: 2}
+  hitLocation: {fileID: 8730329750514506965}
+  counterToRefresh1: 0
+  counterToRefresh2: 0
 --- !u!1001 &8330836851967350994
 PrefabInstance:
   m_ObjectHideFlags: 0

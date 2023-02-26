@@ -12,9 +12,27 @@ public class Player_UI_Manager : MonoBehaviour
     private void Start()
     {
         DungeonController controller = FindObjectOfType<DungeonController>();
-        controller.onRoomClearedUnityEvent.AddListener(() => Hide());
-        controller.onRoomClearedUnityEvent.AddListener(() => alarmVigentteAnim.SetBool("Active", false));
-        controller.onPlayerDetected += ()=> alarmVigentteAnim.SetBool("Active", true);
+        controller.onRoomClearedUnityEvent.AddListener(InitOnRoomClearedUnityEvent);
+        controller.onPlayerDetected += InitOnPlayerDetected;
+    }
+
+    public void OnRepawn()
+    {
+        DungeonController controller = FindObjectOfType<DungeonController>();
+        controller.onRoomClearedUnityEvent.RemoveListener(InitOnRoomClearedUnityEvent);
+        controller.onPlayerDetected -= InitOnPlayerDetected;
+    }
+
+    void InitOnRoomClearedUnityEvent()
+    {
+        Hide();
+        alarmVigentteAnim.SetBool("Active", false);
+        //controller.onPlayerDetected += () => alarmVigentteAnim.SetBool("Active", true);
+    }
+
+    void InitOnPlayerDetected()
+    {
+        alarmVigentteAnim.SetBool("Active", true);
     }
 
     public void Show()

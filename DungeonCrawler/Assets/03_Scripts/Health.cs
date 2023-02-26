@@ -114,6 +114,7 @@ public class Health : MonoBehaviour, iDamageable
     {
         if (!isDeath)
         {
+            isDeath = true;
             //Die
             OnDieEvent.Invoke();
             OnDie();
@@ -121,7 +122,6 @@ public class Health : MonoBehaviour, iDamageable
             {
                 Destroy(component);
             }
-            isDeath = true;
         }
     }
 

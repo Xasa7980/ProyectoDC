@@ -126,6 +126,7 @@ MonoBehaviour:
   _playerName: 
   removeComponentsOnDead:
   - {fileID: 4243403729022705549}
+  - {fileID: 7449106777504393764}
   - {fileID: 8461167213572070164}
   hasUI: 0
   healthBar: {fileID: 0}

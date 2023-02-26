@@ -6,19 +6,19 @@ public class Room
 {
     public DungeonLibrary arquetype;
 
-    public int xCoord { get; private set; }
-    public int yCoord { get; private set; }
+    public int xCoord { get; protected set; }
+    public int yCoord { get; protected set; }
 
-    public int width { get; private set; }
-    public int length { get; private set; }
+    public Vector2 center { get; protected set; }
+
+    public int width { get; protected set; }
+    public int length { get; protected set; }
 
     public int height;
 
     public int difficulty;
 
     public float area => width * length;
-
-    public Vector2 center { get; private set; }
 
     List<Room> childs = new List<Room>();
 

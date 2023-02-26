@@ -6,21 +6,17 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController current { get; private set; }
 
-    [SerializeField] Transform target;
+    public Transform target;
     [SerializeField] float followSpeed = 5;
 
     public static Vector3 offset { get; set; }
 
-    public static Camera gameCamera { get; private set; }
+    [SerializeField] Camera _gameCamera;
+    public Camera gameCamera => _gameCamera;
 
     private void Awake()
     {
         current = this;
-    }
-
-    private void Start()
-    {
-        gameCamera = Camera.main;
     }
 
     private void Update()

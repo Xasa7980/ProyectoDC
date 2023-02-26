@@ -217,17 +217,17 @@ public class DungeonLibrary : ScriptableObject
         }
     }
 
-    public List<Enemy> PlaceTurrets(Room room, float probability, int maxDificulty)
+    public List<Enemy> PlaceTurrets(RoomController room, float probability, int maxDificulty)
     {
         List<TilePresetManager> emptyTiles = new List<TilePresetManager>();
-        foreach(TilePresetManager tile in room.tileMap)
+        foreach(TilePresetManager tile in room.room.tileMap)
         {
             if(tile.empty && tile.alowdPropsInstancing)
                 emptyTiles.Add(tile);
         }
 
         List<Enemy> turrets = new List<Enemy>();
-        float normalizedDifficulty = (float)room.difficulty / maxDificulty;
+        float normalizedDifficulty = (float)room.room.difficulty / maxDificulty;
 
         foreach(TilePresetManager tile in emptyTiles)
         {
@@ -242,8 +242,13 @@ public class DungeonLibrary : ScriptableObject
             {
                 Vector3 position = tile.transform.position;
                 Quaternion rotation = Quaternion.Euler(Vector3.up * Random.Range(0, 4) * 90);
-                Enemy turret = Instantiate(this.turrets[Random.Range(0, this.turrets.Length)], position, rotation);
+                int turretIndex = Random.Range(0, this.turrets.Length);
+                Enemy turret = Instantiate(this.turrets[turretIndex], position, rotation);
+
+                //Do somenthing with the instance
+                turret.SetPrefabReference(this.turrets[turretIndex]);
                 turret.transform.parent = tile.transform.parent;
+
                 turrets.Add(turret);
             }
         }
@@ -265,8 +270,12 @@ public class DungeonLibrary : ScriptableObject
 
             Enemy enemy = this.robots[Random.Range(0, this.robots.Length)];
             Enemy enemyInstance = Instantiate(enemy, position, Quaternion.Euler(Vector3.up * Random.Range(0, 360)));
-            robots.Add(enemyInstance);
+
             //Do somenthing with the instance
+            enemyInstance.SetPrefabReference(enemy);
+            enemyInstance.transform.parent = room.transform;
+
+            robots.Add(enemyInstance);
         }
 
         return robots;
