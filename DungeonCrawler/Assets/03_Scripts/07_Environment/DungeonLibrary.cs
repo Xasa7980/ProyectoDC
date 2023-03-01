@@ -229,7 +229,7 @@ public class DungeonLibrary : ScriptableObject
         List<Enemy> turrets = new List<Enemy>();
         float normalizedDifficulty = (float)room.room.difficulty / maxDificulty;
 
-        foreach(TilePresetManager tile in emptyTiles)
+        foreach (TilePresetManager tile in emptyTiles)
         {
             if(tile == null)
             {

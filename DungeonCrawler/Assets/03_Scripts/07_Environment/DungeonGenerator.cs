@@ -137,6 +137,67 @@ public class DungeonGenerator : MonoBehaviour
         PlaceArquetypes();
     }
 
+    public void Generate(int seed)
+    {
+        this.seed = seed;
+
+        Random.InitState(seed);
+
+        floor = new Room[floorWidth, floorLength];
+
+        for (int x = 0; x < floorWidth; x++)
+        {
+            for (int y = 0; y < floorLength; y++)
+            {
+                int roomWidth = Random.Range(roomWidthMin, roomWidthMax);
+                int roomLength = Random.Range(roomHeightMin, roomHeightMax);
+
+                roomWidth += (roomWidth % 2 == 0) ? 1 : 0;
+                roomLength += (roomLength % 2 == 0) ? 1 : 0;
+
+                Vector2 roomCenter = new Vector2(x * roomWidthMax + roomWidthMax / 2 + roomSpacing * x, y * roomHeightMax + roomWidthMax / 2 + roomSpacing * y);
+                floor[x, y] = new Room(x, y, roomCenter, roomWidth, roomLength);
+                floor[x, y].arquetype = defaultLibrary;
+            }
+        }
+
+        startRoom = floor[Random.Range(0, floorWidth), 0];
+        endRoom = floor[Random.Range(0, floorWidth), Random.Range(Mathf.RoundToInt(floorLength * 0.75f), floorLength)];
+
+        switch (roomConnectionMethod)
+        {
+            case RoomConnectionMethod.Random:
+                CreateConnections_Random();
+                break;
+
+            case RoomConnectionMethod.Path:
+                CreateConnections_Path();
+                break;
+        }
+
+        ClearIsolatedRooms();
+
+        //foreach(Room r in floor)
+        //{
+        //    if (r == null) continue;
+
+        //    defaultLibrary.DrawRoom(r, this.transform);
+
+        //    foreach(RoomConnection rc in r.connections)
+        //    {
+        //        if (rc == null) continue;
+
+        //        if (rc.skipDrawing) continue;
+
+        //        defaultLibrary.DrawConnection(rc, this.transform);
+        //    }
+        //}
+
+        //defaultLibrary.PlaceEntry(startRoom, this.transform);
+
+        PlaceArquetypes();
+    }
+
     void CreateConnections_Random()
     {
         foreach (Room room in floor)

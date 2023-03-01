@@ -26,6 +26,10 @@ public class ExplodeParts_VFX : MonoBehaviour
             rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
 
             Destroy(rb, 4.5f);
+
+            LevelManager.current.DestroyObjectAtRespawn(part);
         }
+
+        LevelManager.current.DestroyObjectAtRespawn(gameObject);
     }
 }

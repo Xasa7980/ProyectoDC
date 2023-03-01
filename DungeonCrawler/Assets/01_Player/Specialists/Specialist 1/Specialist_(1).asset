@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897d8e11a6260da4da9e92a9c8d145bb, type: 3}
+  m_Name: Specialist_(1)
+  m_EditorClassIdentifier: 
+  displayName: 
+  image: {fileID: 21300000, guid: 64fded2a77b718a46b852f074f69fc48, type: 3}
+  presentationModel: {fileID: 5890875224766001051, guid: aecc75d7359184d439cf8d27c16e4e9a,
+    type: 3}
+  playableModel: {fileID: 8730329750514506969, guid: 667ed1f04d9c27544848b245d810441c,
+    type: 3}
+  rangeWeapon: {fileID: 5583589501994954688, guid: 1892a808cb7b07f4eb12a19560febd9d,
+    type: 3}
+  meleeWeapon: {fileID: 8818945598273651407, guid: ccbf421ef1bc67547a36a995b098ebeb,
+    type: 3}
+  vitality: 30
+  energy: 13
+  endurance: 7
+  presition: 3
+  skills:
+  - {fileID: 11400000, guid: 6301a6bd34efdf042a2413159924bcf3, type: 2}
+  - {fileID: 11400000, guid: f6fa0956d4382ad4ab59adf3f4e78330, type: 2}
+  - {fileID: 11400000, guid: 233a8e74252cd994f9ef0fcf48f0db8b, type: 2}

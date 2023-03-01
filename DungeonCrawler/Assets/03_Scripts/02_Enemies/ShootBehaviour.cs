@@ -129,7 +129,7 @@ public class ShootBehaviour : EnemyBehaviour
                 {
                     moveCounter = moveInterval;
 
-                    Vector3 newDir = MathOps.DirFromAngle(Random.Range(0, 360));
+                    Vector3 newDir = MathOps.PlaneDirFromAngle(Random.Range(0, 360));
                     Vector3 newPoint = transform.position + newDir * Random.Range(3, 6);
 
                     movement.SetDestination(newPoint);

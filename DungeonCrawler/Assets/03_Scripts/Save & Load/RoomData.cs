@@ -69,15 +69,32 @@ public class RoomData
 
     public void Load(RoomController room)
     {
-        List<Enemy> enemies = new List<Enemy>();
-
-        for(int i = 0; i < this.enemies.Count; i++)
+        if (!cleared)
         {
-            enemies.Add(this.enemies[i].Load(room));
+            List<Enemy> enemies = new List<Enemy>();
+
+            for (int i = 0; i < this.enemies.Count; i++)
+            {
+                enemies.Add(this.enemies[i].Load(room));
+            }
+
+            room.AddEnemies(enemies);
         }
 
-        room.AddEnemies(enemies);
+        room.cleared = cleared;
     }
 
-    
+    public static RoomData ExtractData(RoomController room)
+    {
+        RoomData data = new RoomData(room);
+
+        data.enemies = new List<EnemyData>();
+
+        foreach (Enemy enemy in room.enemies)
+        {
+            data.enemies.Add(EnemyData.ExtractData(enemy));
+        }
+
+        return data;
+    }
 }

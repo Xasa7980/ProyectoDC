@@ -16,6 +16,15 @@ public enum HitMethod
 }
 public abstract class SkillSO : ScriptableObject
 {
+    [SerializeField] string _displayName;
+    [Multiline]
+    [SerializeField] string _description;
+    [SerializeField] Sprite _image;
+
+    public string displayName => _displayName;
+    public string description => _description;
+    public Sprite image => _image;
+
     public ActivationMethod activationMethod;
     public HitMethod hitMethod;
     public GameObject prefab;

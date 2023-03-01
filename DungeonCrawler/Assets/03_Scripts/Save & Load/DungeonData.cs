@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonData : MonoBehaviour
+[CreateAssetMenu(fileName = "New Dungeon Data", menuName = "DungeonData")]
+public class DungeonData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public int seed { get; private set; }
+    RoomData[] rooms;
+
+    public void Save(int seed, DungeonController dungeon)
     {
-        
+        this.seed = seed;
+        this.rooms = new RoomData[dungeon.rooms.Count];
+        for(int i = 0; i < dungeon.rooms.Count; i++)
+        {
+            this.rooms[i] = RoomData.ExtractData(dungeon.rooms[i]);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Load(DungeonController dungeon)
     {
-        
+        for(int i = 0; i < dungeon.rooms.Count; i++)
+        {
+            rooms[i].Load(dungeon.rooms[i]);
+        }
     }
 }

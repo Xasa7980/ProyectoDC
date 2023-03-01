@@ -7,7 +7,7 @@ public class RoomController : MonoBehaviour, ISaveLoad
 {
     DungeonController controller;
 
-    public bool cleared { get; private set; }
+    public bool cleared { get; set; }
 
     public Room room { get; private set; }
 

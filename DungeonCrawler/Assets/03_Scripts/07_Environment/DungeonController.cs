@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class DungeonController : MonoBehaviour
 {
+    [SerializeField] DungeonData saveLoadData;
+
     DungeonGenerator generator;
 
     [SerializeField] Animator roomAnim;
@@ -15,7 +17,7 @@ public class DungeonController : MonoBehaviour
     public UnityEvent onRoomClearedUnityEvent = new UnityEvent();
     public event System.Action onPlayerDetected = delegate { };
 
-    private void Start()
+    public void Init()
     {
         CreateDungeon();
         DrawDungeon();
@@ -89,5 +91,41 @@ public class DungeonController : MonoBehaviour
         roomAnim.SetTrigger("RoomCleared");
 
         Debug.Log("Room CLeared");
+    }
+
+    public void Save()
+    {
+        saveLoadData.Save(generator.seed, this);
+    }
+
+    public void Load()
+    {
+        generator = GetComponent<DungeonGenerator>();
+        generator.Generate(saveLoadData.seed);
+
+        foreach (Room r in generator.floor)
+        {
+            if (r == null) continue;
+
+            RoomController room = r.arquetype.DrawRoom(r, this.transform);
+            room.ConfigureRoom(r);
+            rooms.Add(room);
+
+            foreach (RoomConnection rc in r.connections)
+            {
+                if (rc == null) continue;
+
+                if (rc.skipDrawing) continue;
+
+                generator.defaultLibrary.DrawConnection(rc, this.transform);
+            }
+        }
+        generator.SpawnProps();
+        saveLoadData.Load(this);
+
+        generator.defaultLibrary.PlaceEntry(generator.startRoom, this.transform);
+        
+        //Replace with the "Load Player" function once finished
+        LevelManager.current.SpawnPlayer();
     }
 }

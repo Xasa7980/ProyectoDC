@@ -68,8 +68,8 @@ public class RadialSensor : Sensor
 #if UNITY_EDITOR
         UnityEditor.Handles.color = Color.yellow;
         UnityEditor.Handles.DrawWireArc(transform.position, Vector3.up, Vector3.forward, 360, detectionRadius);
-        UnityEditor.Handles.DrawLine(transform.position, transform.position + MathOps.DirFromAngle((-detectionAngle / 2 + transform.rotation.eulerAngles.y)) * detectionRadius);
-        UnityEditor.Handles.DrawLine(transform.position, transform.position + MathOps.DirFromAngle((detectionAngle / 2 + transform.rotation.eulerAngles.y)) * detectionRadius);
+        UnityEditor.Handles.DrawLine(transform.position, transform.position + MathOps.PlaneDirFromAngle((-detectionAngle / 2 + transform.rotation.eulerAngles.y)) * detectionRadius);
+        UnityEditor.Handles.DrawLine(transform.position, transform.position + MathOps.PlaneDirFromAngle((detectionAngle / 2 + transform.rotation.eulerAngles.y)) * detectionRadius);
 #endif
     }
 }

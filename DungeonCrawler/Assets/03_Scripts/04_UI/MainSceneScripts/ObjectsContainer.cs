@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class ObjectsContainer : MonoBehaviour
 {
-    [SerializeField] GameObject[] gameObjectsToActive;
-    [SerializeField] GameObject[] gameObjectsToDeactive;
+    [SerializeField] Base_UI_Window[] gameObjectsToActive;
+    [SerializeField] Base_UI_Window[] gameObjectsToDeactive;
+
+    private void Start()
+    {
+        foreach(Base_UI_Window window in gameObjectsToActive)
+        {
+            window.Init();
+        }
+
+        foreach (Base_UI_Window window in gameObjectsToDeactive)
+        {
+            window.Init();
+        }
+    }
+
     public void ActivatingObjects()
     {
         for (int i = 0; i < gameObjectsToActive.Length; i++)
         {
-            gameObjectsToActive[i].SetActive(true);
+            gameObjectsToActive[i].Show();
         }
     }
     public void DeactivatingObjects()
     {
         for (int i = 0; i < gameObjectsToDeactive.Length; i++)
         {
-            gameObjectsToDeactive[i].SetActive(false);
+            gameObjectsToDeactive[i].Hide();
         }
     }
 
