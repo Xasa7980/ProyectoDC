@@ -16,6 +16,8 @@ MonoBehaviour:
   _description: dakd akdakjd akjd kf skfs vsdjav j vjv jha djh adjh jh dfsjafh jahf
     sdh jsdfa
   _image: {fileID: 21300000, guid: 1f8eeca8e8f0dc1489ab03eefb398ffa, type: 3}
+  instancePosition: {x: 0, y: 0, z: 0}
+  instanceRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   activationMethod: 0
   hitMethod: 0
   prefab: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed, type: 3}
@@ -24,6 +26,7 @@ MonoBehaviour:
   damage: 55
   speed: 0
   resetSkill: 0
+  resetCounter: 0
   hitRadius: 5
   skillDuration: 5
   timeNeededRefresh: 5

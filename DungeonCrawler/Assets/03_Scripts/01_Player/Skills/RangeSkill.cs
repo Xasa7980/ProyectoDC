@@ -5,34 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Range Skill", menuName = "Create Skill/Range Skill")]
 public class RangeSkill : SkillSO
 {
-    public override void ActivateSkill(ActivationMethod activation, GameObject gameObject, Transform transform, LayerMask hitMask, bool reset)
+    public override GameObject InvokeMethod(GameObject obj, Vector3 pos, Quaternion rot, Transform transform)
     {
-        resetSkill = reset;
-
-        if (resetSkill)
-        {
-            InvokeMethod(transform.position, gameObject);
-            TakeDamage(gameObject, transform, hitMask);
-            resetSkill = false;
-            Debug.Log("h3");
-        }
-
-        if (activation == ActivationMethod.InstantRefreshing)
-        {
-            InvokeMethod(transform.position, gameObject);
-            TakeDamage(gameObject, transform, hitMask);
-            Debug.Log("h2");
-        }
-    }
-
-    public override void InvokeMethod(Vector3 pos, GameObject obj)
-    {
-        Instantiate(obj, pos, Quaternion.identity);
+        return Instantiate(obj, transform.position + Vector3.up * 2, rot);
     }
 
     public override void TakeDamage(GameObject gameObject, Transform transform, LayerMask hitMask)
     {
-        if(hitMethod == HitMethod.Raycast) //Balas ejemplo
+        if (hitMethod == HitMethod.Raycast) //Balas ejemplo
         {
             Ray ray = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, hitMask))
@@ -55,7 +35,7 @@ public class RangeSkill : SkillSO
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         }
 
-        else if(hitMethod == HitMethod.OverlapSphere)
+        else if (hitMethod == HitMethod.OverlapSphere)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, hitRadius, hitMask);
             if (colls.Length > 0)
@@ -70,6 +50,58 @@ public class RangeSkill : SkillSO
                     }
                 }
             }
+        }
+        else if (hitMethod == HitMethod.ParticleCollision)
+        {
+
+            if (gameObject.TryGetComponent<iDamageable>(out iDamageable damageable))
+            {
+                damageable.ApplyDamage(damage);
+                hitsImpacted++;
+            }
+        }
+    }
+    public override void SkillDuration(GameObject gameObject)
+    {
+        if (skillIsActive)
+        {
+            skillDuration += Time.deltaTime;
+            if (skillDuration > durationTimeOut)
+            {
+                skillIsActive = false;
+                gaterableObj.SetActive(false);
+                skillDuration = 0;
+            }
+        }
+    }
+    public override void SkillReset(SkillSO activedSkills)
+    {
+        if (activationMethod == ActivationMethod.RefreshingTime)
+        {
+            if (!skillIsActive)
+            {
+                resetCounter += Time.deltaTime;
+                if (resetCounter >= timeNeededRefresh)
+                {
+                    resetCounter = 0;
+                    canCast = true;
+                }
+            }
+        }
+        else if (activationMethod == ActivationMethod.RefreshingHits)
+        {
+            if (!skillIsActive)
+            {
+                if (hitsImpacted >= hitsNeededToRefresh)
+                {
+                    hitsImpacted = 0;
+                    canCast = true;
+                }
+            }
+        }
+        else if (activationMethod == ActivationMethod.InstantRefreshing)
+        {
+            canCast = true;
         }
     }
 }

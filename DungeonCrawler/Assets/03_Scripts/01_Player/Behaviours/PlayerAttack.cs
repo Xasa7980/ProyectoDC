@@ -6,11 +6,12 @@ public class PlayerAttack : MonoBehaviour
 {
     #region LogicParameters
     [SerializeField] LayerMask impactMask;
+    [SerializeField] GameObject impactEffect;
     [SerializeField] Transform hitLocation;
     [SerializeField] float radius;
     [SerializeField] float strenght;
-    float timeToGetReady;
-    float timeToBeReady;
+    [SerializeField] float refreshCounter;
+    [SerializeField] float refreshTime = 5;
     bool castMeleeAtk = true;
     #endregion
     Animator anim;
@@ -40,11 +41,10 @@ public class PlayerAttack : MonoBehaviour
                     if (coll.TryGetComponent<iDamageable>(out iDamageable damageable))
                     {
                         damageable.ApplyDamage(Damage(strenght));
-                        castMeleeAtk = false;
                     }
                 }
-               
             }
+            castMeleeAtk = false;
         }
     }
     float Damage(float str/*, float enemyDefense, float redBonus*/)
@@ -57,9 +57,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!castMeleeAtk)
         {
-            timeToGetReady += Time.deltaTime;
-            if (timeToGetReady > timeToBeReady)
+            refreshCounter += Time.deltaTime;
+            if (refreshCounter > refreshTime)
             {
+                refreshCounter = 0;
                 castMeleeAtk = true;
             }
         }

@@ -5,62 +5,90 @@ using UnityEngine;
 public class PlayerSpecialAttack : MonoBehaviour
 {
     [SerializeField] LayerMask hitMask;
-    [SerializeField] SkillSO skillObjectSlot1;
-    [SerializeField] SkillSO skillObjectSlot2;
-    [SerializeField] Transform hitLocation;
-
-    [SerializeField] float counterToRefresh1;
-    [SerializeField] float counterToRefresh2;
-    public bool ResetSkill1 { get { return skillObjectSlot1.resetSkill; } set { skillObjectSlot1.resetSkill = value;} }
-    public bool ResetSkill2 { get { return skillObjectSlot2.resetSkill; } set { skillObjectSlot2.resetSkill = value; } }
-
-    public float HitsImpacted { get { return skillObjectSlot1.hitsImpacted; } set { skillObjectSlot1.hitsImpacted = value; } }
-
+    [SerializeField] Specialist_SO skillSet;
+    [SerializeField] List<SkillSO> activedSkills;
+    [SerializeField] List<GameObject> skillObject;
     void Update()
     {
-        if(skillObjectSlot1 != null & skillObjectSlot1.activationMethod == ActivationMethod.RefreshingTime) counterToRefresh1 += Time.deltaTime;
-        if (skillObjectSlot2 != null & skillObjectSlot2.activationMethod == ActivationMethod.RefreshingTime) counterToRefresh2 += Time.deltaTime;
+        ReleaseActualSkillFunctions();
     }
-
-    private void OnParticleCollision(GameObject other)
+    void ReleaseActualSkillFunctions()
     {
-            Debug.Log(other.name);
-
-        if (other.gameObject.layer == 9)
+        if (activedSkills.Count > -1)
         {
-            skillObjectSlot1.TakeDamage(other.gameObject, transform, hitMask);
-            skillObjectSlot2.TakeDamage(other.gameObject, transform, hitMask);
+            foreach (SkillSO skill in activedSkills)
+            {
+                skill.SkillDuration(skill.gaterableObj);
+                skill.SkillReset(skill);
+            }
         }
     }
-    public void ActivateSkill1()
+    void SetActiveSkill()
     {
-        ResetMethod(skillObjectSlot1.activationMethod, counterToRefresh1, skillObjectSlot1);
-        skillObjectSlot1.ActivateSkill(skillObjectSlot1.activationMethod, skillObjectSlot1.prefab, hitLocation, hitMask, ResetSkill1);
-        ResetSkill1 = false;
+        activedSkills.Add(GetActiveSkill());
     }
-    public void ActivateSkill2()
+    SkillSO GetActiveSkill()
     {
-        ResetMethod(skillObjectSlot2.activationMethod, counterToRefresh2, skillObjectSlot2);
-        skillObjectSlot2.ActivateSkill(skillObjectSlot2.activationMethod, skillObjectSlot2.prefab, hitLocation, hitMask, ResetSkill2);
-        ResetSkill2 = false; 
-
-        skillObjectSlot2.ActivateSkill(skillObjectSlot2.activationMethod, skillObjectSlot2.prefab, hitLocation, hitMask, ResetSkill1);
-    }
-    public void ResetMethod(ActivationMethod reset, float counter, SkillSO skillObject)
-    {
-        if (reset == ActivationMethod.RefreshingTime) SkillReset(counter, skillObject.timeNeededRefresh);
-
-        else if (reset == ActivationMethod.RefreshingHits) SkillReset(HitsImpacted, skillObject.hitsNeededToRefresh);
-
-        else if (reset == ActivationMethod.InstantRefreshing) SkillReset(0, 0);
-    }
-    public void SkillReset(float counterToReset, float timeToGetReady)
-    {
-        if (counterToReset >= timeToGetReady)
+        for (int i = 0; i < skillSet.skills.Length; i++)
         {
-            ResetSkill1 = true;
-            counterToRefresh1 = 0;
-            HitsImpacted = 0;
+            if(skillSet.skills[i].activationMethod == ActivationMethod.InstantRefreshing)
+            {
+                return skillSet.skills[i];
+            }
+            else if (skillSet.skills[i].skillIsActive)
+            {
+                return skillSet.skills[i];
+            }
+        }
+        return null;
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.layer == 9)
+        {
+            skillSet.skills[0].TakeDamage(other, transform, hitMask);
+            skillSet.skills[1].TakeDamage(other, transform, hitMask);
+            skillSet.skills[2].TakeDamage(other, transform, hitMask);
+        }
+    }
+    public void CastSkill1()
+    {
+        if (skillSet.skills[0].canCast) 
+        {
+            ActivateSkill(skillSet.skills[0], skillSet.skills[0].instancePosition, skillSet.skills[0].instanceRotation);
+            SetActiveSkill();
+        }
+    }
+    public void CastSkill2()
+    {
+        if (skillSet.skills[1].canCast)
+        {
+            ActivateSkill(skillSet.skills[1], skillSet.skills[1].instancePosition, skillSet.skills[1].instanceRotation);
+            SetActiveSkill();
+        }
+    }
+    public void CastSkill3()
+    {
+        if (skillSet.skills[2].canCast)
+        {
+            ActivateSkill(skillSet.skills[2], skillSet.skills[2].instancePosition, skillSet.skills[2].instanceRotation);
+            SetActiveSkill();
+        }
+    }
+    public void ActivateSkill(SkillSO skill, Vector3 pos, Quaternion rot)
+    {
+        if (skill.canCast & skill.activationMethod != ActivationMethod.InstantRefreshing)
+        {
+            skill.skillIsActive = true;
+            skill.gaterableObj = skill.InvokeMethod(skill.prefab, pos, rot, transform);
+            skill.canCast = false;
+        }
+
+        if (skill.activationMethod == ActivationMethod.InstantRefreshing)
+        {
+            skill.skillIsActive = true;
+            skill.gaterableObj = skill.InvokeMethod(skill.prefab, pos, rot, transform);
+            skill.canCast = false;
         }
     }
 }

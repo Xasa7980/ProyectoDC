@@ -5,26 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Melee Skill", menuName = "Create Skill/Melee Skill")]
 public class MeleeSkill : SkillSO
 {
-    public override void ActivateSkill(ActivationMethod activation, GameObject gameObject, Transform transform, LayerMask hitMask, bool reset)
+    public override GameObject InvokeMethod(GameObject obj, Vector3 pos, Quaternion rot, Transform transform)
     {
-        resetSkill = reset;
-        if (resetSkill)
-        {
-            InvokeMethod(transform.position, gameObject);
-            TakeDamage(gameObject, transform, hitMask);
-            resetSkill = false;
-        }
-
-        if (activation == ActivationMethod.InstantRefreshing)
-        {
-            InvokeMethod(transform.position, gameObject);
-            TakeDamage(gameObject, transform, hitMask);
-        }
-    }
-
-    public override void InvokeMethod(Vector3 pos, GameObject obj)
-    {
-        Instantiate(obj, pos + Vector3.up , Quaternion.identity);
+       return Instantiate(obj, transform.position + Vector3.up * 2, rot);
     }
 
     public override void TakeDamage(GameObject gameObject, Transform transform, LayerMask hitMask)
@@ -74,6 +57,53 @@ public class MeleeSkill : SkillSO
             if (gameObject.TryGetComponent<iDamageable>(out iDamageable damageable))
             {
                 damageable.ApplyDamage(damage);
+                hitsImpacted++;
+            }
+        }
+    }
+    public override void SkillDuration(GameObject gameObject)
+    {
+        if (skillIsActive)
+        {
+            skillDuration += Time.deltaTime;
+            if (skillDuration > durationTimeOut)
+            {
+                skillIsActive = false;
+                gaterableObj.SetActive(false);
+                skillDuration = 0;
+            }
+        }
+    }
+    public override void SkillReset(SkillSO activedSkills)
+    {
+        if (activationMethod == ActivationMethod.RefreshingTime)
+        {
+            if (!skillIsActive & !canCast)
+            {
+                resetCounter += Time.deltaTime;
+                if (resetCounter >= timeNeededRefresh)
+                {
+                    resetCounter = 0;
+                    canCast = true;
+                }
+            }
+        }
+        else if (activationMethod == ActivationMethod.RefreshingHits)
+        {
+            if (!skillIsActive & !canCast)
+            {
+                if (hitsImpacted >= hitsNeededToRefresh)
+                {
+                    hitsImpacted = 0;
+                    canCast = true;
+                }
+            }
+        }
+        else if (activationMethod == ActivationMethod.InstantRefreshing)
+        {
+            if (!skillIsActive & !canCast)
+            {
+                canCast = true;
             }
         }
     }

@@ -7,6 +7,7 @@ using UnityEngine;
     Food,
     Miscellaneous,
     Upgrade,
+    PasiveSkills,
     Drone
 }
 public enum Attributes
@@ -24,8 +25,10 @@ public class ItemObject : ScriptableObject
 {
     public Sprite uiDisplay;
     public GameObject prefab;
+
     public string itemName;
     [TextArea] public string itemDescription;
+    public float pricingInShop;
 
     public bool stackable;
     public ItemType type;

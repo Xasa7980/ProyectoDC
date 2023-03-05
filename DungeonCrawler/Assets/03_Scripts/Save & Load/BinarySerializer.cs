@@ -30,4 +30,18 @@ public class BinarySerializer
         instance = formatter.Deserialize(file);
         file.Close();
     }
+    public Object Deserialize2(string fileName)
+    {
+        if (!File.Exists(fileName))
+        {
+            Debug.LogWarning("Any file has that name");
+            return null;
+        }
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        instance = formatter.Deserialize(file);
+        file.Close();
+        return (Object)instance;
+    }
 }

@@ -838,7 +838,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5293627769546527544}
         m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
-        m_MethodName: ActivateSkill2
+        m_MethodName: CastSkill3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2025,7 +2025,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5293627769546527544}
         m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
-        m_MethodName: ActivateSkill1
+        m_MethodName: CastSkill1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2160,7 +2160,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5293627769546527544}
         m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
-        m_MethodName: ActivateSkill2
+        m_MethodName: CastSkill2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4351,6 +4351,12 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 5576506099344933510}
+    - target: {fileID: 1369637720997150337, guid: 667ed1f04d9c27544848b245d810441c,
+        type: 3}
+      propertyPath: skillSet
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b9b95454ba3a864cbf6df8c6cf98574,
+        type: 2}
     - target: {fileID: 2541281896863556093, guid: 667ed1f04d9c27544848b245d810441c,
         type: 3}
       propertyPath: container

@@ -104,6 +104,7 @@ MonoBehaviour:
   itemName: {fileID: 0}
   itemDescription: {fileID: 0}
   itemDisplay: {fileID: 0}
+  hasTransition: 0
 --- !u!114 &587995468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,9 +1171,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2548769726201688426}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: ResetDodge
+      - m_Target: {fileID: 5293627769546527544}
+        m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
+        m_MethodName: CastSkill3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1678,7 +1679,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5293627769546527544}
         m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
-        m_MethodName: ActivateSkill1
+        m_MethodName: CastSkill1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1813,7 +1814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5293627769546527544}
         m_TargetAssemblyTypeName: PlayerSpecialAttack, Assembly-CSharp
-        m_MethodName: ActivateSkill2
+        m_MethodName: CastSkill2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3746,7 +3747,7 @@ PrefabInstance:
     - target: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
@@ -3756,17 +3757,17 @@ PrefabInstance:
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.070914745
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.28
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.04673171
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5726654150216755142, guid: b0a6af209283489488cc152ec1b9b7ed,
         type: 3}
@@ -3864,11 +3865,22 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 5576506099344933510}
+    - target: {fileID: 1369637720997150337, guid: 667ed1f04d9c27544848b245d810441c,
+        type: 3}
+      propertyPath: skillSet
+      value: 
+      objectReference: {fileID: 11400000, guid: b96d44d3c6fef004d9bda3297ed93104,
+        type: 2}
     - target: {fileID: 2541281896863556093, guid: 667ed1f04d9c27544848b245d810441c,
         type: 3}
       propertyPath: container
       value: 
       objectReference: {fileID: 4802304970907959231}
+    - target: {fileID: 5080953577646210582, guid: 667ed1f04d9c27544848b245d810441c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8730329750514506961, guid: 667ed1f04d9c27544848b245d810441c,
         type: 3}
       propertyPath: staticHpIm
@@ -3971,18 +3983,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 762e54c4915af154bb9741963b2c2b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2548769726201688426 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8730329750514506963, guid: 667ed1f04d9c27544848b245d810441c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6518767122665205177}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b08dc4755a139e40aad3bbf0586ce3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &2548769726201688428 stripped
