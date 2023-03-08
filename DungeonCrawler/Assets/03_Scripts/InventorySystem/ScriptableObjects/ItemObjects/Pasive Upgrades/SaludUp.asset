@@ -9,17 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d430d6abcb35b00418b44519c8a673f2, type: 3}
-  m_Name: Upgrade 3
+  m_Script: {fileID: 11500000, guid: b81138adeefd5e8419b12a41028372da, type: 3}
+  m_Name: SaludUp
   m_EditorClassIdentifier: 
-  uiDisplay: {fileID: 0}
+  uiDisplay: {fileID: 21300000, guid: 984e5c5611d34ac4db2e62c37d4f1360, type: 3}
   prefab: {fileID: 0}
-  itemName: 
-  itemDescription: 
-  pricingInShop: 0
+  itemName: ea
+  itemDescription: eaaaa
+  pricingInShop: 5
   stackable: 0
   type: 2
   data:
     Name: 
-    Id: 3
+    Id: 2
     buffs: []
+  stat: 0
+  percentUp: 25

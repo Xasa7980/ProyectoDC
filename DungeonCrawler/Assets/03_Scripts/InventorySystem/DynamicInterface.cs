@@ -66,6 +66,7 @@ public class DynamicInterface : UserInterface
             }
         }
     }
+
     public void PurchaseItem()
     {
         if (slotsOnInterface[objSelected].item.Id > -1)

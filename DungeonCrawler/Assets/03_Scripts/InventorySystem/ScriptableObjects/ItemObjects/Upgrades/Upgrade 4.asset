@@ -16,9 +16,10 @@ MonoBehaviour:
   prefab: {fileID: 0}
   itemName: 
   itemDescription: 
+  pricingInShop: 0
   stackable: 0
   type: 2
   data:
     Name: 
-    Id: -1
+    Id: 4
     buffs: []

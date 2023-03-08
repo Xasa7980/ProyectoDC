@@ -2,46 +2,30 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+
 public class BinarySerializer
 {
-    public object instance;
-    public List<string> fileLibrary = new List<string>();
-    public void Serializing(string fileName, object t)
+    public static void SerializingPlayerData<T>(string s, T stats)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        if (!File.Exists(fileName))
-        {
-            fileLibrary.Add(fileName);
-        }
-        FileStream file = new FileStream(fileName,FileMode.OpenOrCreate,FileAccess.Write);
-        formatter.Serialize(file,t);
+        T pd = stats;
+        BinaryFormatter bf = new();
+        Stream file = new FileStream(s, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+
+        bf.Serialize(file, pd);
         file.Close();
     }
-    public void Deserialize(string fileName)
-    {
-        if (!File.Exists(fileName))
-        {
-            Debug.LogWarning("Any file has that name");
-            return;
-        }
 
+    public static T Deserialize<T>(string fileName)
+    {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-        instance = formatter.Deserialize(file);
+        FileStream file = new(fileName, FileMode.OpenOrCreate);
+        T instance = (T)formatter.Deserialize(file);
         file.Close();
+        return instance;
     }
-    public Object Deserialize2(string fileName)
-    {
-        if (!File.Exists(fileName))
-        {
-            Debug.LogWarning("Any file has that name");
-            return null;
-        }
 
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-        instance = formatter.Deserialize(file);
-        file.Close();
-        return (Object)instance;
+    public static void ClearData(string fileName)
+    {
+        if(File.Exists(fileName)) File.Delete(fileName);
     }
 }

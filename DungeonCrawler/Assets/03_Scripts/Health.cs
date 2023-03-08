@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+[System.Serializable]
 
 public class Health : MonoBehaviour, iDamageable
 {
@@ -46,11 +47,10 @@ public class Health : MonoBehaviour, iDamageable
     float currentHealthPercent;
 
     #endregion
-
     #region EnergyParameters
     [Header("Energy Parameters")]
     [SerializeField] float _maxEnergy = 6;
-    float currentEnergy;
+    public float currentEnergy;
 
     public float energyPercent => currentEnergy / maxEnergy;
     float currentEnergyPercent;
@@ -60,6 +60,13 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] float countdownToRefillEnergy = 4;
     float energyRefillCount;
     [SerializeField] float energyRefillSpeed = 1;
+    #endregion
+    #region DataSaver
+    [SerializeField] string saveDataPath = "PlayerData.sav";
+    public Transform playerTransform;
+
+    public float healthRemaining;
+    public float energyRemaining;
     #endregion
 
     [SerializeField] protected UnityEvent OnDieEvent = new UnityEvent();
@@ -166,16 +173,17 @@ public class Health : MonoBehaviour, iDamageable
         }
     }
 
-    // Start is called before the first frame update
     protected virtual void Start()
     {
         anim = GetComponent<Animator>();
 
-        currentHealth = maxHealth;
-        currentHealthPercent = healthPercent;
+        //currentHealth = maxHealth;
+        //healthRemaining = currentHealth;
+        //currentHealthPercent = healthPercent;
 
-        currentEnergy = maxEnergy;
-        currentEnergyPercent = energyPercent;
+        //currentEnergy = maxEnergy;
+        //energyRemaining = currentEnergy;
+        //currentEnergyPercent = energyPercent;
     }
 
     protected virtual void Update()
@@ -191,5 +199,52 @@ public class Health : MonoBehaviour, iDamageable
         //currentHealthPercent = Mathf.Lerp(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
         //currentEnergyPercent = Mathf.Lerp(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime * 2);
         UpdateUI();
+    }
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+        healthRemaining = currentHealth;
+        currentHealthPercent = healthPercent;
+
+        currentEnergy = maxEnergy;
+        energyRemaining = currentEnergy;
+        currentEnergyPercent = energyPercent;
+
+        LoadData();
+    }
+    private void OnDisable()
+    {
+        SaveData();
+    }
+    [ContextMenu("S")]
+    void SaveData()
+    {
+        if (GetComponent<Player>())
+        {
+            healthRemaining = currentHealth;
+            energyRemaining = currentEnergy;
+
+            PlayerData playerData = new PlayerData(this);
+            BinarySerializer.SerializingPlayerData<PlayerData>(saveDataPath, playerData);
+        }
+    }
+    [ContextMenu("L")]
+    void LoadData()
+    {
+        if (MainUI_Manager.newPlay & !GetComponent<Player>()) return;
+
+        PlayerData p = BinarySerializer.Deserialize<PlayerData>(saveDataPath);
+        playerTransform.position = new Vector3(p.playerPos[0], p.playerPos[1], p.playerPos[2]);
+        playerTransform.rotation = new Quaternion(p.playerRot[0], p.playerRot[1], p.playerRot[2], 0);
+        healthRemaining = p.healthRemaining;
+        energyRemaining = p.energyRemaining;
+
+        currentHealth = healthRemaining;
+        currentEnergy = energyRemaining;
+    }
+    [ContextMenu("C")]
+    void ClearData()
+    {
+        BinarySerializer.ClearData(saveDataPath);
     }
 }
