@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bullet Trail_Material
+  m_Name: Bullet Trail_Material_Fragment
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -93,11 +93,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.50675887, b: 0, a: 1}
+    - _BaseColor: {r: 0.015300989, g: 1, b: 0, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 0.50675887, b: 0, a: 1}
-    - _EmissionColor: {r: 1.4980392, g: 0.31746858, b: 0, a: 1}
+    - _Color: {r: 0.01530099, g: 1, b: 0, a: 1}
+    - _EmissionColor: {r: 0.05288188, g: 1.4980392, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

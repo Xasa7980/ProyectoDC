@@ -51,7 +51,16 @@ public class RifleController : WeaponController
             Vector3 direction = (point - shootPoint.position).normalized;
             Quaternion shootRotation = Quaternion.LookRotation(direction);
 
-            Projectile bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootRotation);
+            Projectile bullet;
+            int upgradeIndex = CalculateUpgrade();
+            if (upgradeIndex >= 0)
+            {
+                Upgrade u = upgrades[upgradeIndex];
+                bullet = u.Use<Projectile>(shootPoint);
+            }
+            else
+                bullet = Instantiate<Projectile>(projectile, shootPoint.position, shootRotation);
+
             bullet.damage += damage;
             currentfireCount = fireRate;
         }

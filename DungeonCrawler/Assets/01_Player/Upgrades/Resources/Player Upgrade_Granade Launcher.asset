@@ -10,8 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf3ba9279951f7449453a43fe75e951, type: 3}
-  m_Name: Skill 6
+  m_Name: Player Upgrade_Granade Launcher
   m_EditorClassIdentifier: 
-  _displayName: Skill 6
+  _displayName: Granade Launcher
   _mainImage: {fileID: 21300000, guid: cd8f90e65ef1bfc47912b054168e7d0f, type: 3}
-  _description: 
+  _description: 9% de lanzar una granada
+  _target: 3
+  _value: 0
+  _timeInterval: 1
+  _rangedValue: 0.09
+  _mode: 1
+  useEffect: {fileID: 7655338810427354738, guid: 534a86397ffe566429eca7a2047f03f3,
+    type: 3}

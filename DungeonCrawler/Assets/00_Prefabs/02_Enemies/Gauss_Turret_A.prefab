@@ -51,13 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af265822631124b97ff2c0ea22a71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: {fileID: 0}
   sensor: {fileID: 3743858865154401293}
   reactionSpeed: 75
   inspectInterval: 8
   pivot: {fileID: 202855862937328607}
   gun: {fileID: 202818722968383265}
   accuracy: 0.5
-  projectile: {fileID: 319635519636798063, guid: 788e3a8e97b433c4c83bed164c02f8bc,
+  projectile: {fileID: 319635519636798063, guid: bf721abc979c4c14ba59c44f0b695fc8,
     type: 3}
   shootingPoints:
   - {fileID: 1414814058369384892}

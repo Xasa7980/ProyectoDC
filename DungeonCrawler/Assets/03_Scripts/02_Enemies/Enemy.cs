@@ -9,10 +9,9 @@ public abstract class Enemy : MonoBehaviour
 
     public Enemy prefab { get; private set; }
 
-    public void SetPrefabReference(Enemy prefab)
-    {
-        this.prefab = prefab;
-    }
+    [SerializeField] Enemy nextLevel;
+
+    public int xp { get; private set; }
 
     public void Init(RoomController room, string guid = "")
     {
@@ -37,6 +36,21 @@ public abstract class Enemy : MonoBehaviour
             patrol.SetWayPoints(data.wayPoints);
 
         this.guid = data.guid;
+    }
+
+    public void IncreaseXP(int xp)
+    {
+        this.xp = xp;
+    }
+
+    public void IncreaseLevel()
+    {
+        Debug.Log("Level increased");
+    }
+
+    public void SetPrefabReference(Enemy prefab)
+    {
+        this.prefab = prefab;
     }
 
     public void RemoveFromRoom()

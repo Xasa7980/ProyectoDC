@@ -46,6 +46,8 @@ public class Health : MonoBehaviour, iDamageable
     public float healthPercent => currentHealth / maxHealth;
     float currentHealthPercent;
 
+    public void SetMaxHealth(float maxHealth) => this._maxHealth = maxHealth;
+    public void SetHealth(float health) => this.currentHealth = health;
     #endregion
     #region EnergyParameters
     [Header("Energy Parameters")]
@@ -60,6 +62,9 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] float countdownToRefillEnergy = 4;
     float energyRefillCount;
     [SerializeField] float energyRefillSpeed = 1;
+
+    public void SetMaxEnergy(float maxEnergy) => this._maxEnergy = maxEnergy;
+    public void SetEnergyRefillSpeed(float refillSpeed) => this.energyRefillSpeed = refillSpeed;
     #endregion
     #region DataSaver
     [SerializeField] string saveDataPath = "PlayerData.sav";
@@ -210,7 +215,7 @@ public class Health : MonoBehaviour, iDamageable
         energyRemaining = currentEnergy;
         currentEnergyPercent = energyPercent;
 
-        LoadData();
+        //LoadData();
     }
     private void OnDisable()
     {

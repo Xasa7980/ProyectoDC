@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7880059844868902986}
   - component: {fileID: 319635519636798063}
   m_Layer: 0
-  m_Name: Prototype_Bullet_A
+  m_Name: Prototype_Bullet_A_Player_Kill Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9e9a079451c14554e9e5c247324adc87, type: 2}
+  - {fileID: 2100000, guid: 2e75c09521a202547b35b4ff19627ff9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactMask:
     serializedVersion: 2
-    m_Bits: 13056
+    m_Bits: 12800
   speed: 60
   lifeTime: 2
   hitEffect: {fileID: 525032922794330274, guid: 44a3f64f19301464e83f145f7be1b506,

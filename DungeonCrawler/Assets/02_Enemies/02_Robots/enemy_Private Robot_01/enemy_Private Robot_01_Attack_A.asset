@@ -15,6 +15,6 @@ MonoBehaviour:
   _displayName: 
   _baseDamage: 0
   _attackAnimation: {fileID: 7400054, guid: 914b09da235eea34ebdc4e71d057e815, type: 3}
-  projectile: {fileID: 319635519636798063, guid: 788e3a8e97b433c4c83bed164c02f8bc,
+  projectile: {fileID: 319635519636798063, guid: bf721abc979c4c14ba59c44f0b695fc8,
     type: 3}
   attackEffect: {fileID: 0}

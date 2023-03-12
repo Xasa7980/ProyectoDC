@@ -10,8 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf3ba9279951f7449453a43fe75e951, type: 3}
-  m_Name: Skill 1
+  m_Name: Player Upgrade_Explosive Bullet
   m_EditorClassIdentifier: 
-  _displayName: Skill 1
+  _displayName: Explosive Bullet
   _mainImage: {fileID: 21300000, guid: f1a0c040a04dedd46937339f345af7d7, type: 3}
-  _description: 
+  _description: 10% chance de disparar una bala explosiva
+  _target: 3
+  _value: 0
+  _timeInterval: 0
+  _rangedValue: 0.1
+  _mode: 0
+  useEffect: {fileID: 7655338810427354738, guid: 102bfebfb5db4f34181be1bb0a7ad60f,
+    type: 3}
