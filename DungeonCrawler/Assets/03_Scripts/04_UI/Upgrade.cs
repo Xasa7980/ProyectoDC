@@ -48,4 +48,9 @@ public class Upgrade : ScriptableObject
     {
         return Instantiate(useEffect,origin.position,origin.rotation).GetComponent<T>();
     }
+
+    public GameObject Use(Transform origin)
+    {
+        return Instantiate(useEffect, origin.position, origin.rotation);
+    }
 }

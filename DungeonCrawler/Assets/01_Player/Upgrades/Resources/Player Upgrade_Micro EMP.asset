@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayName: Micro EMP
   _mainImage: {fileID: 21300000, guid: 06d8629c39731d0408b28cff15520734, type: 3}
-  _description: 
-  _target: 0
+  _description: 6% de chance de cada 9s lanzar un pulso electromagnetico
+  _target: 5
   _value: 0
-  _timeInterval: 0
-  _rangedValue: 0
+  _timeInterval: 9
+  _rangedValue: 0.06
   _mode: 1
-  useEffect: {fileID: 0}
+  useEffect: {fileID: 2151047869685491856, guid: eaee6cdb7be139d4da03f4721cdd2c8d,
+    type: 3}

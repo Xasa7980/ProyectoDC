@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf3ba9279951f7449453a43fe75e951, type: 3}
-  m_Name: Player Upgrade_Sonic Wave
+  m_Name: Player Upgrade_Shock Wave
   m_EditorClassIdentifier: 
-  _displayName: Sonic Wave
+  _displayName: Shock Wave
   _mainImage: {fileID: 21300000, guid: 1df2429059c62084b97f4a53f2a79017, type: 3}
   _description: 8% de chance de lanzar una descarga sonica que empuja a los enemigos
   _target: 5
   _value: 0
-  _timeInterval: 12
+  _timeInterval: 6
   _rangedValue: 0.08
   _mode: 0
-  useEffect: {fileID: 0}
+  useEffect: {fileID: 2151047869685491856, guid: 25188a86a2e3a7742b65c29c17cac3ee,
+    type: 3}

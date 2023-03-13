@@ -8,7 +8,44 @@ public class PlayerUpgrades : MonoBehaviour
     [SerializeField] Transform container;
     List<Upgrade> allUpgrades = new List<Upgrade>();
 
-    List<Upgrade> automaticUpgrades = new List<Upgrade>();
+    #region Upgrade Tracker
+    [SerializeField] List<UpgradeTracker> automaticUpgrades = new List<UpgradeTracker>();
+
+    bool ContainsUpgrade(Upgrade upgrade)
+    {
+        foreach(UpgradeTracker u in automaticUpgrades)
+        {
+            if(u.upgrade == upgrade)
+                return true;
+        }
+
+        return false;
+    }
+
+    bool TryReplaceUpgrade(Upgrade upgrade)
+    {
+        if (automaticUpgrades.Count == 0) return false;
+
+        for(int i = 0; i < automaticUpgrades.Count; i++)
+        {
+            if(automaticUpgrades[i].upgrade == upgrade)
+            {
+                automaticUpgrades[i].IncreaseProbability(upgrade.value);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    #endregion
+
+    private void Update()
+    {
+        foreach(UpgradeTracker u in automaticUpgrades)
+        {
+            u.Update();
+        }
+    }
 
     void AddUpgrade(Upgrade upgrade)
     {
@@ -105,9 +142,52 @@ public class PlayerUpgrades : MonoBehaviour
 
             case Upgrade.Target.Automatic:
                 {
-                    automaticUpgrades.Add(upgrade);
+                    if (!TryReplaceUpgrade(upgrade))
+                    {
+                        automaticUpgrades.Add(new UpgradeTracker(upgrade, this.transform));
+                    }
                     break;
                 }
+        }
+    }
+
+    class UpgradeTracker
+    {
+        public readonly Upgrade upgrade;
+        readonly Transform target;
+        float timer;
+        public float prob { get; private set; }
+
+        public UpgradeTracker (Upgrade upgrade, Transform target)
+        {
+            this.upgrade = upgrade;
+            this.target = target;
+            prob = upgrade.value;
+            timer = upgrade.timeInterval;
+        }
+
+        public UpgradeTracker(Upgrade upgrade, Transform target, float prob)
+        {
+            this.upgrade = upgrade;
+            this.target = target;
+            this.prob = prob;
+            timer = upgrade.timeInterval;
+        }
+
+        public void IncreaseProbability(float prob)=>this.prob += prob;
+
+        public void Update()
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                timer = upgrade.timeInterval;
+                if (Random.value < prob)
+                    upgrade.Use(target);
+            }
         }
     }
 }
