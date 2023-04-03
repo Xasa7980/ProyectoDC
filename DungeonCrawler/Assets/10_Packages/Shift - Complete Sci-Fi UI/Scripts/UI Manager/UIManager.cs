@@ -40,11 +40,6 @@ namespace Michsky.UI.Shift
         // [Header("PARTICLES")]
         public Color particleColor = new Color(255, 255, 255, 255);
 
-        // [Header("SOUNDS")]
-        public AudioClip backgroundMusic;
-        public AudioClip hoverSound;
-        public AudioClip clickSound;
-
         public enum ButtonThemeType
         {
             BASIC,

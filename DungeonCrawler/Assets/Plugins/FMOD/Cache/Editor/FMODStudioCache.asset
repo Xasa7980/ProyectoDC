@@ -26,7 +26,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 507
+  Length: 750
+--- !u!114 &-7327413541675624242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MusicGeneral/BackgroundMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MusicGeneral/BackgroundMusic
+  Guid:
+    Data1: -1088951502
+    Data2: 1281888693
+    Data3: -1538183519
+    Data4: -1185142590
+  Banks:
+  - {fileID: 7910856705034519683}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 85040
 --- !u!114 &-6996939156622655889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,6 +81,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 789
+--- !u!114 &-6590228506457751547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/UIHovered/hoverUI
+  m_EditorClassIdentifier: 
+  Path: event:/UI/UIHovered/hoverUI
+  Guid:
+    Data1: -1802058730
+    Data2: 1321578802
+    Data3: 680214432
+    Data4: -119245317
+  Banks:
+  - {fileID: 3034759350828611008}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 59
 --- !u!114 &-5058487414527671354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +177,10 @@ MonoBehaviour:
   Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/PlayerBank.bank
   Name: PlayerBank
   StudioPath: bank:/PlayerBank
-  lastModified: 638161281161716968
+  lastModified: 638161400612198261
   FileSizes:
   - Name: Desktop
-    Value: 13537888
+    Value: 13537600
   Exists: 1
 --- !u!114 &-4177094549519498856
 MonoBehaviour:
@@ -149,7 +203,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -4292133762783413134}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -252,6 +306,7 @@ MonoBehaviour:
   - {fileID: 2507431138165660303}
   - {fileID: 7910856705034519683}
   - {fileID: -4292133762783413134}
+  - {fileID: 3034759350828611008}
   EditorEvents:
   - {fileID: -4888662269256250067}
   - {fileID: -5058487414527671354}
@@ -266,12 +321,15 @@ MonoBehaviour:
   - {fileID: -1552721602084168934}
   - {fileID: 7233292002430921074}
   - {fileID: -7653362602861876944}
+  - {fileID: 8353690445301868157}
+  - {fileID: -7327413541675624242}
+  - {fileID: -6590228506457751547}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7910856705034519683}
   StringsBanks:
   - {fileID: 2507431138165660303}
-  cacheTime: 638161281161716968
+  cacheTime: 638161400612449735
   cacheVersion: 131601
 --- !u!114 &1974779472474119922
 MonoBehaviour:
@@ -315,10 +373,10 @@ MonoBehaviour:
   Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638161281158356760
+  lastModified: 638161400611194156
   FileSizes:
   - Name: Desktop
-    Value: 1528
+    Value: 1844
   Exists: 1
 --- !u!114 &2843548663832735293
 MonoBehaviour:
@@ -347,6 +405,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 780
+--- !u!114 &3034759350828611008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UIBank.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/UIBank.bank
+  Name: UIBank
+  StudioPath: bank:/UIBank
+  lastModified: 638161400612449735
+  FileSizes:
+  - Name: Desktop
+    Value: 13120
+  Exists: 1
 --- !u!114 &5056143184372230805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,10 +494,10 @@ MonoBehaviour:
   Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638161281158336892
+  lastModified: 638161400611174134
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1265984
   Exists: 1
 --- !u!114 &7912601590723157480
 MonoBehaviour:
@@ -448,3 +526,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1220
+--- !u!114 &8353690445301868157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/UIButtonSounds/Clicked
+  m_EditorClassIdentifier: 
+  Path: event:/UI/UIButtonSounds/Clicked
+  Guid:
+    Data1: 1153943763
+    Data2: 1184653507
+    Data3: 399167676
+    Data4: -1557431461
+  Banks:
+  - {fileID: 3034759350828611008}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 281

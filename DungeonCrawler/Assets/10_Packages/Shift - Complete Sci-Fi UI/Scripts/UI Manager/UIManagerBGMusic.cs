@@ -2,54 +2,49 @@
 
 namespace Michsky.UI.Shift
 {
-    [ExecuteInEditMode]
     public class UIManagerBGMusic : MonoBehaviour
     {
         [Header("Resources")]
         public UIManager UIManagerAsset;
-        public AudioSource audioObject;
-
-        bool dynamicUpdateEnabled;
-
-        void OnEnable()
-        {
-            if (UIManagerAsset == null)
-            {
-                try { UIManagerAsset = Resources.Load<UIManager>("Shift UI Manager"); }
-                catch { Debug.Log("No UI Manager found. Assign it manually, otherwise it won't work properly.", this); }
-            }
-        }
-
+        [SerializeField] FMODUnity.EventReference bgMusic;
         void Awake()
         {
-            if (dynamicUpdateEnabled == false)
-            {
-                this.enabled = true;
-                UpdateSource();
-            }
-
-            if (audioObject == null)
-                audioObject = gameObject.GetComponent<AudioSource>();
+            UpdateSource();
         }
 
         void LateUpdate()
         {
-            if (UIManagerAsset != null)
-            {
-                if (UIManagerAsset.enableDynamicUpdate == true)
-                    dynamicUpdateEnabled = true;
-                else
-                    dynamicUpdateEnabled = false;
+            //if (UIManagerAsset != null)
+            //{
+            //    if (UIManagerAsset.enableDynamicUpdate == true)
+            //        dynamicUpdateEnabled = true;
+            //    else
+            //        dynamicUpdateEnabled = false;
 
-                if (dynamicUpdateEnabled == true)
-                    UpdateSource();
-            }
+            //    if (dynamicUpdateEnabled == true)
+            //        UpdateSource();
+            //}
         }
 
         void UpdateSource()
         {
-            try { audioObject.clip = UIManagerAsset.backgroundMusic; }
-            catch { }
+            FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(bgMusic);
+            FMOD.Studio.PLAYBACK_STATE state;
+            instance.getPlaybackState(out state);
+            if (state.Equals(FMOD.Studio.PLAYBACK_STATE.STOPPED))
+            {
+                instance.start();
+            }
+        }
+        private void OnDisable()
+        {
+            FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(bgMusic);
+            FMOD.Studio.PLAYBACK_STATE state;
+            instance.getPlaybackState(out state);
+            if (state.Equals(FMOD.Studio.PLAYBACK_STATE.PLAYING))
+            {
+                instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
         }
     }
 }

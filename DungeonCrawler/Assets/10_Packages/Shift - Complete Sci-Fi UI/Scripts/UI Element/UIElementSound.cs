@@ -7,13 +7,57 @@ namespace Michsky.UI.Shift
     [ExecuteInEditMode]
     public class UIElementSound : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
     {
+        [Header("Custom SFX")]
+        public FMODUnity.EventReference hoverSFX;
+        public FMODUnity.EventReference clickSFX;
+
+        [Header("Settings")]
+        public bool enableHoverSound = true;
+        public bool enableClickSound = true;
+        public bool checkForInteraction = true;
+
+        private Button sourceButton;
+
+        void OnEnable()
+        {
+            if (checkForInteraction == true) { sourceButton = gameObject.GetComponent<Button>(); }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (checkForInteraction == true && sourceButton != null && sourceButton.interactable == false)
+                return;
+
+            if (enableHoverSound == true)
+            {
+                //if (hoverSFX == null) { audioObject.PlayOneShot(UIManagerAsset.hoverSound); }
+                FMODUnity.RuntimeManager.PlayOneShot(hoverSFX);
+            }
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (checkForInteraction == true && sourceButton != null && sourceButton.interactable == false)
+                return;
+
+            if (enableClickSound == true)
+            {
+                //if (clickSFX == null) { audioObject.PlayOneShot(UIManagerAsset.clickSound); }
+                FMODUnity.RuntimeManager.PlayOneShot(clickSFX);
+            }
+        }
+    }
+}
+/*
+    public class UIElementSound : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+    {
         [Header("Resources")]
         public UIManager UIManagerAsset;
-        public AudioSource audioObject;
+        public FMODUnity.StudioListener audioObject;
 
         [Header("Custom SFX")]
-        public AudioClip hoverSFX;
-        public AudioClip clickSFX;
+        public FMODUnity.EventReference hoverSFX;
+        public FMODUnity.EventReference clickSFX;
 
         [Header("Settings")]
         public bool enableHoverSound = true;
@@ -32,7 +76,7 @@ namespace Michsky.UI.Shift
 
             if (Application.isPlaying == true && audioObject == null)
             {
-                try { audioObject = GameObject.Find("UI Audio").GetComponent<AudioSource>(); }
+                try { audioObject = GameObject.FindObjectOfType<FMODUnity.StudioListener>(); }
                 catch { Debug.Log("<b>[UI Element Sound]</b> No Audio Source found.", this); }
             }
 
@@ -46,8 +90,7 @@ namespace Michsky.UI.Shift
 
             if (enableHoverSound == true)
             {
-                if (hoverSFX == null) { audioObject.PlayOneShot(UIManagerAsset.hoverSound); }
-                else { audioObject.PlayOneShot(hoverSFX); }
+                FMODUnity.RuntimeManager.PlayOneShot(hoverSFX);
             }
         }
 
@@ -58,9 +101,9 @@ namespace Michsky.UI.Shift
 
             if (enableClickSound == true)
             {
-                if (clickSFX == null) { audioObject.PlayOneShot(UIManagerAsset.clickSound); }
-                else { audioObject.PlayOneShot(clickSFX); }
+                FMODUnity.RuntimeManager.PlayOneShot(clickSFX);
             }
         }
     }
 }
+ */

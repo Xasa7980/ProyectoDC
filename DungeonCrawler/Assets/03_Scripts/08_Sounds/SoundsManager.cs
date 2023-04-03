@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SoundsManager : MonoBehaviour
 {
-    FMOD.Studio.Bus busPath;
+    public const string mainMusicBus = "bus:/AmbientMusic";
+    public const string fxSoundsBus = "bus:/GameplayFX";
 
     FMOD.Studio.EventInstance music;
     [SerializeField] FMODUnity.EventReference generalMusic;
@@ -25,17 +26,13 @@ public class SoundsManager : MonoBehaviour
             instance.start();
         }
     }
-    FMOD.Studio.Bus GetMusicProperties(string busPath)
+    public static FMOD.Studio.Bus GetMusicProperties(string busPath)
     {
         return FMODUnity.RuntimeManager.GetBus(busPath);
     }
 
-    FMOD.Studio.Bus SetMusicProperties(string busPath)
+    public static FMOD.Studio.Bus SetMusicProperties(string busPath)
     {
         return FMODUnity.RuntimeManager.GetBus(busPath);
-    }
-    private void OnDisable()
-    {
-        
     }
 }
