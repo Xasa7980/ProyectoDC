@@ -29,7 +29,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] FixedJoystick attackJoystick;
 
     [SerializeField] float dodgeSpeed = 5;
-    bool canDodge;
+
+    #region FXParameters
+    [SerializeField] FMODUnity.EventReference footstepsInputSound;
+    [SerializeField] FMODUnity.EventReference dashInputSound;
+
+    [SerializeField] float footstepTimer;
+    [SerializeField] float baseStepSpeed = 0.25f;
+    float GetCurrentStepOffset => aiming ? baseStepSpeed * 1.5f : baseStepSpeed; //Speed preguntar a David por si se reducirá la velocidad al apuntar
+
+    bool dashed;
+
+
+
+    #endregion
+
+
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -60,14 +76,16 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("Aiming", aiming);
 
-        if (Input.GetKeyDown(KeyCode.Space) | canDodge)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetTrigger("Roll");
-            canDodge = false;
+            FMODUnity.RuntimeManager.PlayOneShot(dashInputSound,gameObject.transform.position);
+
         }
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Dodge"))
         {
+
             anim.SetFloat("Speed_X", 0, 0.25f, Time.deltaTime);
             anim.SetFloat("Speed_Y", 0, 0.25f, Time.deltaTime);
             aimRig.weight = Mathf.Lerp(aimRig.weight, 0, Time.deltaTime * 20);
@@ -83,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
                 Quaternion rollLookRotation = Quaternion.LookRotation(rollDirection);
                 transform.rotation = rollLookRotation;
             }
-
             controller.Move(rollDirection * dodgeSpeed * Time.deltaTime);
 
             return;
@@ -95,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = velocity;
         direction.y = 0;
         direction.Normalize();
+        FootStepsSFX(direction);
 
         if (!aiming)
         {
@@ -147,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal") + moveJoystick.Horizontal, 0, Input.GetAxisRaw("Vertical") + moveJoystick.Vertical) * speed * Time.deltaTime;
         //controller.Move((velocity + Physics.gravity) * Time.deltaTime);
-
         controller.Move(Physics.gravity * Time.deltaTime);
     }
 
@@ -179,9 +196,15 @@ public class PlayerMovement : MonoBehaviour
     //    canDodge = false;
     //    dodgeIsRefreshed = false;
     //}
-
-    public void ResetDodge()
+    void FootStepsSFX(Vector3 direction)
     {
-        canDodge = true;
+        if ( direction == Vector3.zero) return;
+
+        footstepTimer -= Time.deltaTime;
+        if (footstepTimer <= 0)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(footstepsInputSound);
+            footstepTimer = GetCurrentStepOffset;
+        }
     }
 }

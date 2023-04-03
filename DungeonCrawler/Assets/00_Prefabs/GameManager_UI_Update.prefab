@@ -5437,7 +5437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -89.6, y: 165}
+  m_AnchoredPosition: {x: -89.6001, y: 165}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5666849702348416747
@@ -6577,8 +6577,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5666849702509169672}
   - component: {fileID: 5666849702509169669}
-  - component: {fileID: 5666849702509169674}
   - component: {fileID: 5666849702509169675}
+  - component: {fileID: 8955762131539334290}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6645,14 +6645,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5666849702509169674
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5666849702509169673}
-  m_Enabled: 1
 --- !u!114 &5666849702509169675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6686,6 +6678,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &8955762131539334290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666849702509169673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 5666849702721624286}
 --- !u!1 &5666849702509468729
 GameObject:
   m_ObjectHideFlags: 0
@@ -6867,6 +6872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5666849702521588961}
   - component: {fileID: 5666849702521588960}
+  - component: {fileID: 591861742}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -6904,6 +6910,32 @@ MonoBehaviour:
   container: {fileID: 5666849703377964753}
   speed: 2.5
   alarmVigentteAnim: {fileID: 5666849703632575476}
+--- !u!114 &591861742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666849702521588966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead33556288552b47968bd25c93dc829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generalMusic:
+    Guid:
+      Data1: 990833482
+      Data2: 1114589927
+      Data3: -1557479283
+      Data4: 1278408856
+    Path: event:/MusicGeneral/Music 1
+  ambienceMusic:
+    Guid:
+      Data1: 1830724854
+      Data2: 1162114555
+      Data3: 1296834459
+      Data4: -1108029959
+    Path: event:/MusicGeneral/ambience
 --- !u!1 &5666849702528781159
 GameObject:
   m_ObjectHideFlags: 0
@@ -8534,7 +8566,6 @@ GameObject:
   - component: {fileID: 5666849702721624272}
   - component: {fileID: 5666849702721624273}
   - component: {fileID: 5666849702721624278}
-  - component: {fileID: 5666849702721624279}
   - component: {fileID: 5666849702721624276}
   - component: {fileID: 5666849702721624277}
   - component: {fileID: 5666849702721624282}
@@ -8647,26 +8678,22 @@ MonoBehaviour:
   moveJoystick: {fileID: 5666849702979281290}
   attackJoystick: {fileID: 5666849702018268247}
   dodgeSpeed: 5
---- !u!114 &5666849702721624279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5666849702721624286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81b9d15698264346aa383869c30df3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticHpIm: {fileID: 5666849703585435546}
-  screenHpIm: {fileID: 0}
-  screenPlayerName: {fileID: 0}
-  staticPlayerName: {fileID: 5666849703335545030}
-  staticHpText: {fileID: 5666849703283751564}
-  screenHpText: {fileID: 0}
-  normalDmgText: {fileID: 0}
-  critDmgText: {fileID: 0}
+  footstepsInputSound:
+    Guid:
+      Data1: -1384835647
+      Data2: 1106394701
+      Data3: -1562552660
+      Data4: 1149756184
+    Path: event:/Metal footsteps
+  dashInputSound:
+    Guid:
+      Data1: 1295014568
+      Data2: 1167234862
+      Data3: 14459277
+      Data4: -201396757
+    Path: event:/DashFX
+  footstepTimer: 0.1
+  baseStepSpeed: 0.35
 --- !u!114 &5666849702721624276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8683,7 +8710,7 @@ MonoBehaviour:
   removeComponentsOnDead:
   - {fileID: 5666849702721624278}
   - {fileID: 5666849702721624273}
-  - {fileID: 5666849702721624279}
+  - {fileID: 0}
   hasUI: 0
   healthBar: {fileID: 5666849703585435546}
   energyBar: {fileID: 5666849702996797291}
@@ -8698,16 +8725,48 @@ MonoBehaviour:
   - {fileID: 5666849702079610090}
   - {fileID: 5666849703407170584}
   - {fileID: 5666849702509468729}
-  _defense: 5
-  _reductionBonus: 0.05
   _maxHealth: 100
   _maxEnergy: 6
   currentEnergy: 6
   countdownToRefillEnergy: 4
   energyRefillSpeed: 1
+  brokenShieldInputSound:
+    Guid:
+      Data1: -1521688905
+      Data2: 1149447122
+      Data3: 382690183
+      Data4: -300324538
+    Path: event:/Shield/ShieldBroken/LASRGun_Plasma_Rifle_Reload_Finish_02
+  rechargingShieldInputSound:
+    Guid:
+      Data1: -1788513564
+      Data2: 1134135362
+      Data3: 230282631
+      Data4: -1892217461
+    Path: event:/Shield/ShieldRecharging/ShieldRecharging
+  rechargedShieldInputSound:
+    Guid:
+      Data1: -1550450000
+      Data2: 1168267501
+      Data3: 482033852
+      Data4: 1529670007
+    Path: event:/Shield/ShieldRechargeFinish/LASRGun_Plasma_Rifle_Reload_Designed_03
+  takeDamageInputSound:
+    Guid:
+      Data1: -1929946756
+      Data2: 1324173976
+      Data3: 848476816
+      Data4: 1415344158
+    Path: event:/ImpactShot/ShotImpact
+  takeDamageToShieldInputSound:
+    Guid:
+      Data1: 934500927
+      Data2: 1279766428
+      Data3: 1658130857
+      Data4: -285456468
+    Path: event:/ImpactShot/ShotImpactShield
   saveDataPath: PlayerData.sav
   playerTransform: {fileID: 5666849702721624275}
-  playerRot: {x: 0, y: 0, z: 0, w: 0}
   healthRemaining: 0
   energyRemaining: 0
   OnDieEvent:
@@ -8739,10 +8798,34 @@ MonoBehaviour:
         m_CallState: 2
   OnDamageReceivedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5666849702721624276}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ImpactShotFx
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamageBlockedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5666849702721624276}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ImpactShotFx
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &5666849702721624277
 MonoBehaviour:
   m_ObjectHideFlags: 0

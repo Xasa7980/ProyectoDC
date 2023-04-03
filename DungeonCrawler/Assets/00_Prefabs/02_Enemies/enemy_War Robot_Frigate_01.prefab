@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrollLength: 7
   loopingMethod: 0
+  currentWayPoint: 0
   guardTime: 3
 --- !u!1 &2558327331567825830
 GameObject:
@@ -1410,6 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1307ccec81b6449806d1e1846cac26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: {fileID: 0}
   states:
   - {fileID: 497489890}
   - {fileID: 1307043995}
@@ -1454,12 +1456,50 @@ MonoBehaviour:
   shieldPrefab: {fileID: 0}
   playerWithShield: []
   playerWithoutShield: []
-  _defense: 0
-  _reductionBonus: 0.05
   _maxHealth: 150
   _maxEnergy: 0
+  currentEnergy: 0
   countdownToRefillEnergy: 4
   energyRefillSpeed: 1
+  brokenShieldInputSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  rechargingShieldInputSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  rechargedShieldInputSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  takeDamageInputSound:
+    Guid:
+      Data1: -1929946756
+      Data2: 1324173976
+      Data3: 848476816
+      Data4: 1415344158
+    Path: event:/ImpactShot/ShotImpact
+  takeDamageToShieldInputSound:
+    Guid:
+      Data1: 934500927
+      Data2: 1279766428
+      Data3: 1658130857
+      Data4: -285456468
+    Path: event:/ImpactShot/ShotImpactShield
+  saveDataPath: PlayerData.sav
+  playerTransform: {fileID: 0}
+  healthRemaining: 0
+  energyRemaining: 0
   OnDieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1489,7 +1529,20 @@ MonoBehaviour:
         m_CallState: 2
   OnDamageReceivedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7100561492542283062, guid: 60422abeece93f54eb3c33d58921bfaa,
+          type: 3}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ImpactShotFx
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamageBlockedEvent:
     m_PersistentCalls:
       m_Calls: []

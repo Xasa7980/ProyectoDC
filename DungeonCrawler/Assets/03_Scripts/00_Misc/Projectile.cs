@@ -8,12 +8,13 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 30;
     [SerializeField] float lifeTime = 4;
     [SerializeField] GameObject hitEffect;
-
+    #region BulletFX 
+    [SerializeField] FMODUnity.EventReference bulletFX;
+    #endregion
     public float damage = 12;
-
-    // Start is called before the first frame update
     void Start()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(bulletFX);
         Destroy(this.gameObject, lifeTime);
     }
 

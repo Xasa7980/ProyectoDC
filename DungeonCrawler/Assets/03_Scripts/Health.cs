@@ -32,8 +32,6 @@ public class Health : MonoBehaviour, iDamageable
     [SerializeField] GameObject[] playerWithShield;
     [SerializeField] GameObject[] playerWithoutShield;
     bool shieldIsActived;
-    [SerializeField] float _defense = 5;
-    [SerializeField] float _reductionBonus = 0.05f;
     #endregion
     #region HealthParameters
     [Header("Health Parameters")]
@@ -65,6 +63,16 @@ public class Health : MonoBehaviour, iDamageable
 
     public void SetMaxEnergy(float maxEnergy) => this._maxEnergy = maxEnergy;
     public void SetEnergyRefillSpeed(float refillSpeed) => this.energyRefillSpeed = refillSpeed;
+    #endregion
+    #region FXParameters
+    [SerializeField] FMODUnity.EventReference brokenShieldInputSound;
+    [SerializeField] FMODUnity.EventReference rechargingShieldInputSound;
+    [SerializeField] FMODUnity.EventReference rechargedShieldInputSound;
+    bool shieldRecharged;
+    float rechargeFxFrecuency;
+    [SerializeField] FMODUnity.EventReference takeDamageInputSound, takeDamageToShieldInputSound, takeDamagePlayerInputSound;
+
+
     #endregion
     #region DataSaver
     [SerializeField] string saveDataPath = "PlayerData.sav";
@@ -125,6 +133,14 @@ public class Health : MonoBehaviour, iDamageable
     {
         if (currentEnergy > maxEnergy - 1)
         {
+            if(currentEnergy >= maxEnergy)
+            {
+                if (!shieldRecharged)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(rechargedShieldInputSound);
+                    shieldRecharged = true;
+                }
+            }
             for (int i = 0; i < playerWithShield.Length; i++)
             {
                 playerWithShield[i].SetActive(true);
@@ -133,6 +149,14 @@ public class Health : MonoBehaviour, iDamageable
         }
         else
         {
+            if(currentEnergy <= 0)
+            {
+                if (shieldRecharged)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(brokenShieldInputSound);
+                    shieldRecharged = false;
+                }
+            }
             for (int i = 0; i < playerWithShield.Length; i++)
             {
                 playerWithoutShield[i].SetActive(true);
@@ -197,7 +221,18 @@ public class Health : MonoBehaviour, iDamageable
         if (energyRefillCount > 0)
             energyRefillCount -= Time.deltaTime;
         else if (currentEnergy < maxEnergy)
+        {
+            if(currentEnergy < maxEnergy - 1)
+            {
+                rechargeFxFrecuency += Time.deltaTime;
+                if (rechargeFxFrecuency > 0.75f)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(rechargingShieldInputSound);
+                    rechargeFxFrecuency = 0;
+                }
+            }
             currentEnergy = Mathf.MoveTowards(currentEnergy, maxEnergy, energyRefillSpeed * Time.deltaTime);
+        }
 
         currentHealthPercent = Mathf.MoveTowards(currentHealthPercent, healthPercent, smoothness * Time.deltaTime);
         currentEnergyPercent = Mathf.MoveTowards(currentEnergyPercent, energyPercent, smoothness * Time.deltaTime);
@@ -219,8 +254,15 @@ public class Health : MonoBehaviour, iDamageable
     }
     private void OnDisable()
     {
-        SaveData();
+        //SaveData();
     }
+    public void ImpactShotFx(bool hasShield)
+    {
+        if (hasShield) FMODUnity.RuntimeManager.PlayOneShot(takeDamageToShieldInputSound);
+        else if(GetComponent<Player>()) FMODUnity.RuntimeManager.PlayOneShot(takeDamageToShieldInputSound);
+        else FMODUnity.RuntimeManager.PlayOneShot(takeDamageInputSound);
+    }
+
     [ContextMenu("S")]
     void SaveData()
     {

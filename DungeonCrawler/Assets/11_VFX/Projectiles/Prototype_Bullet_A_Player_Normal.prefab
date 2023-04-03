@@ -161,6 +161,13 @@ MonoBehaviour:
   lifeTime: 2
   hitEffect: {fileID: 525032922794330274, guid: 44a3f64f19301464e83f145f7be1b506,
     type: 3}
+  bulletFX:
+    Guid:
+      Data1: -156838366
+      Data2: 1290730528
+      Data3: 1099468685
+      Data4: 1156402172
+    Path: event:/RifleShoot
   damage: 6
 --- !u!1 &8868765416041187472
 GameObject:

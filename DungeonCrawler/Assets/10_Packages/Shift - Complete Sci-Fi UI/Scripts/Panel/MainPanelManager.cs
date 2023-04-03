@@ -56,7 +56,7 @@ namespace Michsky.UI.Shift
             }
         }
 
-        void Awake()
+        void Start()
         {
             currentButton = panels[currentPanelIndex].buttonObject;
             currentButtonAnimator = currentButton.GetComponent<Animator>();
