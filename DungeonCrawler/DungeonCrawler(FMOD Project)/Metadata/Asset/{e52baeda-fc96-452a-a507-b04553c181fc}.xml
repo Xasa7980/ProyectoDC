@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{e52baeda-fc96-452a-a507-b04553c181fc}">
+		<property name="assetPath">
+			<value>Assault_Rifle/Assault_Rifle_Equip/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

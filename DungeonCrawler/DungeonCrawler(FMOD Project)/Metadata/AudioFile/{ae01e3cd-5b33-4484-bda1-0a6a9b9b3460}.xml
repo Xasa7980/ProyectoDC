@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ae01e3cd-5b33-4484-bda1-0a6a9b9b3460}">
+		<property name="assetPath">
+			<value>Blaster_Gun/Blaster_Gun_Shot/Blaster_Gun_Single_Shot/LASRGun_Blaster_Single_Shot_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.6031666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

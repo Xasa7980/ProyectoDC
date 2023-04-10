@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b8592bba-7391-4f6c-948c-fd17c5be6d50}">
+		<property name="assetPath">
+			<value>Plasma_Rifle/Plasma_Rifle_Reload/Plasma_Rifle_Reload_Finish/LASRGun_Plasma_Rifle_Reload_Finish_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.64429166666666671</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b4c5c3e1-cce6-4983-9f76-9337bba7a68d}">
+		<property name="assetPath">
+			<value>Assault_Rifle/Assault_Rifle_Reload/Assault_Rifle_Reload_Finish_Mechanic_Sound_Only/GUNRifAssaultRifle_Reload_Finish_Mecha_SFX_Only_Part2_03.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.21583333333333332</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

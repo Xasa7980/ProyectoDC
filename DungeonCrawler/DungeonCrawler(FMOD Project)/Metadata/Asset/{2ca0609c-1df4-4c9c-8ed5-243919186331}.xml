@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{2ca0609c-1df4-4c9c-8ed5-243919186331}">
+		<property name="assetPath">
+			<value>Shotgun/Shotgun_Reload/Shotgun_Long_Reload_Designed/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

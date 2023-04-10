@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7cc57b04-fbb4-4a9a-9a2b-2cb6685cd520}">
+		<property name="assetPath">
+			<value>Assault_Rifle/Assault_Rifle_Reload/Assault_Rifle_Reload_Finish/SCIWeap_Assault_Rifle_Reload_Finish_Part2_03.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.54162500000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

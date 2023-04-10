@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{eb793459-ad8c-48b8-914f-61ccf21a6958}">
+		<property name="assetPath">
+			<value>Sniper_Rifle/Sniper_Rifle_Reload/Sniper_Rifle_Reload_Begin_Mechanic_Sound_Only/GUNRif_SRifle_Reload_Begin_Mecha_Sound_Only_02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.30191666666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

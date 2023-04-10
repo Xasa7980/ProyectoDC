@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f210cf63-09cd-413b-93b3-bef8d3f8ee8d}">
+		<property name="assetPath">
+			<value>Assault_Rifle/Assault_Rifle_Shot/Assault_Rifle_Burst_Shot/SCIWeap_Assault_Rifle_Burst_Shot_06.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.4816458333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

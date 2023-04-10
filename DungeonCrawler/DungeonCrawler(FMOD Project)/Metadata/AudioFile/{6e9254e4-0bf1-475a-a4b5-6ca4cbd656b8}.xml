@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6e9254e4-0bf1-475a-a4b5-6ca4cbd656b8}">
+		<property name="assetPath">
+			<value>Plasma_Rifle/Plasma_Rifle_Shot/Plasma_Rifle_single_shot/LASRGun_Plasma_Rifle_Single_Shot_04.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.1559583333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>

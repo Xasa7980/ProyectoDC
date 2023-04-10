@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{5d066164-c7bc-47d9-88d4-65b1e2551ec2}">
+		<property name="name">
+			<value>ShieldRechargeFinish</value>
+		</property>
+		<relationship name="folder">
+			<destination>{7a9c6b0a-b9c2-4974-8669-e2cf0e88db90}</destination>
+		</relationship>
+	</object>
+</objects>

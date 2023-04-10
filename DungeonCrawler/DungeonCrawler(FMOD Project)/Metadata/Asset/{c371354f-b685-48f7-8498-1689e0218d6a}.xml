@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{c371354f-b685-48f7-8498-1689e0218d6a}">
+		<property name="assetPath">
+			<value>Sniper_Rifle/Sniper_Rifle_Shot/Sniper_Rifle_Single_Shot/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8bed70d1-d602-4ca8-8c6c-a06ad3cef8b9}</destination>
+		</relationship>
+	</object>
+</objects>
