@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7899182767312126900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: DungeonCrawler(FMOD Project)/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638170723071117876
+  FileSizes:
+  - Name: Desktop
+    Value: 1906
+  Exists: 1
 --- !u!114 &-7653362602861876944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,7 +39,7 @@ MonoBehaviour:
     Data3: -409077315
     Data4: -36053216
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -46,7 +66,7 @@ MonoBehaviour:
     Data3: -1538183519
     Data4: -1185142590
   Banks:
-  - {fileID: 7910856705034519683}
+  - {fileID: -1086435502253441055}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -54,33 +74,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 85040
---- !u!114 &-6996939156622655889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Shield/ShieldRecharging/Recharging2
-  m_EditorClassIdentifier: 
-  Path: event:/Shield/ShieldRecharging/Recharging2
-  Guid:
-    Data1: -1726994455
-    Data2: 1165483971
-    Data3: -752478555
-    Data4: -1745934695
-  Banks:
-  - {fileID: -4292133762783413134}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 789
 --- !u!114 &-6590228506457751547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +93,7 @@ MonoBehaviour:
     Data3: 680214432
     Data4: -119245317
   Banks:
-  - {fileID: 3034759350828611008}
+  - {fileID: -6363431218039471430}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -108,6 +101,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 59
+--- !u!114 &-6363431218039471430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UIBank.bank
+  m_EditorClassIdentifier: 
+  Path: DungeonCrawler(FMOD Project)/Build/Desktop/UIBank.bank
+  Name: UIBank
+  StudioPath: bank:/UIBank
+  lastModified: 638170723072343605
+  FileSizes:
+  - Name: Desktop
+    Value: 13120
+  Exists: 1
 --- !u!114 &-5058487414527671354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +140,7 @@ MonoBehaviour:
     Data3: -1562552660
     Data4: 1149756184
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -154,7 +167,7 @@ MonoBehaviour:
     Data3: 1099468685
     Data4: 1156402172
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -162,26 +175,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 400
---- !u!114 &-4292133762783413134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/PlayerBank.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/PlayerBank.bank
-  Name: PlayerBank
-  StudioPath: bank:/PlayerBank
-  lastModified: 638161400612198261
-  FileSizes:
-  - Name: Desktop
-    Value: 13537600
-  Exists: 1
 --- !u!114 &-4177094549519498856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +194,7 @@ MonoBehaviour:
     Data3: 14459277
     Data4: -201396757
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -228,7 +221,7 @@ MonoBehaviour:
     Data3: 1296834459
     Data4: -1108029959
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -255,7 +248,7 @@ MonoBehaviour:
     Data3: -1557479283
     Data4: 1278408856
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -263,6 +256,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 434860
+--- !u!114 &-1955966627625369790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shield/ShieldRecharging/RechargingFXClips/Recharging1
+  m_EditorClassIdentifier: 
+  Path: event:/Shield/ShieldRecharging/RechargingFXClips/Recharging1
+  Guid:
+    Data1: 86705107
+    Data2: 1155941621
+    Data3: -1283276926
+    Data4: -1811913931
+  Banks:
+  - {fileID: 6856045445006933890}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 780
 --- !u!114 &-1552721602084168934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +302,7 @@ MonoBehaviour:
     Data3: 848476816
     Data4: 1415344158
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -290,6 +310,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1062
+--- !u!114 &-1086435502253441055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: DungeonCrawler(FMOD Project)/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638170723071097846
+  FileSizes:
+  - Name: Desktop
+    Value: 1265984
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,18 +343,16 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2507431138165660303}
-  - {fileID: 7910856705034519683}
-  - {fileID: -4292133762783413134}
-  - {fileID: 3034759350828611008}
+  - {fileID: -7899182767312126900}
+  - {fileID: -1086435502253441055}
+  - {fileID: 6856045445006933890}
+  - {fileID: -6363431218039471430}
   EditorEvents:
   - {fileID: -4888662269256250067}
   - {fileID: -5058487414527671354}
   - {fileID: 5056143184372230805}
   - {fileID: 1974779472474119922}
-  - {fileID: 2843548663832735293}
   - {fileID: 7912601590723157480}
-  - {fileID: -6996939156622655889}
   - {fileID: -2605020645934099467}
   - {fileID: -2972529617599637658}
   - {fileID: -4177094549519498856}
@@ -324,12 +362,15 @@ MonoBehaviour:
   - {fileID: 8353690445301868157}
   - {fileID: -7327413541675624242}
   - {fileID: -6590228506457751547}
+  - {fileID: 6716065460630717340}
+  - {fileID: -1955966627625369790}
+  - {fileID: 7891483442984613078}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7910856705034519683}
+  - {fileID: -1086435502253441055}
   StringsBanks:
-  - {fileID: 2507431138165660303}
-  cacheTime: 638161400612449735
+  - {fileID: -7899182767312126900}
+  cacheTime: 638170723072343605
   cacheVersion: 131601
 --- !u!114 &1974779472474119922
 MonoBehaviour:
@@ -350,7 +391,7 @@ MonoBehaviour:
     Data3: 382690183
     Data4: -300324538
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -358,73 +399,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 873
---- !u!114 &2507431138165660303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638161400611194156
-  FileSizes:
-  - Name: Desktop
-    Value: 1844
-  Exists: 1
---- !u!114 &2843548663832735293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Shield/ShieldRecharging/Recharging1
-  m_EditorClassIdentifier: 
-  Path: event:/Shield/ShieldRecharging/Recharging1
-  Guid:
-    Data1: 86705107
-    Data2: 1155941621
-    Data3: -1283276926
-    Data4: -1811913931
-  Banks:
-  - {fileID: -4292133762783413134}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 780
---- !u!114 &3034759350828611008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/UIBank.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/UIBank.bank
-  Name: UIBank
-  StudioPath: bank:/UIBank
-  lastModified: 638161400612449735
-  FileSizes:
-  - Name: Desktop
-    Value: 13120
-  Exists: 1
 --- !u!114 &5056143184372230805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +418,7 @@ MonoBehaviour:
     Data3: 482033852
     Data4: 1529670007
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -452,6 +426,53 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1868
+--- !u!114 &6716065460630717340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KickFX/KickFx
+  m_EditorClassIdentifier: 
+  Path: event:/KickFX/KickFx
+  Guid:
+    Data1: 1480242868
+    Data2: 1134763794
+    Data3: -1877514566
+    Data4: 1506682100
+  Banks:
+  - {fileID: 6856045445006933890}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 218
+--- !u!114 &6856045445006933890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/PlayerBank.bank
+  m_EditorClassIdentifier: 
+  Path: DungeonCrawler(FMOD Project)/Build/Desktop/PlayerBank.bank
+  Name: PlayerBank
+  StudioPath: bank:/PlayerBank
+  lastModified: 638170723072102579
+  FileSizes:
+  - Name: Desktop
+    Value: 13549280
+  Exists: 1
 --- !u!114 &7233292002430921074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +492,7 @@ MonoBehaviour:
     Data3: 1658130857
     Data4: -285456468
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -479,7 +500,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1062
---- !u!114 &7910856705034519683
+--- !u!114 &7891483442984613078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -488,17 +509,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Shield/ShieldRecharging/RechargingFXClips/Recharging2
   m_EditorClassIdentifier: 
-  Path: ../../../FMOD Studio/Proyectos/DungeonCrawler(FMOD Project)/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638161400611174134
-  FileSizes:
-  - Name: Desktop
-    Value: 1265984
-  Exists: 1
+  Path: event:/Shield/ShieldRecharging/RechargingFXClips/Recharging2
+  Guid:
+    Data1: -1726994455
+    Data2: 1165483971
+    Data3: -752478555
+    Data4: -1745934695
+  Banks:
+  - {fileID: 6856045445006933890}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 789
 --- !u!114 &7912601590723157480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +546,7 @@ MonoBehaviour:
     Data3: 230282631
     Data4: -1892217461
   Banks:
-  - {fileID: -4292133762783413134}
+  - {fileID: 6856045445006933890}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -545,7 +573,7 @@ MonoBehaviour:
     Data3: 399167676
     Data4: -1557431461
   Banks:
-  - {fileID: 3034759350828611008}
+  - {fileID: -6363431218039471430}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

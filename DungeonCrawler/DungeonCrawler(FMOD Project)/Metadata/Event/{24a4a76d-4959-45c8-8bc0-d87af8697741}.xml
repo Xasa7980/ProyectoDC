@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{fe132352-7944-4488-8798-1138aab719af}</destination>
+			<destination>{add8d1d0-4b92-4f66-b84e-4af8261c34e4}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{f8a97f3f-e6dc-4abc-980d-0dfa05ed2f84}</destination>
@@ -109,7 +109,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{1f871a07-ec86-4e8a-a202-4281e196b7be}">
 		<relationship name="effects">
-			<destination>{42bb0cfb-9862-4905-958a-35d260419c07}</destination>
 			<destination>{f237682a-5961-455b-b05d-95c9e2e25070}</destination>
 		</relationship>
 	</object>
@@ -122,7 +121,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{26d9403f-be06-45a3-8c1a-460bb6cbf6b8}" />
-	<object class="PitchShifterEffect" id="{42bb0cfb-9862-4905-958a-35d260419c07}" />
 	<object class="MixerBusFader" id="{f237682a-5961-455b-b05d-95c9e2e25070}" />
 	<object class="PitchShifterEffect" id="{d759b1cf-132d-42d1-9bad-94aa722499da}">
 		<property name="pitch">

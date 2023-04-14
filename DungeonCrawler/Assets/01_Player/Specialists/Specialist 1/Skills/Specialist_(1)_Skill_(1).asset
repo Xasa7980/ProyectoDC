@@ -17,20 +17,23 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: f1a0c040a04dedd46937339f345af7d7, type: 3}
   activationMethod: 0
   hitMethod: 1
+  damageMethod: 0
   prefab: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed, type: 3}
   hitEffect: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
     type: 3}
-  gaterableObj: {fileID: 0}
   instancePosition: {x: 0, y: 0, z: 0}
   instanceRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   speed: 0
   canCast: 1
   damage: 55
   hitRadius: 5
-  skillIsActive: 0
-  skillDuration: 0
-  durationTimeOut: 5
+  continueCounter: 0
+  continueTime: 0
+  doDamage: 1
+  skillIsActive: 1
+  skillCounter: 0
+  skillTime: 5
   resetCounter: 0
-  timeNeededRefresh: 5
+  resetTime: 0
   hitsImpacted: 0
   hitsNeededToRefresh: 0

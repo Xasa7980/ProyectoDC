@@ -10,9 +10,34 @@ public class MeleeSkill : SkillSO
        return Instantiate(obj, transform.position + Vector3.up * 2, rot);
     }
 
-    public override void TakeDamage(GameObject gameObject, Transform transform, LayerMask hitMask)
+    public override void TakeDamage(GameObject target, Transform transform, LayerMask hitMask)
     {
-        if(hitMethod == HitMethod.Raycast) //Balas ejemplo
+        
+        if (hitMethod == HitMethod.TriggerCollision & damageMethod == DamageMethod.InstantDamage)
+        {
+            
+            if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
+            {
+                damageable.ApplyDamage(damage);
+                hitsImpacted++;
+            }
+        }
+        else if (hitMethod == HitMethod.TriggerCollision & damageMethod == DamageMethod.DamageOvertime)
+        {
+
+            if (doDamage)
+            {
+                if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
+                {
+                    damageable.ApplyDamage(damage);
+                    hitsImpacted++;
+                    doDamage = false;
+                }
+            }
+            else DamageCounter();
+        }
+    }
+    /* if(hitMethod == HitMethod.Raycast & damageMethod == DamageMethod.InstantDamage) //Balas ejemplo
         {
             Ray ray = new Ray(transform.position, transform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, hitMask))
@@ -34,8 +59,29 @@ public class MeleeSkill : SkillSO
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         }
+        if (hitMethod == HitMethod.Raycast & damageMethod == DamageMethod.DamageOvertime) //Balas ejemplo
+        {
+            Ray ray = new Ray(transform.position, transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, speed * Time.deltaTime, hitMask))
+            {
+                if (hit.collider.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
+                {
+                    reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Shoot, ray);
+                }
 
-        else if(hitMethod == HitMethod.OverlapSphere)
+                if (hit.collider.TryGetComponent<iDamageable>(out iDamageable damageable))
+                {
+                    damageable.ApplyDamage(damage);
+                    hitsImpacted++;
+                }
+                Instantiate(hitEffect, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+
+                Destroy(gameObject);
+            }
+
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+        }
+        else if (hitMethod == HitMethod.OverlapSphere)
         {
             Collider[] colls = Physics.OverlapSphere(transform.position, hitRadius, hitMask);
             if (colls.Length > 0)
@@ -51,60 +97,15 @@ public class MeleeSkill : SkillSO
                 }
             }
         }
-        else if(hitMethod == HitMethod.ParticleCollision)
+        */ //OTROS METODOS DE GOLPEO POR SI ACASO, ACTUALIZAR
+    public override void DamageCounter()
+    {
+        continueCounter += Time.deltaTime;
+        if(continueCounter > continueTime)
         {
+            continueCounter = 0;
+            doDamage = true;
+        }
 
-            if (gameObject.TryGetComponent<iDamageable>(out iDamageable damageable))
-            {
-                damageable.ApplyDamage(damage);
-                hitsImpacted++;
-            }
-        }
-    }
-    public override void SkillDuration(GameObject gameObject)
-    {
-        if (skillIsActive)
-        {
-            skillDuration += Time.deltaTime;
-            if (skillDuration > durationTimeOut)
-            {
-                skillIsActive = false;
-                gaterableObj.SetActive(false);
-                skillDuration = 0;
-            }
-        }
-    }
-    public override void SkillReset(SkillSO activedSkills)
-    {
-        if (activationMethod == ActivationMethod.RefreshingTime)
-        {
-            if (!skillIsActive & !canCast)
-            {
-                resetCounter += Time.deltaTime;
-                if (resetCounter >= timeNeededRefresh)
-                {
-                    resetCounter = 0;
-                    canCast = true;
-                }
-            }
-        }
-        else if (activationMethod == ActivationMethod.RefreshingHits)
-        {
-            if (!skillIsActive & !canCast)
-            {
-                if (hitsImpacted >= hitsNeededToRefresh)
-                {
-                    hitsImpacted = 0;
-                    canCast = true;
-                }
-            }
-        }
-        else if (activationMethod == ActivationMethod.InstantRefreshing)
-        {
-            if (!skillIsActive & !canCast)
-            {
-                canCast = true;
-            }
-        }
     }
 }

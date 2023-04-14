@@ -6,13 +6,15 @@ public class PlayerAttack : MonoBehaviour
 {
     #region LogicParameters
     [SerializeField] LayerMask impactMask;
-    [SerializeField] GameObject impactEffect;
     [SerializeField] Transform hitLocation;
     [SerializeField] float radius;
     [SerializeField] float strenght;
     [SerializeField] float refreshCounter;
-    [SerializeField] float refreshTime = 5;
-    bool castMeleeAtk = true;
+    [SerializeField, Range(1.35f,3)] float refreshTime = 2;
+    [SerializeField] FMODUnity.EventReference kickFX;
+    [SerializeField] bool castMeleeAtk = true;
+
+    [SerializeField] GameObject impactEffect;
     #endregion
     Animator anim;
     private void Awake()
@@ -28,30 +30,25 @@ public class PlayerAttack : MonoBehaviour
         if (castMeleeAtk)
         {
             anim.SetTrigger("Attack");
+            FMODUnity.RuntimeManager.PlayOneShot(kickFX);
             Collider[] colls = Physics.OverlapSphere(hitLocation.position, radius, impactMask);
             if(colls.Length > 0)
             {
                 foreach(Collider coll in colls)
                 {
-                    //if (coll.TryGetComponent<RaycastEventReciever>(out RaycastEventReciever reciever))
-                    //{
-                    //    reciever.TryInvoke(RaycastEventReciever.RaycastEventType.Hit, ray);
-                    //}
-
                     if (coll.TryGetComponent<iDamageable>(out iDamageable damageable))
                     {
                         damageable.ApplyDamage(Damage(strenght));
+                        castMeleeAtk = false;
                     }
                 }
             }
-            castMeleeAtk = false;
+            else castMeleeAtk = false;
         }
     }
-    float Damage(float str/*, float enemyDefense, float redBonus*/)
+    float Damage(float str)
     {
-        float dmgReducted = strenght /*- (strenght * redBonus)*/;
-        castMeleeAtk = false;
-        return dmgReducted /*- enemyDefense*/;
+        return str;
     }
     void ResetMeleeAttack()
     {

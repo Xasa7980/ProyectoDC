@@ -1,94 +1,159 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerSpecialAttack : MonoBehaviour
 {
+    [SerializeField] Image iconSkill1, iconSkill2, iconSkill3;
+
     [SerializeField] LayerMask hitMask;
     [SerializeField] Specialist_SO skillSet;
-    [SerializeField] List<SkillSO> activedSkills;
-    [SerializeField] List<GameObject> skillObject;
+    [SerializeField] SkillSO[] skills;
+    [SerializeField] GameObject[] skillObject = new GameObject[3];
+    bool[] skillStart = new bool[3];
+    private void Start()
+    {
+        //skills[0] = skillSet.skills[0];
+        //skills[1] = skillSet.skills[1];
+        //skills[2] = skillSet.skills[2];
+        iconSkill1.sprite = skills[0].image;
+        iconSkill2.sprite = skills[1].image;
+        iconSkill3.sprite = skills[2].image;
+
+    }
     void Update()
     {
-        ReleaseActualSkillFunctions();
-    }
-    void ReleaseActualSkillFunctions()
-    {
-        if (activedSkills.Count > -1)
+        for (int i = 0; i < skills.Length; i++)
         {
-            foreach (SkillSO skill in activedSkills)
+            SkillDuration(i);
+            SkillReset(i);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        ReleaseActualSkillFunctions(other.gameObject);
+    }
+    void ReleaseActualSkillFunctions(GameObject target)
+    {
+        if(target.layer == 9)
+        {
+            if (skillStart[0])
             {
-                skill.SkillDuration(skill.gaterableObj);
-                skill.SkillReset(skill);
+                skills[0].DamageCounter();
+                if (skills[0].doDamage) skills[0].TakeDamage(gameObject, transform, hitMask);
+                skillStart[0] = false;
+            }
+            else if (skillStart[1])
+            {
+                skills[1].DamageCounter();
+                if (skills[1].doDamage) skills[1].TakeDamage(gameObject, transform, hitMask);
+                skillStart[1] = false;
+            }
+            else if (skillStart[2])
+            {
+                skills[2].DamageCounter();
+                if (skills[2].doDamage) skills[2].TakeDamage(gameObject, transform, hitMask);
+                skillStart[2] = false;
             }
         }
     }
-    void SetActiveSkill()
-    {
-        activedSkills.Add(GetActiveSkill());
-    }
-    SkillSO GetActiveSkill()
-    {
-        for (int i = 0; i < skillSet.skills.Length; i++)
-        {
-            if(skillSet.skills[i].activationMethod == ActivationMethod.InstantRefreshing)
-            {
-                return skillSet.skills[i];
-            }
-            else if (skillSet.skills[i].skillIsActive)
-            {
-                return skillSet.skills[i];
-            }
-        }
-        return null;
-    }
-    private void OnParticleCollision(GameObject other)
-    {
-        if (other.layer == 9)
-        {
-            skillSet.skills[0].TakeDamage(other, transform, hitMask);
-            skillSet.skills[1].TakeDamage(other, transform, hitMask);
-            skillSet.skills[2].TakeDamage(other, transform, hitMask);
-        }
-    }
+
     public void CastSkill1()
     {
-        if (skillSet.skills[0].canCast) 
+        if (skills[0].canCast) 
         {
-            ActivateSkill(skillSet.skills[0], skillSet.skills[0].instancePosition, skillSet.skills[0].instanceRotation);
-            SetActiveSkill();
+            skills[0].skillIsActive = true;
+            skillObject[0] = skills[0].InvokeMethod(skills[0].prefab, skills[0].instancePosition, skills[0].instanceRotation, transform);
+            skillStart[0] = true;
+            skills[0].canCast = false;
         }
     }
     public void CastSkill2()
     {
-        if (skillSet.skills[1].canCast)
+        if (skills[1].canCast)
         {
-            ActivateSkill(skillSet.skills[1], skillSet.skills[1].instancePosition, skillSet.skills[1].instanceRotation);
-            SetActiveSkill();
+            skills[1].skillIsActive = true;
+            skillObject[1] = skills[1].InvokeMethod(skills[1].prefab, skills[1].instancePosition, skills[1].instanceRotation, transform);
+            skillStart[1] = true;
+            skills[1].canCast = false;
         }
     }
     public void CastSkill3()
     {
-        if (skillSet.skills[2].canCast)
+        if (skills[2].canCast)
         {
-            ActivateSkill(skillSet.skills[2], skillSet.skills[2].instancePosition, skillSet.skills[2].instanceRotation);
-            SetActiveSkill();
+            skills[2].skillIsActive = true;
+            skillObject[2] = skills[2].InvokeMethod(skills[2].prefab, skills[2].instancePosition, skills[2].instanceRotation, transform);
+            skillStart[2] = true;
+            skills[2].canCast = false;
         }
     }
-    public void ActivateSkill(SkillSO skill, Vector3 pos, Quaternion rot)
+    public void SkillDuration(int index)
     {
-        if (skill.canCast & skill.activationMethod != ActivationMethod.InstantRefreshing)
+        if (skills[index].skillIsActive & skillObject[index] != null)
         {
-            skill.skillIsActive = true;
-            skill.gaterableObj = skill.InvokeMethod(skill.prefab, pos, rot, transform);
-            skill.canCast = false;
+            skills[index].skillCounter += Time.deltaTime;
+            if (skills[index].skillCounter > skills[index].skillTime)
+            {
+                if (skillObject[index] != null)
+                {
+                    Destroy(skillObject[index]);
+                    skillObject[index] = null;
+                }
+                skills[index].skillCounter = 0;
+                skills[index].skillIsActive = false;
+            }
         }
-
-        if (skill.activationMethod == ActivationMethod.InstantRefreshing)
+    }
+    public void SkillReset(int index)
+    {
+        if (!skills[index].skillIsActive)
         {
-            skill.skillIsActive = true;
-            skill.gaterableObj = skill.InvokeMethod(skill.prefab, pos, rot, transform);
-            skill.canCast = false;
+            if (skills[index].activationMethod == ActivationMethod.RefreshingTime)
+            {
+                if (!skills[index].skillIsActive & !skills[index].canCast)
+                {
+                    skills[index].resetCounter += Time.deltaTime;
+                    if (skills[index].resetCounter >= skills[index].resetTime)
+                    {
+                        skills[index].resetCounter = 0;
+                        skills[index].canCast = true;
+                    }
+                }
+            }
+            else if (skills[index].activationMethod == ActivationMethod.RefreshingHits)
+            {
+                if (!skills[index].skillIsActive & !skills[index].canCast)
+                {
+                    if (skills[index].hitsImpacted >= skills[index].hitsNeededToRefresh)
+                    {
+                        skills[index].hitsImpacted = 0;
+                        skills[index].canCast = true;
+                    }
+                }
+            }
+            else if (skills[index].activationMethod == ActivationMethod.InstantRefreshing)
+            {
+                if (!skills[index].skillIsActive & !skills[index].canCast)
+                {
+                    skills[index].canCast = true;
+                }
+            }
         }
+    }
+    void ResetSkillParams()
+    {
+        for (int i = 0; i < skills.Length; i++)
+        {
+            skills[i].canCast = true;
+            skills[i].doDamage = true;
+            skills[i].skillIsActive = true;
+            skills[i].resetCounter = 0;
+            skills[i].hitsImpacted = 0;
+        }
+    }
+    private void OnDisable()
+    {
+        ResetSkillParams();
     }
 }

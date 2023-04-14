@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{6639c507-71ab-4afd-8986-dab8821f97b6}">
+		<property name="name">
+			<value>RechargingFXClips</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c6107045-49dc-43bb-a215-91cb01f79495}</destination>
+		</relationship>
+	</object>
+</objects>

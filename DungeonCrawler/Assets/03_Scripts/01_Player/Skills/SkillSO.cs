@@ -12,7 +12,13 @@ public enum HitMethod
 {
     Raycast,
     OverlapSphere,
-    ParticleCollision
+    TriggerCollision
+}
+
+public enum DamageMethod
+{
+    InstantDamage,
+    DamageOvertime
 }
 public abstract class SkillSO : ScriptableObject
 {
@@ -27,9 +33,10 @@ public abstract class SkillSO : ScriptableObject
 
     public ActivationMethod activationMethod;
     public HitMethod hitMethod;
+    public DamageMethod damageMethod;
+
     public GameObject prefab;
     public GameObject hitEffect;
-    public GameObject gaterableObj;
 
     public Vector3 instancePosition;
     public Quaternion instanceRotation;
@@ -41,18 +48,19 @@ public abstract class SkillSO : ScriptableObject
 
     public float damage;
     public float hitRadius;
-    public abstract void TakeDamage(GameObject gameObject, Transform transform, LayerMask hitMask);
+    public abstract void TakeDamage(GameObject target, Transform transform, LayerMask hitMask);
+
+    public float continueCounter;
+    public float continueTime;
+    public bool doDamage;
+    public abstract void DamageCounter();
 
     public bool skillIsActive;
 
-    public float skillDuration;
-    public float durationTimeOut;
-    public abstract void SkillDuration(GameObject obj);
-
+    public float skillCounter;
+    public float skillTime;
     public float resetCounter;
-    public float timeNeededRefresh;
+    public float resetTime;
     public float hitsImpacted;
     public float hitsNeededToRefresh;
-    public abstract void SkillReset(/*List<SkillSO> */SkillSO activedSkills);
-
 }

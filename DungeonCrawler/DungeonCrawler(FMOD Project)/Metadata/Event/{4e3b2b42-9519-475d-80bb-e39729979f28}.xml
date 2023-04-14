@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{fe132352-7944-4488-8798-1138aab719af}</destination>
+			<destination>{add8d1d0-4b92-4f66-b84e-4af8261c34e4}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{6eed47a4-797f-4519-bda0-df91ab091ef7}</destination>
@@ -109,7 +109,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f51bd6b2-ee71-46d5-bf21-8e474323cd75}">
 		<relationship name="effects">
-			<destination>{c3802a9b-0de9-4832-9fca-fd52fa9c5021}</destination>
 			<destination>{f8d129a8-f42f-4924-96a5-018ec49078b6}</destination>
 		</relationship>
 	</object>
@@ -122,26 +121,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{efd421d2-270f-4d0f-92f9-cdf6bf6a3fe8}" />
-	<object class="TremoloEffect" id="{c3802a9b-0de9-4832-9fca-fd52fa9c5021}">
-		<property name="frequency">
-			<value>0.600000024</value>
-		</property>
-		<property name="depth">
-			<value>0.344999999</value>
-		</property>
-		<property name="shape">
-			<value>1</value>
-		</property>
-		<property name="duty">
-			<value>0.454999983</value>
-		</property>
-		<property name="phase">
-			<value>1</value>
-		</property>
-		<property name="spread">
-			<value>1</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{f8d129a8-f42f-4924-96a5-018ec49078b6}" />
 	<object class="ThreeEQEffect" id="{5eb1398c-6577-4bcb-ad8c-b1acc956ae3d}">
 		<property name="lowGain">

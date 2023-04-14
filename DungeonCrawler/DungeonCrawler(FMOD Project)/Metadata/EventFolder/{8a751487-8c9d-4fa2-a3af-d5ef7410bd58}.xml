@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{8a751487-8c9d-4fa2-a3af-d5ef7410bd58}">
+		<property name="name">
+			<value>KickFXClips</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9a5849ff-ab2e-4d04-bb8f-5cb138df78e4}</destination>
+		</relationship>
+	</object>
+</objects>

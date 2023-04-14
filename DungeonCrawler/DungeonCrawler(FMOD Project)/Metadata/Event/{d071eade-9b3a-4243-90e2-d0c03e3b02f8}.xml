@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{fe132352-7944-4488-8798-1138aab719af}</destination>
+			<destination>{add8d1d0-4b92-4f66-b84e-4af8261c34e4}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{0398b1ab-9994-4886-bf12-0e50ff3de0f4}</destination>
@@ -109,7 +109,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{eefe18a5-5f23-411d-91b9-26a1b2abf9f0}">
 		<relationship name="effects">
-			<destination>{814a3e1b-a471-4f35-b89b-483c8ba4a97e}</destination>
 			<destination>{2ba386aa-ff5c-45ba-826f-e6d0701880e5}</destination>
 		</relationship>
 	</object>
@@ -122,17 +121,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{55b1f4d6-957a-4f70-9b3f-067e25efb259}" />
-	<object class="PitchShifterEffect" id="{814a3e1b-a471-4f35-b89b-483c8ba4a97e}">
-		<property name="pitch">
-			<value>2</value>
-		</property>
-		<property name="fftSize">
-			<value>1080</value>
-		</property>
-		<property name="overlap">
-			<value>32</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{2ba386aa-ff5c-45ba-826f-e6d0701880e5}" />
 	<object class="ThreeEQEffect" id="{d6679d35-480d-4d1e-b22c-eb89695c06c1}">
 		<property name="lowGain">

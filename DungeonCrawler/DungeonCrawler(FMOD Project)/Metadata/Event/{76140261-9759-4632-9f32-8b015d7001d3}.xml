@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{fe132352-7944-4488-8798-1138aab719af}</destination>
+			<destination>{add8d1d0-4b92-4f66-b84e-4af8261c34e4}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{232fe5cb-80f8-44cc-b946-b2d0f7b9b1f2}</destination>
@@ -109,7 +109,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{0557c26a-b450-45f3-8609-b21f0b918778}">
 		<relationship name="effects">
-			<destination>{aa122e3c-eb85-4618-9cca-61f803b3f541}</destination>
 			<destination>{3bd65eb2-dab5-4b45-968d-823a5adbf055}</destination>
 		</relationship>
 	</object>
@@ -121,14 +120,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0d7e87b7-2318-42fa-86ba-da866f67f554}" />
-	<object class="PitchShifterEffect" id="{aa122e3c-eb85-4618-9cca-61f803b3f541}">
-		<property name="pitch">
-			<value>2</value>
-		</property>
-		<property name="fftSize">
-			<value>4096</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{3bd65eb2-dab5-4b45-968d-823a5adbf055}" />
 	<object class="MixerBusFader" id="{8a0e0059-4884-4a6f-92c9-a602a1f4855d}" />
 </objects>
