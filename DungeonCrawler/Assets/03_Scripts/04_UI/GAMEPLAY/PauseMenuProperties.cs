@@ -8,7 +8,6 @@ public class PauseMenuProperties : MonoBehaviour
     [SerializeField] Slider musicVolumeSlider, fxVolumeSlider, fxUIVolumeSlider;
     [SerializeField] TextMeshProUGUI masterVolumeValue, fxVolumeValue, fxUIVolumeValue;
 
-
     private void Start()
     {
         SetMasterVolume(masterVolumeValue);
@@ -17,48 +16,20 @@ public class PauseMenuProperties : MonoBehaviour
     }
     public void SetMasterVolume(TextMeshProUGUI sliderText)
     {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.mainMusicBus);
-        PlayerPrefs.SetFloat("MasterVolume", musicVolumeSlider.value);
-        bus.setVolume(PlayerPrefs.GetFloat("MasterVolume"));
-        sliderText.text = PlayerPrefs.GetFloat("MasterVolume").ToString();
+        FMOD.Studio.Bus bus = SoundsManager.GetBusInstance(SoundsManager.mainMusicBus);
+        bus.setVolume(musicVolumeSlider.value / musicVolumeSlider.maxValue);
+        sliderText.text = musicVolumeSlider.value.ToString();
     }
     public void SetFXVolume(TextMeshProUGUI sliderText)
     {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.fxSoundsBus);
-        PlayerPrefs.SetFloat("fxVolume", fxVolumeSlider.value);
-        bus.setVolume(PlayerPrefs.GetFloat("fxVolume"));
-        sliderText.text = PlayerPrefs.GetFloat("fxUIVolume").ToString();
+        FMOD.Studio.Bus bus = SoundsManager.GetBusInstance(SoundsManager.fxSoundsBus);
+        bus.setVolume(fxVolumeSlider.value / fxVolumeSlider.maxValue);
+        sliderText.text = fxVolumeSlider.value.ToString();
     }
     public void SetUIFXVolume(TextMeshProUGUI sliderText)
     {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.fxUISoundsBus);
-        PlayerPrefs.SetFloat("fxVolume", fxUIVolumeSlider.value);
-        bus.setVolume(PlayerPrefs.GetFloat("fxUIVolume"));
-        sliderText.text = PlayerPrefs.GetFloat("fxUIVolume").ToString();
-    }
-    public float GetMasterVolume()
-    {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.mainMusicBus);
-        bus.getVolume(out float volume);
-        return volume;
-    }
-    public float GetFXVolume()
-    {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.fxSoundsBus);
-        bus.getVolume(out float volume);
-        return volume;
-    }
-    public float GetUIFXVolume()
-    {
-        FMOD.Studio.Bus bus = SoundsManager.GetMusicProperties(SoundsManager.fxUISoundsBus);
-        bus.getVolume(out float volume);
-        return volume;
-    }
-    private void OnDisable()
-    {
-        PlayerPrefs.SetFloat("MasterVolume", GetMasterVolume());
-        PlayerPrefs.SetFloat("fxVolume", GetFXVolume());
-        PlayerPrefs.SetFloat("fxUIVolume", GetUIFXVolume());
-
+        FMOD.Studio.Bus bus = SoundsManager.GetBusInstance(SoundsManager.fxUISoundsBus);
+        bus.setVolume(fxUIVolumeSlider.value / fxUIVolumeSlider.maxValue);
+        sliderText.text = fxUIVolumeSlider.value.ToString();
     }
 }

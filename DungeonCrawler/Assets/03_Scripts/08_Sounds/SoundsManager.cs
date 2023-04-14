@@ -40,12 +40,7 @@ public class SoundsManager : MonoBehaviour
         }
     }
 
-    public static FMOD.Studio.Bus GetMusicProperties(string busPath)
-    {
-        return FMODUnity.RuntimeManager.GetBus(busPath);
-    }
-
-    public static FMOD.Studio.Bus SetMusicProperties(string busPath)
+    public static FMOD.Studio.Bus GetBusInstance(string busPath)
     {
         return FMODUnity.RuntimeManager.GetBus(busPath);
     }

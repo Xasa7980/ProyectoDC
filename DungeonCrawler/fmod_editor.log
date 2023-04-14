@@ -14,42 +14,20 @@
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] SoundI::release                          : spaceship-ambience-with-effects-21420 (1) (000002CEEEC40AD8)
-[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CD6BB7E658)
-[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CEE40D6288)
-[LOG] SoundI::release                          : WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEEEC40C88)
-[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CD6BB7E998)
-[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEE40D6438)
-[LOG] SoundI::release                          :  (000002CD68965D28)
-[LOG] SoundI::release                          :     LASRGun_Plasma_Rifle_Reload_Designed_03 (000002CD613A50E8)
-[LOG] SoundI::release                          :  (000002CEEEF76968)
-[LOG] SoundI::release                          :     EXPLDsgn_Grenade_Explosion_01 (000002CEE43F3C88)
-[LOG] SoundI::release                          :  (000002CEEEF767F8)
-[LOG] SoundI::release                          :     EXPLDsgn_Grenade_Explosion_02 (000002CEE43F3AE8)
-[LOG] SoundI::release                          :  (000002CD6AC96878)
-[LOG] SoundI::release                          :     EXPLDsgn_Grenade_Explosion_03 (000002CEE43F44A8)
-[LOG] SoundI::release                          :  (000002CEEEF76AD8)
-[LOG] SoundI::release                          :     521999__kastenfrosch__whoosh-dash (000002CD6F1520B8)
-[LOG] SoundI::release                          :  (000002CEE3AC9418)
-[LOG] SoundI::release                          :     421137__giocosound__footstep_metal_4 (1) (000002CD61CAC0A8)
-[LOG] SoundI::release                          :  (000002CD68404238)
-[LOG] SoundI::release                          :     144103__elgronbo__footstepsonmetal-07 (000002CEAD7F90B8)
-[LOG] SoundI::release                          :  (000002CD684040C8)
-[LOG] SoundI::release                          :     152798__dwoboyle__footsteps-step_ladder-metal-09-down (000002CEAD7F9598)
-[LOG] SoundI::release                          :  (000002CD684043A8)
-[LOG] SoundI::release                          :     257276__natty23__two-footsteps (000002CD61CACC08)
-[LOG] SoundI::release                          :  (000002CDCFD97768)
-[LOG] SoundI::release                          :     51876__striptheband__ultra-subs-037 (000002CEDA1010B8)
-[LOG] SoundI::release                          :  (000002CDCFD97488)
-[LOG] SoundI::release                          :     455917__bolkmar__kick-hit (000002CEDA101598)
-[LOG] SoundI::release                          :  (000002CDCFD971A8)
-[LOG] SoundI::release                          :     25224__suonho__deconstruction-kit_kick-it01 (000002CEDA101A78)
-[LOG] SoundI::release                          :  (000002CD6AC96E38)
-[LOG] SoundI::release                          :     657948__matrixxx__family-friendly-inspect-sound-ui-or-in-game-notification (000002CEE43F3948)
-[LOG] SoundI::release                          :  (000002CD6AC969E8)
-[LOG] SoundI::release                          :     382574__jofae__sci-fi-two-part-click (000002CD5ADFE588)
-[LOG] SoundI::release                          :  (000002CDCFD9CFC8)
-[LOG] SoundI::release                          :     251390__deadsillyrabbit__button_hover-mp3 (000002CD61BEEE88)
+[LOG] SoundI::release                          : spaceship-ambience-with-effects-21420 (1) (000002CD6FAABA68)
+[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CD61BEE808)
+[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CEB837FB48)
+[LOG] SoundI::release                          : WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEF401D218)
+[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CD61BEEE88)
+[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEB837FCF8)
+[LOG] SoundI::release                          :  (000002CEF4479C38)
+[LOG] SoundI::release                          :     LASRGun_Plasma_Rifle_Reload_Designed_03 (000002CED6E91088)
+[LOG] SoundI::release                          :  (000002CEC316E9F8)
+[LOG] SoundI::release                          :     657948__matrixxx__family-friendly-inspect-sound-ui-or-in-game-notification (000002CEE375BB38)
+[LOG] SoundI::release                          :  (000002CEC316F298)
+[LOG] SoundI::release                          :     382574__jofae__sci-fi-two-part-click (000002CD6A9C90A8)
+[LOG] SoundI::release                          :  (000002CEC316EE48)
+[LOG] SoundI::release                          :     251390__deadsillyrabbit__button_hover-mp3 (000002CD6A9C93E8)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
@@ -60,12 +38,6 @@
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
-[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 

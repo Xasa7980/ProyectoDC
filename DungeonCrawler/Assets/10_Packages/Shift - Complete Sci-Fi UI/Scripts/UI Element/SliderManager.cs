@@ -21,8 +21,7 @@ namespace Michsky.UI.Shift
 
         Slider mainSlider;
         float saveValue;
-
-        void Start()
+        private void Awake()
         {
             mainSlider = gameObject.GetComponent<Slider>();
 
@@ -44,6 +43,10 @@ namespace Michsky.UI.Shift
                     PlayerPrefs.SetFloat(sliderTag + "SliderValue", saveValue);
                 });
             }
+        }
+
+        void Start()
+        {
         }
 
         void Update()

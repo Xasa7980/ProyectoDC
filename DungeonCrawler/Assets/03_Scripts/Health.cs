@@ -28,9 +28,9 @@ public class Health : MonoBehaviour, iDamageable
     }
 
     #region Defense&Shield
-    [SerializeField] GameObject shieldPrefab;
-    [SerializeField] GameObject[] playerWithShield;
-    [SerializeField] GameObject[] playerWithoutShield;
+    [SerializeField] GameObject forceFieldShield;
+    //[SerializeField] GameObject[] playerWithShield;
+    //[SerializeField] GameObject[] playerWithoutShield;
     bool shieldIsActived;
     #endregion
     #region HealthParameters
@@ -99,19 +99,12 @@ public class Health : MonoBehaviour, iDamageable
 
             OnDamageBlocked();
             OnDamageBlockedEvent.Invoke();
-            for (int i = 0; i < playerWithShield.Length; i++)
-            {
-                playerWithShield[i].SetActive(true);
-                playerWithoutShield[i].SetActive(false); ;
-            }
+            forceFieldShield.SetActive(true);
         }
         else
         {
-            for (int i = 0; i < playerWithShield.Length; i++)
-            {
-                playerWithoutShield[i].SetActive(true);
-                playerWithShield[i].SetActive(false);
-            }
+            forceFieldShield.SetActive(false);
+
 
             currentHealth -= damage2apply;
 
@@ -139,12 +132,8 @@ public class Health : MonoBehaviour, iDamageable
                 {
                     FMODUnity.RuntimeManager.PlayOneShot(rechargedShieldInputSound);
                     shieldRecharged = true;
+                    forceFieldShield.SetActive(true);
                 }
-            }
-            for (int i = 0; i < playerWithShield.Length; i++)
-            {
-                playerWithShield[i].SetActive(true);
-                playerWithoutShield[i].SetActive(false); ;
             }
         }
         else
@@ -155,12 +144,8 @@ public class Health : MonoBehaviour, iDamageable
                 {
                     FMODUnity.RuntimeManager.PlayOneShot(brokenShieldInputSound);
                     shieldRecharged = false;
+                    forceFieldShield.SetActive(false);
                 }
-            }
-            for (int i = 0; i < playerWithShield.Length; i++)
-            {
-                playerWithoutShield[i].SetActive(true);
-                playerWithShield[i].SetActive(false);
             }
         }
     }
