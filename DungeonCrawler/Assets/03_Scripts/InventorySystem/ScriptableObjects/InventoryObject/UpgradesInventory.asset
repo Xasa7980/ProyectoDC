@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradesInventory
   m_EditorClassIdentifier: 
   savePath: UpgradesDataBase.sav
-  database: {fileID: 11400000, guid: e116787db24aaa946a93a9f1b4281067, type: 2}
+  database: {fileID: 11400000, guid: 865490bddfa33f645ab6f9bed6bcb2b1, type: 2}
   Container:
     Items:
     - AllowedItems: 

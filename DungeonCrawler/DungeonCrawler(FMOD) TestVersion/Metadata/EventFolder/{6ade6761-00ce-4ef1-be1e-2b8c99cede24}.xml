@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{6ade6761-00ce-4ef1-be1e-2b8c99cede24}">
+		<property name="name">
+			<value>ImpactFXClips</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ca9ac187-b68b-413b-992e-83a3b7377c1c}</destination>
+		</relationship>
+	</object>
+</objects>

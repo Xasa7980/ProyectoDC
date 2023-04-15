@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1d9e991e-f260-4c28-a712-1a95ac02b4a9}">
+		<property name="assetPath">
+			<value>455917__bolkmar__kick-hit.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.19764583333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9da9e7ab-a2f3-4502-9cab-cb85df75ed93}</destination>
+		</relationship>
+	</object>
+</objects>

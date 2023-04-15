@@ -283,8 +283,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: DungeonCrawler(FMOD Project)/DungeonCrawler(FMOD Project).fspro
-  sourceBankPath: DungeonCrawler(FMOD Project)/Build
+  sourceProjectPath: DungeonCrawler(FMOD) TestVersion/DungeonCrawler(FMOD) TestVersion.fspro
+  sourceBankPath: DungeonCrawler(FMOD) TestVersion/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1

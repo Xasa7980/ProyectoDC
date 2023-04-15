@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a6cd1080-af8d-43db-ab61-3b36b210927e}">
+		<property name="assetPath">
+			<value>WhatsApp Audio 2023-02-26 at 17.09.11.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>188.89142857142858</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9da9e7ab-a2f3-4502-9cab-cb85df75ed93}</destination>
+		</relationship>
+	</object>
+</objects>

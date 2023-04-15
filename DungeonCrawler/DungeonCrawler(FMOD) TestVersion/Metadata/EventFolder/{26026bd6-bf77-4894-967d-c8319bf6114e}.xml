@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{26026bd6-bf77-4894-967d-c8319bf6114e}">
+		<property name="name">
+			<value>GetDamageFXClips</value>
+		</property>
+		<relationship name="folder">
+			<destination>{750d94a3-b867-45f9-93cd-6050b86b7f74}</destination>
+		</relationship>
+	</object>
+</objects>

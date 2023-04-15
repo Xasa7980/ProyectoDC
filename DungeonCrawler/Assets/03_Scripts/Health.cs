@@ -99,11 +99,11 @@ public class Health : MonoBehaviour, iDamageable
 
             OnDamageBlocked();
             OnDamageBlockedEvent.Invoke();
-            forceFieldShield.SetActive(true);
+            if (forceFieldShield != null) forceFieldShield.SetActive(true);
         }
         else
         {
-            forceFieldShield.SetActive(false);
+            if (forceFieldShield != null) forceFieldShield.SetActive(false);
 
 
             currentHealth -= damage2apply;
@@ -132,7 +132,7 @@ public class Health : MonoBehaviour, iDamageable
                 {
                     FMODUnity.RuntimeManager.PlayOneShot(rechargedShieldInputSound);
                     shieldRecharged = true;
-                    forceFieldShield.SetActive(true);
+                    if(forceFieldShield != null)forceFieldShield.SetActive(true);
                 }
             }
         }
@@ -144,7 +144,7 @@ public class Health : MonoBehaviour, iDamageable
                 {
                     FMODUnity.RuntimeManager.PlayOneShot(brokenShieldInputSound);
                     shieldRecharged = false;
-                    forceFieldShield.SetActive(false);
+                    if (forceFieldShield != null) forceFieldShield.SetActive(false);
                 }
             }
         }
@@ -202,7 +202,7 @@ public class Health : MonoBehaviour, iDamageable
 
     protected virtual void Update()
     {
-        ActiveShield();
+        if (forceFieldShield != null) ActiveShield();
         if (energyRefillCount > 0)
             energyRefillCount -= Time.deltaTime;
         else if (currentEnergy < maxEnergy)

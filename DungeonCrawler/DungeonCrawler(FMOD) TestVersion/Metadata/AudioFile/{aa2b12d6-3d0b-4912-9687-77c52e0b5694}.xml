@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{aa2b12d6-3d0b-4912-9687-77c52e0b5694}">
+		<property name="assetPath">
+			<value>152798__dwoboyle__footsteps-step_ladder-metal-09-down.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>88.1999969</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.4080045351473922</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9da9e7ab-a2f3-4502-9cab-cb85df75ed93}</destination>
+		</relationship>
+	</object>
+</objects>
