@@ -5804,7 +5804,7 @@ Transform:
   m_Children:
   - {fileID: 5666849702978502546}
   m_Father: {fileID: 5666849701901739416}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &5666849701853073406
 MonoBehaviour:
@@ -6180,6 +6180,7 @@ Transform:
   - {fileID: 5666849703075948508}
   - {fileID: 5666849702721624275}
   - {fileID: 5666849701857951980}
+  - {fileID: 5666849702303909008}
   - {fileID: 5666849701853073407}
   - {fileID: 5666849702521588961}
   - {fileID: 5666849703427231660}
@@ -9035,13 +9036,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5666849702303909012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.432006e-18, y: 0.000003695488, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalRotation: {x: -0, y: -0, z: 9.123535e-13, w: 1}
+  m_LocalPosition: {x: -0, y: 0.746, z: 0}
+  m_LocalScale: {x: 1.3871168, y: 1.3871168, z: 1.3871168}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5666849702721624275}
-  m_RootOrder: 22
+  m_Father: {fileID: 5666849701901739416}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5666849702303909009
 MeshFilter:
@@ -9050,7 +9051,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5666849702303909012}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5666849702303909014
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10687,7 +10688,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5666849701901739416}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5666849702521588960
 MonoBehaviour:
@@ -12163,7 +12164,6 @@ Transform:
   - {fileID: 5666849702817058057}
   - {fileID: 5666849702509468731}
   - {fileID: 5666849702287682882}
-  - {fileID: 5666849702303909008}
   - {fileID: 5666849703224814097}
   m_Father: {fileID: 5666849701901739416}
   m_RootOrder: 2
@@ -12263,15 +12263,7 @@ MonoBehaviour:
   energyBar: {fileID: 5666849702996797291}
   smoothness: 2
   fillMethod: 1
-  shieldPrefab: {fileID: 5666849702303909012}
-  playerWithShield:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerWithoutShield:
-  - {fileID: 5666849702079610090}
-  - {fileID: 5666849703407170584}
-  - {fileID: 5666849702509468729}
+  forceFieldShield: {fileID: 0}
   _maxHealth: 100
   _maxEnergy: 6
   currentEnergy: 6
@@ -16012,7 +16004,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5666849702721624275}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5666849703226325068
 GameObject:
@@ -17391,7 +17383,7 @@ Transform:
   - {fileID: 5666849703223416290}
   - {fileID: 5666849702343566976}
   m_Father: {fileID: 5666849701901739416}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5666849703427231662
 ParticleSystem:
