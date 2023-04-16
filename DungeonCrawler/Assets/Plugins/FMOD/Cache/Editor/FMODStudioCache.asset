@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: DungeonCrawler(FMOD Project)/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638170723071117876
+  lastModified: 638172604359438818
   FileSizes:
   - Name: Desktop
     Value: 1906
@@ -116,7 +116,7 @@ MonoBehaviour:
   Path: DungeonCrawler(FMOD Project)/Build/Desktop/UIBank.bank
   Name: UIBank
   StudioPath: bank:/UIBank
-  lastModified: 638170723072343605
+  lastModified: 638172604566021114
   FileSizes:
   - Name: Desktop
     Value: 13120
@@ -325,7 +325,7 @@ MonoBehaviour:
   Path: DungeonCrawler(FMOD Project)/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638170723071097846
+  lastModified: 638172604359408822
   FileSizes:
   - Name: Desktop
     Value: 1265984
@@ -370,7 +370,7 @@ MonoBehaviour:
   - {fileID: -1086435502253441055}
   StringsBanks:
   - {fileID: -7899182767312126900}
-  cacheTime: 638170723072343605
+  cacheTime: 638172604566021114
   cacheVersion: 131601
 --- !u!114 &1974779472474119922
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
   Path: DungeonCrawler(FMOD Project)/Build/Desktop/PlayerBank.bank
   Name: PlayerBank
   StudioPath: bank:/PlayerBank
-  lastModified: 638170723072102579
+  lastModified: 638172604565046041
   FileSizes:
   - Name: Desktop
     Value: 13549280

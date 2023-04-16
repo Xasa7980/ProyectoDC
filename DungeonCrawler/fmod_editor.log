@@ -7,37 +7,19 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x4000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000002CEACB5BC18 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000252BE4A09A8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] PlaybackSystem::init                     : done
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x4000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
-[LOG] SoundI::release                          : spaceship-ambience-with-effects-21420 (1) (000002CD6FAABA68)
-[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CD61BEE808)
-[LOG] SoundI::release                          :     spaceship-ambience-with-effects-21420 (1) (000002CEB837FB48)
-[LOG] SoundI::release                          : WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEF401D218)
-[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CD61BEEE88)
-[LOG] SoundI::release                          :     WhatsApp Audio 2023-02-26 at 17.09.05 (000002CEB837FCF8)
-[LOG] SoundI::release                          :  (000002CEF4479C38)
-[LOG] SoundI::release                          :     LASRGun_Plasma_Rifle_Reload_Designed_03 (000002CED6E91088)
-[LOG] SoundI::release                          :  (000002CEC316E9F8)
-[LOG] SoundI::release                          :     657948__matrixxx__family-friendly-inspect-sound-ui-or-in-game-notification (000002CEE375BB38)
-[LOG] SoundI::release                          :  (000002CEC316F298)
-[LOG] SoundI::release                          :     382574__jofae__sci-fi-two-part-click (000002CD6A9C90A8)
-[LOG] SoundI::release                          :  (000002CEC316EE48)
-[LOG] SoundI::release                          :     251390__deadsillyrabbit__button_hover-mp3 (000002CD6A9C93E8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
+[LOG] Manager::readBank                        : fileversion = 142, compatVersion = 140 (oldest = 44, newest = 142)
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -45,5 +27,3 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.
