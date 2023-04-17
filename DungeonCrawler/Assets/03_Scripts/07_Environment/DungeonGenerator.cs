@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DungeonGenerator : MonoBehaviour
+public class DungeonGenerator : Generator
 {
     [System.Serializable]
     public struct DungeonArquetype
@@ -18,10 +18,6 @@ public class DungeonGenerator : MonoBehaviour
 
     public DungeonLibrary defaultLibrary;
     public DungeonArquetype[] roomArquetypes;
-
-    
-    public bool randomSeed = false;
-    public int seed = 1234567;
 
     public enum RoomConnectionMethod { Random, Path }
 
@@ -75,7 +71,7 @@ public class DungeonGenerator : MonoBehaviour
     //    LevelManager.current.SpawnPlayer();
     //}
 
-    public void Generate()
+    public override void Generate()
     {
         if (randomSeed)
             seed = Random.Range(-10000, 10000);
@@ -137,7 +133,7 @@ public class DungeonGenerator : MonoBehaviour
         PlaceArquetypes();
     }
 
-    public void Generate(int seed)
+    public override void Generate(int seed)
     {
         this.seed = seed;
 
@@ -292,7 +288,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    public void SpawnProps()
+    public override void SpawnProps()
     {
         TilePresetManager[] tiles = GetComponentsInChildren<TilePresetManager>();
         foreach(TilePresetManager tile in tiles)
@@ -319,7 +315,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    public void ClearDungeon()
+    public override void ClearDungeon()
     {
         while (this.transform.childCount > 0)
         {
