@@ -7,6 +7,8 @@ public class RangeSkill : SkillSO
 {
     public override GameObject InvokeMethod(GameObject obj, Vector3 pos, Quaternion rot, Transform transform)
     {
+        skillIsActive = true;
+        canCast = false;
         return Instantiate(obj, transform.position + Vector3.up * 2, rot);
     }
 
@@ -19,7 +21,7 @@ public class RangeSkill : SkillSO
             if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
             {
                 damageable.ApplyDamage(damage);
-                hitsImpacted++;
+                skillCurrentImpacts++;
             }
         }
         else if (hitMethod == HitMethod.TriggerCollision & damageMethod == DamageMethod.DamageOvertime)
@@ -30,7 +32,7 @@ public class RangeSkill : SkillSO
                 if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
                 {
                     damageable.ApplyDamage(damage);
-                    hitsImpacted++;
+                    skillCurrentImpacts++;
                     doDamage = false;
                 }
             }

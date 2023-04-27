@@ -5,9 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Melee Skill", menuName = "Create Skill/Melee Skill")]
 public class MeleeSkill : SkillSO
 {
+    public override void SetAnimatorTrigger(Animator _anim)
+    {
+        if (hasAnimation) _anim.SetTrigger(animClipInfo);
+    }
+    public override GameObject DoEffect(Transform transform)
+    {
+        skillIsActive = true;
+        canCast = false;
+        effectDone = true;
+        return Instantiate(effect, transform.position, Quaternion.identity);
+    }
     public override GameObject InvokeMethod(GameObject obj, Vector3 pos, Quaternion rot, Transform transform)
     {
-       return Instantiate(obj, transform.position + Vector3.up * 2, rot);
+        skillIsActive = true;
+        canCast = false;
+        if (hasPrefab) return Instantiate(obj, pos, rot);
+        else return null;
     }
 
     public override void TakeDamage(GameObject target, Transform transform, LayerMask hitMask)
@@ -19,7 +33,7 @@ public class MeleeSkill : SkillSO
             if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
             {
                 damageable.ApplyDamage(damage);
-                hitsImpacted++;
+                skillCurrentImpacts++;
             }
         }
         else if (hitMethod == HitMethod.TriggerCollision & damageMethod == DamageMethod.DamageOvertime)
@@ -30,7 +44,7 @@ public class MeleeSkill : SkillSO
                 if (target.TryGetComponent<iDamageable>(out iDamageable damageable))
                 {
                     damageable.ApplyDamage(damage);
-                    hitsImpacted++;
+                    skillCurrentImpacts++;
                     doDamage = false;
                 }
             }

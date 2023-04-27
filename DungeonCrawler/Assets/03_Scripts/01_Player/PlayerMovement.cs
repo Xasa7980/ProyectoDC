@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] FixedJoystick attackJoystick;
 
     [SerializeField] float dodgeSpeed = 5;
+    [SerializeField] float dashSpeed = 8;
 
     #region FXParameters
     [SerializeField] FMODUnity.EventReference footstepsInputSound;
@@ -105,7 +106,23 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            anim.SetFloat("Speed X", 0, 0.25f, Time.deltaTime);
+            anim.SetFloat("Speed_Y", 0, 0.25f, Time.deltaTime);
 
+            Vector3 jumpFrontMove = CameraController.current.transform.forward * (Input.GetAxis("Vertical") + moveJoystick.Vertical) * dashSpeed;
+            Vector3 jumpSideMove = CameraController.current.transform.right * (Input.GetAxis("Horizontal") + moveJoystick.Horizontal) * dashSpeed;
+            Vector3 jumpVelocity = jumpFrontMove + jumpSideMove;
+            Vector3 jumpDirection = jumpVelocity.normalized;
+
+            if(jumpDirection != Vector3.zero)
+            {
+                Quaternion jumpLookRotation = Quaternion.LookRotation(jumpDirection);
+                transform.rotation = jumpLookRotation;
+            }
+            controller.Move(jumpDirection * dashSpeed * Time.deltaTime);
+        }
         Vector3 frontMove = CameraController.current.transform.forward * (Input.GetAxis("Vertical") + moveJoystick.Vertical) * speed;
         Vector3 sideMove = CameraController.current.transform.right * (Input.GetAxis("Horizontal") + moveJoystick.Horizontal) * speed;
         Vector3 velocity = frontMove + sideMove;
@@ -163,7 +180,6 @@ public class PlayerMovement : MonoBehaviour
             anim.SetFloat("Speed_Y", speedY, 0.2f, Time.deltaTime);
         }
 
-        //Vector3 move = new Vector3(Input.GetAxisRaw("Horizontal") + moveJoystick.Horizontal, 0, Input.GetAxisRaw("Vertical") + moveJoystick.Vertical) * speed * Time.deltaTime;
         //controller.Move((velocity + Physics.gravity) * Time.deltaTime);
         controller.Move(Physics.gravity * Time.deltaTime);
     }
