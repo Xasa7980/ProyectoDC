@@ -36,16 +36,23 @@ public abstract class SkillSO : ScriptableObject
     public DamageMethod damageMethod;
 
     public GameObject prefab;
-    public GameObject hitEffect;
+    public GameObject effect;
 
     public Vector3 instancePosition;
     public Quaternion instanceRotation;
     public float speed;
 
     public bool canCast = true; //Si tiene tiempo de refreso y se ha refrescado
+    public bool hasAnimation;
+    public bool hasAnimationEvent;
+    public Animator anim;
+    public string animClipInfo;
+    public virtual void SetAnimatorTrigger(Animator _anim) { }
 
+    public bool effectDone;
+    public virtual GameObject DoEffect(Transform transform) { return null; }
+    public bool hasPrefab;
     public abstract GameObject InvokeMethod(GameObject obj, Vector3 pos, Quaternion rot, Transform transform);
-
     public float damage;
     public float hitRadius;
     public abstract void TakeDamage(GameObject target, Transform transform, LayerMask hitMask);
@@ -56,11 +63,14 @@ public abstract class SkillSO : ScriptableObject
     public abstract void DamageCounter();
 
     public bool skillIsActive;
+    public bool hasDuration;
+    public float skillDurationCounter;
+    public float skillDurationTime;
 
-    public float skillCounter;
-    public float skillTime;
-    public float resetCounter;
-    public float resetTime;
-    public float hitsImpacted;
-    public float hitsNeededToRefresh;
+    public float skillResetCounter;
+    public float skillResetTime;
+
+    public float skillCurrentImpacts;
+    public float skillResetImpacts;
+
 }

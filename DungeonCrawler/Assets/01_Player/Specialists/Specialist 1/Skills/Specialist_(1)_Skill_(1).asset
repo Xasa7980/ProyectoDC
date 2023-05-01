@@ -18,22 +18,28 @@ MonoBehaviour:
   activationMethod: 0
   hitMethod: 1
   damageMethod: 0
-  prefab: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed, type: 3}
-  hitEffect: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
-    type: 3}
+  prefab: {fileID: 0}
+  effect: {fileID: 4123735650948744257, guid: 67d34ae5535165f45a7cd29a8e9d30a4, type: 3}
   instancePosition: {x: 0, y: 0, z: 0}
   instanceRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   speed: 0
   canCast: 1
-  damage: 55
+  hasAnimation: 1
+  hasAnimationEvent: 0
+  anim: {fileID: 0}
+  animClipInfo: DashSkill
+  effectDone: 0
+  hasPrefab: 0
+  damage: 155
   hitRadius: 5
   continueCounter: 0
   continueTime: 0
   doDamage: 1
-  skillIsActive: 1
-  skillCounter: 0
-  skillTime: 5
-  resetCounter: 0
-  resetTime: 0
-  hitsImpacted: 0
-  hitsNeededToRefresh: 0
+  skillIsActive: 0
+  hasDuration: 0
+  skillDurationCounter: 0
+  skillDurationTime: 1
+  skillResetCounter: 0
+  skillResetTime: 6
+  skillCurrentImpacts: 0
+  skillResetImpacts: 0

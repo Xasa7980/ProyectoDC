@@ -18,22 +18,28 @@ MonoBehaviour:
   activationMethod: 2
   hitMethod: 1
   damageMethod: 1
-  prefab: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed, type: 3}
-  hitEffect: {fileID: 5726654150216755139, guid: b0a6af209283489488cc152ec1b9b7ed,
-    type: 3}
-  instancePosition: {x: 0, y: 0, z: 0}
-  instanceRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
+  prefab: {fileID: 6462254296610553134, guid: feeec900135cdf34c8005b4caeceb9ff, type: 3}
+  effect: {fileID: 0}
+  instancePosition: {x: 0, y: 1, z: 0}
+  instanceRotation: {x: 0, y: 0, z: 0, w: 1}
   speed: 0
   canCast: 1
+  hasAnimation: 1
+  hasAnimationEvent: 1
+  anim: {fileID: 0}
+  animClipInfo: ThrowGrenade
+  effectDone: 0
+  hasPrefab: 1
   damage: 55
   hitRadius: 5
   continueCounter: 0
   continueTime: 0
   doDamage: 1
-  skillIsActive: 1
-  skillCounter: 0
-  skillTime: 6.65
-  resetCounter: 0
-  resetTime: 0
-  hitsImpacted: 0
-  hitsNeededToRefresh: 5
+  skillIsActive: 0
+  hasDuration: 1
+  skillDurationCounter: 0
+  skillDurationTime: 4
+  skillResetCounter: 0
+  skillResetTime: 9
+  skillCurrentImpacts: 0
+  skillResetImpacts: 0
