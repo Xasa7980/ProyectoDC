@@ -73,4 +73,5 @@ public abstract class SkillSO : ScriptableObject
     public float skillCurrentImpacts;
     public float skillResetImpacts;
 
+
 }

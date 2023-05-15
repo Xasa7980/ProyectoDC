@@ -97,13 +97,12 @@
 			<destination>{ffd6e310-a782-43ff-84be-0b1ea4008428}</destination>
 			<destination>{7b29ddaf-39b7-4db4-8863-ab48bba72aa7}</destination>
 			<destination>{6b983e88-1602-4808-b458-40fe0f917922}</destination>
-			<destination>{20d92840-fdae-4407-9ecb-9b26e7ca1ded}</destination>
 			<destination>{f2243a24-dc72-4856-972a-f1b3c314db7c}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{b231a054-919b-4e55-9f8f-bd39dd8b1a63}">
 		<property name="volume">
-			<value>10</value>
+			<value>-6</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -143,11 +142,6 @@
 	<object class="EventSound" id="{6b983e88-1602-4808-b458-40fe0f917922}">
 		<relationship name="event">
 			<destination>{df4b1187-256c-44d0-81ae-ab76db18fb71}</destination>
-		</relationship>
-	</object>
-	<object class="EventSound" id="{20d92840-fdae-4407-9ecb-9b26e7ca1ded}">
-		<relationship name="event">
-			<destination>{24a4a76d-4959-45c8-8bc0-d87af8697741}</destination>
 		</relationship>
 	</object>
 	<object class="EventSound" id="{f2243a24-dc72-4856-972a-f1b3c314db7c}">

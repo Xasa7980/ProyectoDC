@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool aiming { get; private set; }
 
-    [SerializeField] FixedJoystick moveJoystick;
+    public FixedJoystick moveJoystick;
     [SerializeField] FixedJoystick attackJoystick;
 
     [SerializeField] float dodgeSpeed = 5;

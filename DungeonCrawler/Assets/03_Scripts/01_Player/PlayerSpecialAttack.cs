@@ -195,14 +195,16 @@ public class PlayerSpecialAttack : MonoBehaviour
     }
     void AnimationEvent(int index)
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName(skills[index].animClipInfo) & eventCanRelease)
+        if (skills[index].hasAnimation & skills[index].hasAnimationEvent)
         {
-            float animationCurTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            if(animationCurTime > 0.35f)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName(skills[index].animClipInfo) & eventCanRelease)
             {
-                skillObject[index].SetActive(true);
-                eventCanRelease = false;
-                Debug.Log(animationCurTime);
+                float animationCurTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                if (animationCurTime > 0.25f)
+                {
+                    skillObject[index].SetActive(true);
+                    eventCanRelease = false;
+                }
             }
         }
     }

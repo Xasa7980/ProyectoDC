@@ -6,7 +6,7 @@ public class ParabolicMovement : MonoBehaviour
 {
     [SerializeField] float throwForce;
     [SerializeField] float fireAngle;
-
+    public FixedJoystick joystick;
     public Vector3 startPoint;
     public Vector3 controlPoint;
     public Vector3 endPoint;
@@ -20,9 +20,10 @@ public class ParabolicMovement : MonoBehaviour
 
     private void Start()
     {
-        startPoint = transform.position;
-        controlPoint = transform.forward * (throwForce/2) + (transform.up * fireAngle);
-        endPoint = transform.forward * throwForce + transform.up * startPoint.y;
+        joystick = FindObjectOfType<PlayerMovement>().moveJoystick;
+        startPoint = transform.position + (Vector3)joystick.Direction * throwForce;
+        controlPoint = transform.position + (Vector3)joystick.Direction * throwForce * 0.5f + Vector3.up * fireAngle;
+        endPoint = transform.position + (Vector3)joystick.Direction * throwForce;
     }
     private void Update()
     {
@@ -39,11 +40,13 @@ public class ParabolicMovement : MonoBehaviour
 
         Vector3 bezierPosition;
         if (detectedGround) bezierPosition = transform.position;
-        else bezierPosition = Mathf.Pow(1f - timer, 2f) * startPoint +
+        else
+        {
+            bezierPosition = Mathf.Pow(1f - timer, 2f) * startPoint +
                   2f * (1f - timer) * timer * controlPoint +
                   Mathf.Pow(timer, 2f) * endPoint;
-
-        transform.position = Vector3.Lerp(transform.position,bezierPosition, moveSpeed * Time.deltaTime);
+        }
+        transform.position = Vector3.Lerp(transform.position, bezierPosition, moveSpeed * Time.deltaTime);
     }
     private void OnDrawGizmos()
     {
