@@ -28,7 +28,7 @@ public class ShockWave : MonoBehaviour
         Collider[] threats = Physics.OverlapSphere(transform.position, radius, hitMask);
         foreach (Collider threat in threats)
         {
-            Vector3 threatDir = (threat.transform.localPosition - transform.localPosition).normalized;
+            Vector3 threatDir = (threat.transform.position - transform.position).normalized;
             float speedX = Vector3.Dot(threat.transform.right.normalized, threatDir) * pushForce;
             float speedZ = Vector3.Dot(threat.transform.forward.normalized, threatDir) * pushForce;
             Vector3 pushedPos = new Vector3(speedX, 0, speedZ);

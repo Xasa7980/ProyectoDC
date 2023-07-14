@@ -288,6 +288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1569759112}
+--- !u!1 &1793939382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5666849702303909012, guid: a8070a3b942c3d540ab5a26ba761ed05,
+    type: 3}
+  m_PrefabInstance: {fileID: 5666849703221187469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865352968
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +753,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2071386100, guid: a8070a3b942c3d540ab5a26ba761ed05, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2113637086, guid: a8070a3b942c3d540ab5a26ba761ed05, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -800,6 +810,11 @@ PrefabInstance:
     - target: {fileID: 5600795219271239813, guid: a8070a3b942c3d540ab5a26ba761ed05,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5600795219271239813, guid: a8070a3b942c3d540ab5a26ba761ed05,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5600969477584711320, guid: a8070a3b942c3d540ab5a26ba761ed05,
@@ -937,6 +952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager_UI_Update
       objectReference: {fileID: 0}
+    - target: {fileID: 5666849702721624276, guid: a8070a3b942c3d540ab5a26ba761ed05,
+        type: 3}
+      propertyPath: forceFieldShield
+      value: 
+      objectReference: {fileID: 1793939382}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8070a3b942c3d540ab5a26ba761ed05, type: 3}
 --- !u!1001 &6462254295853850224

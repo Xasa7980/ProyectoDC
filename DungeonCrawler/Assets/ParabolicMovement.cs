@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParabolicMovement : MonoBehaviour
 {
     [SerializeField] float throwForce;
+    [SerializeField] float velocity;
     [SerializeField] float fireAngle;
     public FixedJoystick joystick;
     public Vector3 startPoint;
@@ -20,10 +21,12 @@ public class ParabolicMovement : MonoBehaviour
 
     private void Start()
     {
-        joystick = FindObjectOfType<PlayerMovement>().moveJoystick;
-        startPoint = transform.position + (Vector3)joystick.Direction * throwForce;
-        controlPoint = transform.position + (Vector3)joystick.Direction * throwForce * 0.5f + Vector3.up * fireAngle;
-        endPoint = transform.position + (Vector3)joystick.Direction * throwForce;
+        Transform player = FindObjectOfType<PlayerMovement>().transform;
+        joystick = player.GetComponent<PlayerMovement>().moveJoystick;
+        startPoint = player.transform.forward + player.transform.right + (Vector3)joystick.Direction;
+        controlPoint = player.transform.right + player.transform.forward * velocity + (Vector3)joystick.Direction * throwForce * 0.5f + Vector3.up * fireAngle;
+        endPoint = (player.transform.forward + player.transform.right) * velocity + (Vector3)joystick.Direction * throwForce ;
+        endPoint.y = 1;
     }
     private void Update()
     {

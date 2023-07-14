@@ -112,16 +112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb41f0e54c69ce4db223b5b93848328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 25
-  fireAngle: 25
+  throwForce: 15
+  velocity: 10
+  fireAngle: 15
+  joystick: {fileID: 0}
   startPoint: {x: 0, y: 1, z: 0}
-  controlPoint: {x: 5, y: 25, z: 5}
-  endPoint: {x: 15, y: 1, z: 15}
+  controlPoint: {x: 1, y: 1, z: 1}
+  endPoint: {x: 1, y: 1, z: 1}
   mask:
     serializedVersion: 2
     m_Bits: 8192
   curveResolution: 20
-  moveSpeed: 0.5
+  moveSpeed: 1
   radius: 0.5
   detectedGround: 0
   timer: 0
@@ -255,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 1014599415, guid: cd91c409767773a498813b01fc915223, type: 3}
       propertyPath: explosionGradient.key1.a
       value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1071222077, guid: cd91c409767773a498813b01fc915223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2989303858450612986, guid: cd91c409767773a498813b01fc915223,
         type: 3}

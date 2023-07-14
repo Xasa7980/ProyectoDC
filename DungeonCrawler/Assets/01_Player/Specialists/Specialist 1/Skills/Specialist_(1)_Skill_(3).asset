@@ -15,7 +15,7 @@ MonoBehaviour:
   _displayName: Specialis 1 Skill 3
   _description: akd ajd jad jad jad js fjshfja j vlnbvfdn sdf s sv dmnv sdv sdk skdads
   _image: {fileID: 21300000, guid: 06d8629c39731d0408b28cff15520734, type: 3}
-  activationMethod: 2
+  activationMethod: 0
   hitMethod: 1
   damageMethod: 1
   prefab: {fileID: 6462254296610553134, guid: feeec900135cdf34c8005b4caeceb9ff, type: 3}
@@ -38,8 +38,8 @@ MonoBehaviour:
   skillIsActive: 0
   hasDuration: 1
   skillDurationCounter: 0
-  skillDurationTime: 4
+  skillDurationTime: 5
   skillResetCounter: 0
-  skillResetTime: 9
+  skillResetTime: 2
   skillCurrentImpacts: 0
   skillResetImpacts: 0

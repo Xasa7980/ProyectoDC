@@ -40,6 +40,6 @@ MonoBehaviour:
   skillDurationCounter: 0
   skillDurationTime: 2
   skillResetCounter: 0
-  skillResetTime: 9
+  skillResetTime: 6
   skillCurrentImpacts: 0
   skillResetImpacts: 0

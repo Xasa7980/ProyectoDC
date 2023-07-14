@@ -132,7 +132,11 @@ public class Health : MonoBehaviour, iDamageable
                 {
                     FMODUnity.RuntimeManager.PlayOneShot(rechargedShieldInputSound);
                     shieldRecharged = true;
-                    if(forceFieldShield != null)forceFieldShield.SetActive(true);
+                    if(forceFieldShield != null)
+                    {
+                        forceFieldShield.SetActive(true);
+                        forceFieldShield.transform.position = transform.position;
+                    }
                 }
             }
         }
